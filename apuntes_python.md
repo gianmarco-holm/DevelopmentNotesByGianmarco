@@ -4,32 +4,32 @@
 
 ### 🚀 Fundamentos
 
-1. **Hello World: **Imprime "Hello, World!" en la consola.
+1. **Hello World:** Imprime "Hello, World!" en la consola.
     ```python
     print("Hello, World!")
     ```
-2. **input: **Captura de Python
+2. **input:** Captura de Python
     ```python
     last_name = input('¿Cuál es tu apellido? => ')
     ```
-3. **Variables: **Declaración y asignación de variables.
+3. **Variables:** Declaración y asignación de variables.
     ```python
     nombre = "Gianmarco"
     edad = 25
     ```
-4. **Tipos de Datos: **Enteros, flotantes, cadenas, booleanos.
+4. **Tipos de Datos:** Enteros, flotantes, cadenas, booleanos.
     ```python
     entero = 42
     flotante = 3.14
     cadena = "Hola, Python"
     booleano = True
     ```
-5. **Type: **Te permite saber el tipo de datos
+5. **Type:** Te permite saber el tipo de datos
     ```python
     my_name = "Nicolas"
     print(type(my_name))
     ```
-6. **Operadores Matematicos: **
+6. **Operadores Matematicos:** 
     ```python
     + = suma
     - = resta
@@ -39,7 +39,7 @@
     // = solo muestra el resultado entero
     % = obtiene el residuo
     ```
-7. **Operadores de Comparación: **`==`, `!=`, `<`, `>`, `<=`, `>=`.
+7. **Operadores de Comparación:** `==`, `!=`, `<`, `>`, `<=`, `>=`.
     ```python
     resultado = (5 == 5)
     resultado = (10 != 5)
@@ -48,7 +48,7 @@
     resultado = (15 <= 15)
     resultado = (25 >= 20)
     ```
-8. **Operadores Lógicos: **`and`, `or`, `not` para operaciones lógicas.
+8. **Operadores Lógicos:** `and`, `or`, `not` para operaciones lógicas.
     ```python
     resultado = (True and False)
     resultado = (True or False)
@@ -57,7 +57,7 @@
 
 ### 🔄 Estructuras de Control
 
-9. **Condicionales: **Uso de `if`, `elif` y `else`.
+9. **Condicionales:** Uso de `if`, `elif` y `else`.
     ```python
     if condicion:
         # código
@@ -66,7 +66,7 @@
     else:
         # código
     ```
-10. **Bucles: **Uso de bucles `for` y `while`.
+10. **Bucles:** Uso de bucles `for` y `while`.
     ```python
     for elemento in iterable:
         # código
@@ -74,13 +74,13 @@
     while condicion:
         # código
     ```
-11. **Listas: **Declaración y manipulación de listas.
+11. **Listas:** Declaración y manipulación de listas.
     ```python
     lista = [1, 2, 3, 4, 5]
     lista.append(6)
     ```
 
-12. **Diccionarios: **Declaración y manipulación de diccionarios.
+12. **Diccionarios:** Declaración y manipulación de diccionarios.
     ```python
     diccionario = {"clave": "valor", "nombre": "Gianmarco"}
     print(diccionario["clave"])
@@ -88,21 +88,21 @@
 
 ### 📚 Funciones
 
-13. **Definición de Funciones: **Creación y llamada de funciones.
+13. **Definición de Funciones:** Creación y llamada de funciones.
     ```python
     def saludar(nombre):
         print("Hola, " + nombre)
 
     resultado = saludar("Gianmarco")
     ```
-14. **Parámetros y Argumentos: **Uso de parámetros y argumentos en funciones.
+14. **Parámetros y Argumentos:** Uso de parámetros y argumentos en funciones.
     ```python
     def suma(a=1, b=1):
         print(a + b)
 
     resultado = suma(3, 5)
     ```
-15. **Return: **Retorno de valores desde funciones.
+15. **Return:** Retorno de valores desde funciones.
     ```python
     def cuadrado(numero):
         return numero, numero ** 2
@@ -114,7 +114,7 @@
 
 ### 🧠 Programación Orientada a Objetos (POO)
 
-1. **Clases y Objetos: **Definición y uso de clases y objetos.
+1. **Clases y Objetos:** Definición y uso de clases y objetos.
     ```python
     class Persona:
         def __init__(self, nombre, edad):
@@ -124,7 +124,7 @@
     persona1 = Persona("Gianmarco", 25)
     ```
 
-2. **Herencia: **Creación de clases derivadas.
+2. **Herencia:** Creación de clases derivadas.
     ```python
     class Estudiante(Persona):
         def __init__(self, nombre, edad, curso):
@@ -134,7 +134,7 @@
     estudiante1 = Estudiante("Estudiante", 20, "Python")
     ```
 
-3. **Encapsulamiento: **Control de acceso a atributos y métodos.
+3. **Encapsulamiento:** Control de acceso a atributos y métodos.
     ```python
     class Ejemplo:
     def __init__(self):
@@ -160,13 +160,13 @@
 
 ### 📦 Módulos y Paquetes
 
-4. **Importación de Módulos: **Uso de módulos predefinidos y creados.
+4. **Importación de Módulos:** Uso de módulos predefinidos y creados.
     ```python
     import math
     from mi_modulo import mi_funcion
     ```
 
-5. **Creación de Módulos: **Estructuración de código en módulos.
+5. **Creación de Módulos:** Estructuración de código en módulos.
     ```python
     # mi_modulo.py
     '''
@@ -178,7 +178,7 @@
 
 ### 🧐 Excepciones
 
-6. **Manejo de Excepciones: **Captura y gestión de errores.
+6. **Manejo de Excepciones:** Captura y gestión de errores.
     ```python
     try:
         # código que puede lanzar una excepción
@@ -186,13 +186,13 @@
         # manejo de la excepción
     ```
 
-7. **Lanzamiento de Excepciones: **Creación y lanzamiento de excepciones personalizadas.
+7. **Lanzamiento de Excepciones:** Creación y lanzamiento de excepciones personalizadas.
     ```python
     raise ValueError("Mensaje de error")
     ```
 ### 🔤 Comandos para Strings
 
-8. **Concatenación: **Unir dos strings.
+8. **Concatenación:** Unir dos strings.
     ```python
     saludo = "Hola"
     nombre = "Gianmarco"
@@ -200,7 +200,7 @@
     template = f"{saludo} tu nombre es {nombre}"
     ```
 
-9. **Indexing y Slicing: **Acceso a caracteres y segmentos de un string.
+9. **Indexing y Slicing:** Acceso a caracteres y segmentos de un string.
     ```python
     # Indexing
     mensaje = "Python"
@@ -221,7 +221,7 @@
     print(text[::-1]) # nohtyP ebas allE
     ```
 
-10. **Métodos de Strings: **Operaciones comunes con strings.
+10. **Métodos de Strings:** Operaciones comunes con strings.
     ```python
     mensaje = "Python es genial"
     longitud = len(mensaje)
@@ -239,7 +239,7 @@
 
 ### 📋 Comandos para Listas
 
-11. **CRUD con Listas: **Operaciones básicas con listas (Crear, Leer, Actualizar, Eliminar).
+11. **CRUD con Listas:** Operaciones básicas con listas (Crear, Leer, Actualizar, Eliminar).
     ```python
     # Crear
     mi_lista = [1, 2, 3, 4]
@@ -262,7 +262,7 @@
     mi_lista.sort() #Ordena todos los elementos
     ```
 
-12. **List Comprehension: **Crear listas de manera concisa.
+12. **List Comprehension:** Crear listas de manera concisa.
     ```python
     cuadrados = [x**2 for x in range(5)]
     num_par_random = [num for num in [random.randint(1, 100) for _ in range(1, 20)] if num % 2 == 0]
@@ -270,7 +270,7 @@
 
 ### 🔄 Comandos para Tuplas
 
-13. **Comandos de Tuplas: **Operaciones básicas con tuplas.
+13. **Comandos de Tuplas:** Operaciones básicas con tuplas.
     ```python
     mi_tupla = (1, 2, 3, 2, 'hola')
     conteo_ocurrencias = mi_tupla.count(2)
@@ -278,7 +278,7 @@
     tupla_transformada = list(mi_tupla)
     ```
 
-14. **Tuplas como Claves de Diccionarios: **Uso de tuplas como claves en diccionarios.
+14. **Tuplas como Claves de Diccionarios:** Uso de tuplas como claves en diccionarios.
     ```python
     diccionario = {(1, 2): "Valor"}
     ```
@@ -287,7 +287,7 @@
 
 ### 🚀 Características Avanzadas
 
-1. **Decoradores: **Los decoradores en Python son una forma elegante de modificar o extender el comportamiento de funciones o métodos sin cambiar su código interno.
+1. **Decoradores:** Los decoradores en Python son una forma elegante de modificar o extender el comportamiento de funciones o métodos sin cambiar su código interno.
     ```python
     def mi_decorador(funcion):
         def wrapper():
@@ -299,14 +299,14 @@
     @mi_decorador
     def mi_funcion():
         print("¡Hola!")
-    
+
     # Es como si estuvieras diciendo
     # mi_funcion = mi_decorador(mi_funcion)
 
     mi_funcion()
     ```
 
-2. **Generadores: **Un generador es una forma especial de iterable, una función que produce una secuencia de valores sobre la marcha. A diferencia de las funciones regulares que utilizan return para devolver un valor y terminar la función, los generadores utilizan la palabra clave yield para pausar la ejecución y devolver un valor temporalmente. Cuando se llama al generador nuevamente, la ejecución se reanuda desde donde se detuvo.
+2. **Generadores:** Un generador es una forma especial de iterable, una función que produce una secuencia de valores sobre la marcha. A diferencia de las funciones regulares que utilizan return para devolver un valor y terminar la función, los generadores utilizan la palabra clave yield para pausar la ejecución y devolver un valor temporalmente. Cuando se llama al generador nuevamente, la ejecución se reanuda desde donde se detuvo.
     ```python
     def generador():
         yield 1
@@ -317,7 +317,7 @@
         print(numero)
     ```
 
-20. **Context Managers: **Implementación de gestores de contexto.
+20. **Context Managers:** Implementación de gestores de contexto.
     ```python
     class MiContexto:
         def __enter__(self):
@@ -331,7 +331,7 @@
         # código dentro del contexto
     ```
 
-21. **Programación Funcional: **Conceptos de programación funcional en Python.
+21. **Programación Funcional:** Conceptos de programación funcional en Python.
     ```python
     # Map
     lista = [1, 2, 3, 4, 5]
@@ -345,7 +345,7 @@
     suma = reduce(lambda x, y: x + y, lista)
     ```
 
-22. **Expresiones Regulares: **Uso de expresiones regulares en Python.
+22. **Expresiones Regulares:** Uso de expresiones regulares en Python.
     ```python
     import re
 
@@ -353,7 +353,7 @@
     resultado = patron.findall("Hola, ¿cómo estás?")
     ```
 
-23. **Manejo de Archivos: **Lectura y escritura de archivos.
+23. **Manejo de Archivos:** Lectura y escritura de archivos.
     ```python
     # Lectura
     with open('archivo.txt', 'r') as archivo:
@@ -366,14 +366,14 @@
 
 ### 📚 Bibliotecas Específicas
 
-24. **NumPy: **Manipulación de arreglos y matrices.
+24. **NumPy:** Manipulación de arreglos y matrices.
     ```python
     import numpy as np
 
     array = np.array([1, 2, 3, 4, 5])
     ```
 
-25. **Pandas: **Manipulación y análisis de datos.
+25. **Pandas:** Manipulación y análisis de datos.
     ```python
     import pandas as pd
 
@@ -382,7 +382,7 @@
     df = pd.DataFrame(datos)
     ```
 
-26. **Matplotlib: **Creación de gráficos y visualización de datos.
+26. **Matplotlib:** Creación de gráficos y visualización de datos.
     ```python
     import matplotlib.pyplot as plt
 
@@ -392,13 +392,13 @@
     plt.show()
     ```
 
-27. **Django: **Desarrollo de aplicaciones web con el framework Django.
+27. **Django:** Desarrollo de aplicaciones web con el framework Django.
     ```bash
     pip install django
     django-admin startproject mi_proyecto
     ```
 
-28. **Flask: **Desarrollo de aplicaciones web con el framework Flask.
+28. **Flask:** Desarrollo de aplicaciones web con el framework Flask.
     ```python
     from flask import Flask
 
