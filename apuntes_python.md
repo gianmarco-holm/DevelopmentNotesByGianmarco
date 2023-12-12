@@ -109,6 +109,18 @@
 
     numero, resultado = cuadrado(4)
     ```
+### 🐍 Diferencias entre Lista, Tupla, Diccionario y Set
+
+| Característica                | Lista                        | Tupla                             | Diccionario                        | Set                               |
+| ----------------------------- | ---------------------------- | --------------------------------- | ---------------------------------- | --------------------------------- |
+| **Mutabilidad**               | Mutable                      | Inmutable                         | Mutable                            | Mutable                           |
+| **Sintaxis**                  | `[elemento1, elemento2, ...]` | `(elemento1, elemento2, ...)`     | `{clave1: valor1, clave2: valor2}` | `{elemento1, elemento2, ...}`     |
+| **Índices**                   | Sí                           | Sí                                | No                                 | No                                |
+| **Orden**                     | Sí                           | Sí                                | No                                 | No                                |
+| **Ejemplo**                   | `mi_lista = [1, 2, 3]`        | `mi_tupla = (1, 2, 3)`            | `mi_diccionario = {"clave": "valor"}` | `mi_set = {1, 2, 3}`             |
+| **Uso Común**                 | Almacenar secuencias de datos | Datos inmutables y relacionados  | Almacenar datos con relación clave-valor | Eliminar duplicados y operaciones de conjunto |
+
+
 
 ## Nivel Intermedio
 
@@ -315,9 +327,30 @@
 
     for numero in generador():
         print(numero)
+
+    #Otra forma de de demostrar la iteración
+
+    #Crear una instancia del generador
+    mi_generador = generador_simple()
+
+    # Obtener el primer valor del generador y se pausa
+    valor1 = next(mi_generador)
+    print(valor1)  # Salida: 1
+
+    # continua donde se quedo
+    valor2 = next(mi_generador)
+    print(valor2)  # Salida: 2
+
+    # Obtener el tercer valor del generador
+    valor3 = next(mi_generador)
+    print(valor3)  # Salida: 3
+
+    '''
+    Los generadores en Python son útiles cuando necesitas generar una secuencia de valores de manera eficiente y no necesitas almacenar toda la secuencia en la memoria. Dado que los valores se generan uno a la vez, los generadores son más eficientes en términos de uso de memoria y son ideales para trabajar con grandes conjuntos de datos o secuencias infinitas.
+    '''
     ```
 
-20. **Context Managers:** Implementación de gestores de contexto.
+3. **Context Managers:** Los context managers (gestores de contexto) en Python son objetos que definen métodos especiales, __enter__ y __exit__, que permiten la asignación y liberación de recursos antes y después de la ejecución de un bloque de código. Los context managers son utilizados con la declaración with para garantizar que ciertos recursos se manejen adecuadamente.
     ```python
     class MiContexto:
         def __enter__(self):
@@ -329,9 +362,15 @@
 
     with MiContexto() as contexto:
         # código dentro del contexto
+    
+    '''
+    En este ejemplo, MiContexto es una clase que actúa como un context manager. Cuando se utiliza en una declaración with, el método __enter__ se ejecuta al principio, y el método __exit__ se ejecuta al final.
+
+    Los context managers son útiles para gestionar recursos que necesitan ser adquiridos y liberados adecuadamente, como abrir y cerrar archivos, establecer y cerrar conexiones a bases de datos, y realizar otras tareas de limpieza.
+    '''
     ```
 
-21. **Programación Funcional:** Conceptos de programación funcional en Python.
+4. **Programación Funcional:** Conceptos de programación funcional en Python.
     ```python
     # Map
     lista = [1, 2, 3, 4, 5]
@@ -345,15 +384,16 @@
     suma = reduce(lambda x, y: x + y, lista)
     ```
 
-22. **Expresiones Regulares:** Uso de expresiones regulares en Python.
+5. **Expresiones Regulares:** Uso de expresiones regulares en Python.
     ```python
     import re
 
     patron = re.compile(r'\b\w+\b')
     resultado = patron.findall("Hola, ¿cómo estás?")
+    # >> ['Hola', 'cómo', 'estás']
     ```
 
-23. **Manejo de Archivos:** Lectura y escritura de archivos.
+6. **Manejo de Archivos:** Lectura y escritura de archivos.
     ```python
     # Lectura
     with open('archivo.txt', 'r') as archivo:
@@ -363,49 +403,80 @@
     with open('nuevo_archivo.txt', 'w') as archivo:
         archivo.write('Hola, mundo!')
     ```
+### 📚 Comandos para Diccionarios
 
-### 📚 Bibliotecas Específicas
-
-24. **NumPy:** Manipulación de arreglos y matrices.
+7. **CRUD con Diccionarios:** Operaciones básicas con diccionarios (Crear, Leer, Actualizar, Eliminar).
     ```python
-    import numpy as np
+    # Crear
+    mi_diccionario = {"clave": "valor"}
 
-    array = np.array([1, 2, 3, 4, 5])
+    # Leer
+    valor = mi_diccionario["clave"]
+
+    # Actualizar
+    mi_diccionario["nueva_clave"] = "nuevo_valor"
+
+    # Eliminar
+    del mi_diccionario["clave"]
+    mi_diccionario('clave')
+
+    # Comandos
+    #Devuelve los valores clave valor en forma de tuplas
+    print(person.items())
+
+    #retorna una lista de las llaves
+    print(person.keys())
+
+    #retorna una lista de los valores
+    print(person.values())
+
+    # zip crea un iterador que produce tuplas
+    names = ['nico', 'zule', 'santi']
+    ages = [12, 56, 98]
+
+    print(list(zip(names, ages)))
+    # [('nico', 12), ('zule', 56), ('santi', 98)]
     ```
 
-25. **Pandas:** Manipulación y análisis de datos.
+8. **Comprehension con Diccionarios:** Crear diccionarios de manera concisa.
     ```python
-    import pandas as pd
-
-    datos = {'Nombre': ['Alice', 'Bob', 'Charlie'],
-             'Edad': [25, 30, 35]}
-    df = pd.DataFrame(datos)
+    cuadrados = {x: x**2 for x in range(5)}
+    new_dict = {name: age for (name, age) in zip(names, ages)}
     ```
 
-26. **Matplotlib:** Creación de gráficos y visualización de datos.
+9. **Comandos para Sets:** Operaciones básicas con sets.
     ```python
-    import matplotlib.pyplot as plt
+    mi_set = {1, 2, 3}
 
-    x = [1, 2, 3, 4, 5]
-    y = [2, 4, 6, 8, 10]
-    plt.plot(x, y)
-    plt.show()
+    # Agregar
+    mi_set.add(4)
+
+    # Eliminar
+    mi_set.remove(2)
     ```
 
-27. **Django:** Desarrollo de aplicaciones web con el framework Django.
-    ```bash
-    pip install django
-    django-admin startproject mi_proyecto
-    ```
-
-28. **Flask:** Desarrollo de aplicaciones web con el framework Flask.
+10. **CRUD con Sets:** Operaciones básicas con sets (Crear, Leer, Actualizar, Eliminar).
     ```python
-    from flask import Flask
+    # Crear
+    mi_set = {1, 2, 3}
 
-    app = Flask(__name__)
+    # Leer
+    existe = 1 in mi_set
 
-    @app.route('/')
-    def hola_mundo():
-        return 'Hola, mundo!'
+    # Actualizar
+    mi_set.add(4)
+    mi_set.update({2, 5, 6})
+
+    # Eliminar
+    mi_set.remove(2)
+    mi_set.discard('3') # Elimina solo si existe
+
+    # Comandos
+    set_from_string = set('hola que tal') # {'q', 'h', 'o', 'a', 't', ' ', 'l', 'e', 'u'}
+    mi_set.clear() # Elimina todos los elementos del set
     ```
 
+11. **HOF:** Es una función que toma una o mas argumentos como argumentos y/o devuelve una función
+    ```python
+    # HOF
+    cuadrados = list(map(lambda x: x**2, [1, 2, 3, 4]))
