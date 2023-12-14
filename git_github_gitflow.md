@@ -82,18 +82,63 @@
 1. **git branch:** Muestra y crea ramas.
 
    ```bash
+   # Revisa las ramas creadas
    git branch
+   # Crear rama
+   git branch nombre
+   # Ramas creadas con su remoto
+   git show-branch --all
    ```
-
 2. **git checkout:** Cambia de rama o restaura archivos.
 
    ```bash
    git checkout nombre_rama
    ```
+3. **git pull y git push de ramas:** Cambia de rama o restaura archivos.
 
-3. **git merge:** Combina cambios de una rama en otra.
+   ```bash
+   # Para traer una rama
+   git pull origin nombre-rama
+   # Para enviar una rama o ramas
+   git push origin nombre-rama1 nombre-rama2
+   ```
+4. **gitk:** Interfaz grafica 
+
+   ```bash
+   # Si no la tienes instalada
+   sudo apt install gitk
+   # Ya vienen instaladas en windows
+   gitk
+   ```
+5. **git merge:** Combina cambios de una rama en otra.
    ```bash
    git merge nombre_rama
+   ```
+6. **git tag -a -m:** Crea un nuevo tag anotado con un mensaje.
+
+   ```bash
+   git tag -a nombre_tag -m "Mensaje descriptivo"
+   ```
+
+7. **git show-ref --tags:** Muestra las referencias de tags.
+
+   ```bash
+   git show-ref --tags
+   ```
+
+8. **git push origin --tags:** Sube todos los tags al repositorio remoto.
+   ```bash
+   git push origin --tags
+   ```
+9. **git tag -d** Elimina un tag localmente.
+
+   ```bash
+   git tag -d nombre_tag
+   ```
+
+10. **git push origin :refs/tags/nombre_tag_eliminado:** Elimina un tag en el repositorio remoto.
+   ```bash
+   git push origin :refs/tags/nombre_tag_eliminado
    ```
 
 ### ⏪ Volver en el tiempo
@@ -235,6 +280,11 @@ Cuando se clona un repositorio se crea automaticamente el remoto, solo se crea r
 13. **git pull:** Obtiene y fusiona los cambios del repositorio remoto.
     ```bash
     git pull
+    ```
+
+14. **Colaboradores** Para que un colaborador pueda hacer push a tu repositorio necesitas darle permisos
+    ```bash
+    settings del repositorio >> Magae access >> Invite a Collabortor con nombre de usuario o correo
     ```
 
 ## 🌊 Gitflow Workflow
