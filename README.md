@@ -12,5 +12,6 @@
 - [PostgreSQL](postgresql.md) 🐘
 - [Jupyter Notebooks y Anaconda](jupyter_notebooks_y_anaconda.md) ☁️
 - [Terminal y Linea de Comandos](terminal_y_lineas_de_comandos.md) 💻
+- [Bootstrap](bootstrap.md) 🌈
 
 **¡Feliz aprendizaje y desarrollo!** 🚀
