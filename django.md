@@ -27,12 +27,30 @@
 
 3. **Crear una Aplicación: **Crear una nueva aplicación dentro del proyecto.
     ```bash
-    python manage.py startapp nombre_app
+    python3 manage.py startapp nombre_app
+    ```
+
+4. **Arrancar el servidor: **
+    ```bash
+    python3 manage.py runserver
+    ```
+
+5. **PDB: ** Se utiliza en Python para insertar un punto de interrupción en un programa, 
+    lo que permite la depuración interactiva.
+    Dentro del depurador, puedes usar comandos como n (siguiente), c (continuar), p (imprimir).
+    ```python
+    def hi(request):
+    import pdb; pdb.set_trace()
+    """
+    Según la documentación puedes usar request.method, request.GET, etc
+    """
+    numbers = request.GET['numbers']
+    return HttpResponse(str(numbers))
     ```
 
 ### 🏠 Estructura del Proyecto
 
-4. **Estructura del Proyecto: **Descripción de la estructura de archivos y carpetas en un proyecto Django.
+6. **Estructura del Proyecto: **Descripción de la estructura de archivos y carpetas en un proyecto Django.
 
 Nombre_del_Proyecto/
 ├──__init__.py ** Indica que el directorio es un paquete de python
