@@ -338,3 +338,130 @@ El flujo de Gitflow es un modelo de ramificación para Git que ayuda en la gesti
    git tag -a x.y.z -m "Versión x.y.z"
    git branch -d hotfix/x.y.z
    ```
+
+## 🌊 Git avanzado
+
+### Git Stash
+
+
+1. **git stash:** Guarda temporalmente los cambios locales, y mas que todo sirve par acambiar de ramas en casos donde no es suficiente hacer un commit o un add.
+    ```bash
+    git stash
+    ```
+
+2. **git stash save "mensaje":** Guarda los cambios con un mensaje descriptivo.
+    ```bash
+    git stash save "mensaje identificador del elemento del stashed"
+    ```
+
+3. **git stash list:** Lista los cambios almacenados en el stash.
+    ```bash
+    git stash list
+    ```
+
+4. **git stash pop stash@{<num_stash>}:** Aplica y elimina un cambio específico del stash.
+    ```bash
+    git stash pop stash@{<num_stash>}
+    ```
+
+5. **git stash pop:** Aplica y elimina el cambio más reciente del stash.
+    ```bash
+    git stash pop
+    ```
+
+6. **git stash branch <nombre_de_la_rama>:** Crea una nueva rama y aplica los cambios del stash.
+    ```bash
+    git stash branch <nombre_de_la_rama>
+    ```
+
+7. **git stash drop:** Elimina el cambio más reciente del stash.
+    ```bash
+    git stash drop
+    ```
+
+### Git Rebase
+
+8. **git rebase:** Reorganiza los commits de una rama, es decir trae los commits de otra rama y lo añade como si la historia hubiera pasado en la rama principal, debemos recordar que para que no haya conflictos primero se hace el rebase a la rama secundaria y luego a la primaria.
+    ```bash
+    git rebase <rama_objetivo>
+    ```
+
+9. **git pull --rebase:** Realiza un pull con rebase en lugar de merge.
+    ```bash
+    git pull --rebase <rama_objetivo>
+    ```
+
+10. **git rebase -i HEAD~<num_commits>:** Realiza un rebase interactivo.
+    ```bash
+    git rebase -i HEAD~3
+    ```
+
+### GitHub Pull Request y Fork
+
+11. **Pull Request:** Solicitar la incorporación de cambios en una rama a otra.
+    - Crear un Pull Request en GitHub desde la interfaz web.
+
+12. **Fork:** Copiar un repositorio a tu cuenta de GitHub.
+    - Hacer un fork desde la interfaz web de GitHub.
+
+## Otras Operaciones y Comandos Útiles
+
+13. **git clean --dry-run:** Muestra los archivos que serían eliminados por git clean.
+    ```bash
+    git clean --dry-run
+    ```
+
+14. **git clean -f:** Elimina los archivos no rastreados en el directorio de trabajo.
+    ```bash
+    git clean -f
+    ```
+
+15. **git cherry-pick:** Aplica cambios de un commit específico a otra rama.
+    ```bash
+    git cherry-pick <hash_commit>
+    ```
+
+16. **git reflog y git reset HEAD@{<numero>}:** Revertir cambios sin traer archivos y ver el contenido en staging.
+    ```bash
+    git reflog
+    git reset HEAD@{<numero>}
+    ```
+
+17. **git reset --hard <hash>:** Revierte cambios y elimina archivos de forma radical, mas que todo sirve para traer archivos que hubo en el pasado.
+    ```bash
+    git reset --hard <hash_commit>
+    ```
+
+18. **git commit --amend:** Modifica el último commit, es decir si en un commite te olvidaste de algun cambio, y no quieres crear un commit nuevo, usas amend para añadir estos cambios al ultimo commit que ya realizaste.
+    ```bash
+    git commit --amend
+    ```
+
+19. **git grep -n "palabra_buscada":** Busca una palabra en los archivos del repositorio.
+    ```bash
+    git grep -n "palabra_buscada"
+    ```
+
+20. **git log -S "palabra-del-commit-buscada":** Busca cambios que introduzcan o eliminen la palabra en los commits.
+    ```bash
+    git log -S "palabra-del-commit-buscada"
+    ```
+
+21. **Comandos y Recursos Colaborativos:** Comandos para estadísticas y colaboración en equipo.
+    ```bash
+    git shortlog -sn --all --no-merges
+    git blame -c archivo.html
+    git blame --help
+    git blame archivo -L 35,60 -c
+    git branch -r
+    git branch -a
+    ```
+
+    - **Alias Git:** Configuración de alias útiles.
+        ```bash
+        git config --global alias.stats "shortlog -sn --all --no-merges"
+        ```
+
+22. **git log --graph --oneline --all:** Muestra el historial de commits de forma gráfica y resumida.
+    ```bash
+    git log --graph --oneline --all
