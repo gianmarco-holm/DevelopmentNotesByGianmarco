@@ -1,5 +1,9 @@
 # 🖥️ Apuntes de Terminal y Línea de Comandos
 
+**Tabla de Contenido**
+
+[TOC]
+
 ## Nivel Básico
 
 ### ¿Qué es la Terminal?
@@ -29,12 +33,12 @@ wsl --set-default-version 2
 
 ### 🚀 Comandos Básicos
 
-1. **pwd: **Muestra el directorio actual.
+1. **pwd:** Muestra el directorio actual.
     ```bash
     pwd
     ```
 
-2. **ls: **Lista los archivos y carpetas en el directorio actual.
+2. **ls:** Lista los archivos y carpetas en el directorio actual.
     ```bash
     ls
     # Lista con detalles y tamaños humanos.
@@ -43,57 +47,57 @@ wsl --set-default-version 2
     ls -a
     ```
 
-3. **cd: **Cambia de directorio.
+3. **cd:** Cambia de directorio.
     ```bash
     cd nombre_directorio
     ```
 
-4. **mkdir: **Crea un nuevo directorio.
+4. **mkdir:** Crea un nuevo directorio.
     ```bash
     mkdir nombre_directorio
     ```
 
-5. **touch: **Crea un nuevo archivo.
+5. **touch:** Crea un nuevo archivo.
     ```bash
     touch nombre_archivo.txt
     ```
 
-6. **clear: **Limpia la pantalla de la terminal.
+6. **clear:** Limpia la pantalla de la terminal.
     ```bash
     clear
     ```
-7. **head: **Muestra las primeras líneas de un archivo.
+7. **head:** Muestra las primeras líneas de un archivo.
     ```bash
     head nombre_archivo.txt
     ```
-8. **tail: **Muestra las últimas líneas de un archivo.
+8. **tail:** Muestra las últimas líneas de un archivo.
     ```bash
     tail nombre_archivo.txt
     ```
 
-9. **less: **Visualizador de texto con desplazamiento.
+9. **less:** Visualizador de texto con desplazamiento.
     ```bash
     Copy code
     less nombre_archivo.txt
     ```
-10. **echo: **Imprime texto en la pantalla.
+10. **echo:** Imprime texto en la pantalla.
     ```bash
     echo "Hola, Mundo!"
     ```
 
 ### 🔍 Gestión de Archivos y Directorios
 
-11. **cp: **Copia archivos o directorios.
+11. **cp:** Copia archivos o directorios.
     ```bash
     cp origen destino
     ```
 
-12. **mv: **Mueve o renombra archivos o directorios.
+12. **mv:** Mueve o renombra archivos o directorios.
     ```bash
     mv origen destino
     ```
 
-13. **rm: **Elimina archivos o directorios.
+13. **rm:** Elimina archivos o directorios.
     ```bash
     rm nombre_archivo.txt
     # Para eliminar directorios
@@ -106,48 +110,48 @@ wsl --set-default-version 2
     # rmdir elimina un directorio vacio
     ```
 
-14. **cat: **Muestra el contenido de un archivo.
+14. **cat:** Muestra el contenido de un archivo.
     ```bash
     cat nombre_archivo.txt
     ```
 
-15. **tree y Cómo Instalarlo: **Muestra la estructura de directorios en formato de árbol.
+15. **tree y Cómo Instalarlo:** Muestra la estructura de directorios en formato de árbol.
     ```bash
     sudo apt install tree
     tree
     ```
 
-16. **xdg-open o open: **Abre archivos o directorios con la aplicación predeterminada.
+16. **xdg-open o open:** Abre archivos o directorios con la aplicación predeterminada.
     ```bash
     xdg-open nombre_archivo.txt
     ```
 
-17. **nautilus: **Explorador de archivos en entornos GNOME.
+17. **nautilus:** Explorador de archivos en entornos GNOME.
     ```bash
     nautilus
     ```
 
-18. **type comando: **Muestra la ubicación del ejecutable de un comando.
+18. **type:** Muestra la ubicación del ejecutable de un comando.
     ```bash
     type ls
     ```
 
-19. **help: **Proporciona ayuda integrada para comandos internos de la shell.
+19. **help:** Proporciona ayuda integrada para comandos internos de la shell.
     ```bash
     help
     ```
 
-20. **man: **Muestra el manual de un comando.
+20. **man:** Muestra el manual de un comando.
     ```bash
     man nombre_comando
     ```
 
-21. **alias lista_larga="ls -lSh": **Crea un alias para un comando.de un comando.
+21. **alias lista_larga="ls -lSh":** Crea un alias para un comando.de un comando.
     ```bash
     alias lista_larga="ls -lSh"
     ```
 
-22. **Wilcards: **
+22. **Wilcards:** 
     ```bash
     # Lista archivos con extensión .png.
     ls -l *.png
@@ -165,7 +169,7 @@ wsl --set-default-version 2
 
 ### 🔄 Redirección y Tuberías
 
-10. **> y >>: **Redirección de salida estándar a un archivo (sobrescribir o añadir).
+23. **> y >>:** Redirección de salida estándar a un archivo (sobrescribir o añadir).
     ```bash
     # Redirecciona a un archivo
     comando > archivo.txt
@@ -177,12 +181,12 @@ wsl --set-default-version 2
     comando > archivo.txt 2>&1
     ```
 
-11. **<: **Redirección de entrada estándar desde un archivo.
+24. **<:** Redirección de entrada estándar desde un archivo.
     ```bash
     comando < archivo.txt
     ```
 
-12. **|: **Tubería o pipe operator, envía la salida de un comando como entrada a otro.
+25. **|:** Tubería o pipe operator, envía la salida de un comando como entrada a otro.
     ```bash
     comando1 | comando2
     # tee funciona igual que la dirección >
@@ -193,45 +197,40 @@ wsl --set-default-version 2
 
 ### ⚙️ Otros Comandos Útiles
 
-13. **man: **Muestra el manual de un comando.
+26. **man:** Muestra el manual de un comando.
     ```bash
     man nombre_comando
     ```
 
-14. **grep: **Busca patrones en archivos.
+27. **grep:** Busca patrones en archivos.
     ```bash
     grep patron archivo.txt
     ```
 
-15. **ps: **Muestra procesos en ejecución.
-    ```bash
-    ps
-    ```
-
 ### Manejo de Procesos
 
-13. **ps: **Muestra información sobre procesos.
+28. **ps:** Muestra información sobre procesos.
     ```bash
     ps
     ```
 
-14. **top: **Muestra una lista dinámica de procesos en ejecución.
+29. **top:** Muestra una lista dinámica de procesos en ejecución.
     ```bash
     top
     ```
 
-15. **htop: **Visualizador interactivo de procesos.
+30. **htop:** Visualizador interactivo de procesos.
     ```bash
     sudo apt install htop
     htop
     ```
-13. **glances: **Monitor de sistema con interfaz web.
+31. **glances:** Monitor de sistema con interfaz web.
     ```bash
     sudo apt install glances
     glances
     ```
 
-14. **kill: **Envía una señal a un proceso.
+32. **kill:** Envía una señal a un proceso.
     ```bash
     kill PID
     ```
@@ -240,22 +239,22 @@ wsl --set-default-version 2
 
 ### 🌐 Redes y Conectividad
 
-17. **ping: **Prueba la conectividad a un host.
+1. **ping:** Prueba la conectividad a un host.
     ```bash
     ping ejemplo.com
     ```
 
-18. **traceroute: **Muestra la ruta que toma un paquete hasta un destino.
+2. **traceroute:** Muestra la ruta que toma un paquete hasta un destino.
     ```bash
     traceroute ejemplo.com
     ```
 
-19. **ssh: **Inicia una sesión segura de shell en un host remoto.
+3. **ssh:** Inicia una sesión segura de shell en un host remoto.
     ```bash
     ssh usuario@hostname
     ```
 
-20. **scp: **Copia archivos entre hosts a través de SSH.
+4. **scp:** Copia archivos entre hosts a través de SSH.
     ```bash
     scp archivo.txt usuario@hostname:/ruta/destino
     ```
@@ -338,7 +337,7 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 1 | 1| | 1 | 0 | 1 | | 1 | 0 | 0 | 0 | || 7 |||| 5 |||| 1 |||
 
-21. **chmod: **Cambia los permisos de un archivo.
+5. **chmod:** Cambia los permisos de un archivo.
     ```bash
     chmod permisos archivo
     # Añade escritura al grupo puede ser de dos formas
@@ -352,17 +351,17 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
     chmod 724 [archivo]
     ```
 
-22. **cron: **Programador de tareas en segundo plano.
+6. **cron:** Programador de tareas en segundo plano.
     ```bash
     crontab -e
     ```
 
-23. **curl: **Herramienta para transferir datos con URL.
+7. **curl:** Herramienta para transferir datos con URL.
     ```bash
     curl -O https://ejemplo.com/archivo.zip
     ```
 
-24. **wget: **Descargador de archivos desde la web.
+8. **wget:** Descargador de archivos desde la web.
     ```bash
     wget https://ejemplo.com/archivo.zip
     ```
@@ -371,7 +370,7 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
 
 ### 🚀 Comandos Avanzados
 
-25. **find: **Busca archivos en un directorio.
+1. **find:** Busca archivos en un directorio.
     ```bash
     find directorio -name "patron"
     find ./ -name *.txt | less
@@ -384,17 +383,17 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
     find ./ -type d -mindepth 2
     ```
 
-26. **awk: **Procesador de patrones y texto.
+2. **awk:** Procesador de patrones y texto.
     ```bash
     awk '/patron/ {print $1}' archivo.txt
     ```
 
-27. **sed: **Editor de flujo para la transformación de texto.
+3. **sed:** Editor de flujo para la transformación de texto.
     ```bash
     sed 's/antiguo/nuevo/g' archivo.txt
     ```
 
-28. **tar: **Crea y manipula archivos tar.
+4. **tar:** Crea y manipula archivos tar.
     ```bash
     sudo apt install rar
     sudo apt install unrar
@@ -419,7 +418,7 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
     unzip compressed.zip
     ```
 
-29. **grep : **Busca palabras en un archivp.
+5. **grep :** Busca palabras en un archivp.
     ```bash
     # -v para palabras que no coincida
     grep -v "patron" archivo.txt
@@ -433,17 +432,17 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
     grep -m 10 Fan movies.csv
     ```
 
-26. **which: **Muestra la ubicación de un ejecutable.
+6. **which:** Muestra la ubicación de un ejecutable.
     ```bash
     which nombre_comando
     ```
 
-30. **du: **Muestra el uso del disco de un archivo o directorio.
+7. **du:** Muestra el uso del disco de un archivo o directorio.
     ```bash
     du -h archivo_o_directorio
     ```
 
-30. **Concatenando comandos: **Muestra el uso del disco de un archivo o directorio.
+8. **Concatenando comandos:** Muestra el uso del disco de un archivo o directorio.
     ```bash
     # Ejecuta varios comandos en secuencia con ;
     ls; mkdir nuevo; cal
@@ -455,27 +454,27 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
     cd proyectos || ls -l
     ```
 
-30. **su root: **Cambia al usuario root.
+17. **su root:** Cambia al usuario root.
     ```bash
     su root
     ```
 
-30. **whoami: **Muestra el nombre de usuario actual.
+9. **whoami:** Muestra el nombre de usuario actual.
     ```bash
     whoami
     ```
 
-30. **chown [usuarioAlQuePertenecerá] [archivo]: **Cambia el dueño de un archivo.
+10. **chown [usuarioAlQuePertenecerá] [archivo]:** Cambia el dueño de un archivo.
     ```bash
     chown usuario archivo
     ```
 
-30. **ln -s ruta_de_archivo: **Crea un enlace simbólico a un archivo.
+11. **ln -s ruta_de_archivo:** Crea un enlace simbólico a un archivo.
     ```bash
     ln -s ruta_de_archivo
     ```
 
-30. **variables de entorno;: **Muestra todas las variables de entorno.
+12. **variables de entorno:** Muestra todas las variables de entorno.
     ```bash
     printenv
     ```
@@ -483,58 +482,58 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
 
 ### 🔄 Procesos en Primer Plano
 
-31. **Ctrl-Z: **Pausa un proceso en primer plano y lo manda a background, sirve para seguir haciendo otras cosas en la terminar.
+13. **Ctrl-Z:** Pausa un proceso en primer plano y lo manda a background, sirve para seguir haciendo otras cosas en la terminar.
     ```bash
     cat > mi_nota.txt
     # Presiona Ctrl-Z para pausar el proceso
     ```
 
-32. **fg: **Trae un proceso pausado al primer plano.
+14. **fg:** Trae un proceso pausado al primer plano.
     ```bash
     fg %1
     ```
 
 ### 🔀 Procesos en Fondo
 
-33. **&: **Ejecuta un proceso en segundo plano.
+15. **&:** Ejecuta un proceso en segundo plano.
     ```bash
     cat > mi_nota.txt &
     ```
 
-34. **jobs: **Muestra los procesos en segundo plano.
+16. **jobs:** Muestra los procesos en segundo plano.
     ```bash
     jobs
     ```
 
-35. **bg: **Reanuda un proceso en segundo plano.
+17. **bg:** Reanuda un proceso en segundo plano.
     ```bash
     bg %1
     ```
 
-36. **Ctrl-C: **Termina un proceso en primer plano.
+18. **Ctrl-C:** Termina un proceso en primer plano.
     ```bash
     # Presiona Ctrl-C para interrumpir el proceso en primer plano
     ```
 
-37. **nohup: **Ejecuta un comando inmune a la desconexión del terminal.
+19. **nohup:** Ejecuta un comando inmune a la desconexión del terminal.
     ```bash
     nohup comando &
     ```
 
-38. **disown: **Desvincula un proceso de la terminal actual.
+20. **disown:** Desvincula un proceso de la terminal actual.
     ```bash
     disown %1
     ```
 
-### Personalizar el terminal
+## 🏡Personalizar el terminal
 
-1. Instala Tilix
+1. **Instala Tilix**
 Tilix es un emulador de terminal. Para instalarlo:
 ```bash
 $ sudo aptinstall tilix
 ```
 
-2. Instala ZSH
+2. **Instala ZSH**
 Vamos a usar la Shell ZSH. Para cambiarla:
 ```bash
 $ sudo aptinstall zsh
@@ -554,12 +553,12 @@ $ exec bash
 
 $ exec zsh
 ```
-3. Personaliza funcionalidades y colores
+3. **Personaliza funcionalidades y colores**
 Ahora, puedes ponerle funcionalidades y colores con OH-MY-ZSH
 ```bash
 $ sh-c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
-4. Usa Power Level
+4. **Usa Power Level**
 Vamos a instalarle un tema (powerLevel10K):
 ```bash
 $ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -575,7 +574,11 @@ $ ZSH_THEME="powerlevel10k/powerlevel10k"
 ```
 Guardamos y salimos.
 
-Después instalamos estas 4 fuentes de texto 1 2 3 4
+Después instalamos estas 4 fuentes de texto que aparece en la parte de fonts en el siguiente link https://github.com/romkatv/powerlevel10k: 
+MesloLGS NF Regular.ttf
+MesloLGS NF Bold.ttf
+MesloLGS NF Italic.ttf
+MesloLGS NF Bold Italic.ttf
 
 Cuando salgamos y volvamos a entrar a la terminal nos va a salir el wizard de powerlevel10k para configurar la terminal como quieras, simplemente sigue los pasos.
 
