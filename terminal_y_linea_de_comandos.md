@@ -530,7 +530,7 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
 1. **Instala Tilix**
 Tilix es un emulador de terminal. Para instalarlo:
 ```bash
-$ sudo aptinstall tilix
+$ sudo apt install tilix
 ```
 
 2. **Instala ZSH**
@@ -552,11 +552,14 @@ Para cambiar entre bash y zsh en el momento:
 $ exec bash
 
 $ exec zsh
+# Y luego la opción de 0
 ```
 3. **Personaliza funcionalidades y colores**
 Ahora, puedes ponerle funcionalidades y colores con OH-MY-ZSH
 ```bash
-$ sh-c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+# https://ohmyz.sh/#install
+# Sirve para Optimizar y liberar todo el poder de zsh ya que viene con muchas funciones utiles, ayudas, complementos, temas y otros.
+$ sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 ```
 4. **Usa Power Level**
 Vamos a instalarle un tema (powerLevel10K):
