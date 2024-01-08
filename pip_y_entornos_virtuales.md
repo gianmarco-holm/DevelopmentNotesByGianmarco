@@ -4,6 +4,12 @@
 
 [TOC]
 
+## Teoría
+
+`pip` es el sistema de gestión de paquetes de Python. Permite instalar y gestionar bibliotecas, módulos y herramientas escritos en Python. Con pip, puedes instalar paquetes desde el índice oficial de paquetes de Python, PyPI (Python Package Index), así como desde otras fuentes.
+
+Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gestionar las dependencias de un proyecto específico sin afectar al sistema global de Python. Esto es útil cuando trabajas en múltiples proyectos que pueden requerir versiones diferentes de las mismas bibliotecas o cuando quieres evitar conflictos entre las dependencias de diferentes proyectos.
+
 ## 🚀 Instalación de PIP
 
 1. **Verificar si PIP está instalado:**
@@ -41,7 +47,11 @@
 
 6. **Instalar virtualenv (si no está instalado):**
     ```bash
+    # en PIP
     pip install virtualenv
+    # en Linux
+    sudo apt install python3-venv
+    # en windows ya viene instalada cuando instalas python
     ```
 
 7. **Crear un entorno virtual:**
@@ -73,6 +83,10 @@
 10. **Exportar requisitos de un entorno:**
     ```bash
     pip freeze > requirements.txt
+    # Para ver todas las librerías instaladas en el entorno
+    pip freeze
+    # Para ver todas las librerías instaladas en en el entorno global de python
+    pip list
     ```
 
 11. **Instalar requisitos desde un archivo:**
