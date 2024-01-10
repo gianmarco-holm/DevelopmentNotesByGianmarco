@@ -34,24 +34,43 @@ La Ingeniería de Datos es una disciplina que se enfoca en el desarrollo y gesti
 
 DataOps es una metodología que busca mejorar la colaboración y eficiencia en el ciclo de vida de los datos. Combina prácticas de desarrollo de software con operaciones de datos para lograr una entrega más rápida y confiable de información de calidad.
 
+![dataops](./images/dataOps.PNG)
+
 ## Integración de Metodologías
 
 ### 🚀 Agile en DataOps
+![data engineer](./images/Agile.PNG)
 
-- **Scrum y Kanban:**
-  - Sprints para entregas rápidas, incrementar valor y planificación visual del flujo de trabajo.
+* **Scrum:**
+
+Roles definidos (Scrum Master, Product Owner, Equipo de Desarrollo).
+Iterativo e incremental en sprints.
+Eventos predeterminados (Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective).
+Uso de Backlog de Producto y Sprint Backlog.
+Estimaciones de tiempo (puntos de historia).
+
+* **Kanban:**
+
+Roles flexibles, sin roles predeterminados.
+Flujo continuo de trabajo, sin iteraciones fijas.
+No tiene eventos predeterminados.
+Utiliza un tablero Kanban para visualizar el flujo de trabajo.
+No tiene Sprint Backlog ni Backlog de Producto.
+Evita estimaciones de tiempo, se centra en limitar el trabajo en curso (WIP).
 
 ### 🔄 Lean en DataOps
 
 - **Eliminación de Desperdicios:**
   - Identificar y eliminar actividades que no agregan valor.
   - Mejora continua en la entrega de datos.
+![data engineer](./images/lean.PNG)
 
 ### 🤝 DevOps en DataOps
 
 - **Colaboración:**
   - Superar las barreras entre desarrollo y operaciones.
   - Automatización en todas las etapas del ciclo de vida de los datos.
+![data engineer](./images/devops.PNG)
 
 ## Por Qué se Integra
 
