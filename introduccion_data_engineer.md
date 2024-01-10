@@ -34,12 +34,12 @@ La Ingeniería de Datos es una disciplina que se enfoca en el desarrollo y gesti
 
 DataOps es una metodología que busca mejorar la colaboración y eficiencia en el ciclo de vida de los datos. Combina prácticas de desarrollo de software con operaciones de datos para lograr una entrega más rápida y confiable de información de calidad.
 
-![dataops](./images/dataOps.PNG)
+![dataops](./images/dataOps.PNG){width=500px}
 
 ## Integración de Metodologías
 
 ### 🚀 Agile en DataOps
-![data engineer](./images/Agile.PNG)
+![Agile](./images/Agile.PNG){width=500px}
 
 * **Scrum:**
 
@@ -48,6 +48,7 @@ Iterativo e incremental en sprints.
 Eventos predeterminados (Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective).
 Uso de Backlog de Producto y Sprint Backlog.
 Estimaciones de tiempo (puntos de historia).
+![Scrum](./images/scrum.jpeg){width=500px}
 
 * **Kanban:**
 
@@ -57,22 +58,29 @@ No tiene eventos predeterminados.
 Utiliza un tablero Kanban para visualizar el flujo de trabajo.
 No tiene Sprint Backlog ni Backlog de Producto.
 Evita estimaciones de tiempo, se centra en limitar el trabajo en curso (WIP).
+![Kanban](./images/kanban.jpeg){width=500px}
+
+* **Kanban:**
+    -Trello
+    -Jira
+    -Asana
 
 ### 🔄 Lean en DataOps
 
 - **Eliminación de Desperdicios:**
   - Identificar y eliminar actividades que no agregan valor.
   - Mejora continua en la entrega de datos.
-![data engineer](./images/lean.PNG)
+![data engineer](./images/lean.PNG){width=500px}
+
 
 ### 🤝 DevOps en DataOps
 
 - **Colaboración:**
   - Superar las barreras entre desarrollo y operaciones.
   - Automatización en todas las etapas del ciclo de vida de los datos.
-![data engineer](./images/devops.PNG)
+![data engineer](./images/devops.PNG){width=500px}
 
-## Por Qué se Integra
+### Por Qué se Integra
 
 1. **Colaboración Efectiva:**
     - Rompe silos entre equipos para una colaboración más efectiva.
@@ -85,6 +93,47 @@ Evita estimaciones de tiempo, se centra en limitar el trabajo en curso (WIP).
 
 4. **Mejora Continua:**
     - Fomenta la mejora continua en todos los aspectos del ciclo de vida de los datos.
+
+## Lengujes de Programación para Data Engineering
+
+* Python:
+>Nos ayuda mucho en Data Science, posee muchas librerías de código científico.
+Puede ser más lento que otras opciones.
+Es muy sencillo.
+
+*  R:
+>Es un antecesor de Python.
+Es muy útil para trabajar con estadísticas y modelos.
+Importante para analistas.
+
+* Scala:
+>Usa java de base.
+Con la implementación y optimización de PySpark bajó su necesidad.
+Interesante para programación funcional.
+
+* Java:
+>Scala corre sobre java.
+Su escalabilidad es envidiable.
+Puede ser un cómodo siguiente paso.
+
+*  JavaScript:
+>Navaja suiza para web developers.
+Super flexible y útil para muchos ámbitos.
+Imponente por la cantidad de herramientas que tiene.
+Visualizaciones de datos más bellas posibles.
+
+* C++ y derivados:
+>Columna vertebral para muchos proyectos.
+Curva de aprendizaje potente.
+Muchas herramientas usan C en el fondo.
+Implementaciones modernas ayudan a que no sea tan difícil de implementar.
+
+## Donde y como escribir codigo de ingeniería de datos
+
+*  Jupyter notebooks : Jupyter Lab
+*  IDE : Data Spell
+*  Editor de codigo : VsCode
+*  Complementos : Tener de amiga a la terminal, usar tambien git, github o gitlab.
 
 ## Conclusión
 
@@ -103,10 +152,6 @@ La integración de DevOps, Lean y Agile en DataOps es esencial para fomentar la 
 ### Agile en Ingeniería de Datos
 
 - Aplicar metodologías ágiles para la gestión de proyectos de ingeniería de datos.
-
-### Lenguajes de Programación e Ingeniería de Software
-
-- Utilizar Python, SQL, y otras herramientas de software en el desarrollo de soluciones.
 
 ### Automatización y Scripting
 
