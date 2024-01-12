@@ -8,7 +8,7 @@
 
 `pip` es el sistema de gestión de paquetes de Python. Permite instalar y gestionar bibliotecas, módulos y herramientas escritos en Python. Con pip, puedes instalar paquetes desde el índice oficial de paquetes de Python, PyPI (Python Package Index), así como desde otras fuentes.
 
-Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gestionar las dependencias de un proyecto específico sin afectar al sistema global de Python. Esto es útil cuando trabajas en múltiples proyectos que pueden requerir versiones diferentes de las mismas bibliotecas o cuando quieres evitar conflictos entre las dependencias de diferentes proyectos.a
+Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gestionar las dependencias de un proyecto específico sin afectar al sistema global de Python. Esto es útil cuando trabajas en múltiples proyectos que pueden requerir versiones diferentes de las mismas bibliotecas o cuando quieres evitar conflictos entre las dependencias de diferentes proyectos.
 
 ## 🚀 Instalación de PIP
 

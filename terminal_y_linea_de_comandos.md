@@ -589,3 +589,13 @@ Para volver a configurar el tema Powerlevel10k desde el principio en caso de que
 ```bash
 $ p10k configure
 ```
+
+Otro codigo para autocompletar
+```bash
+# Clonamos
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+# Editamos .zshrc
+vim .zshrc
+# Aplastamos i para editar y copiamos el siguiente codigo, para guardar, le damos escape y escribimos :wq
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+```
