@@ -221,6 +221,7 @@
    ```bash
    ssh-add -K ~/.ssh/id_rsa
    ```
+5. Luego tu llave publica de ssh le entregas a github para enlazarlos
 
 #### Opcional:
 Cuando se clona un repositorio se crea automaticamente el remoto, solo se crea remoto cuando:

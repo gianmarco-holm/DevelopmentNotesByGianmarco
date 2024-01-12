@@ -31,11 +31,14 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 3. **Instalar un paquete:**
     ```bash
     pip install nombre_paquete
+    # Para instalar un paquete no encontrado por anaconda
+    # Se busca el canal en www.anaconda.org
+    conda install --channel canal_paquete nombre_paquete
     ```
 
 4. **Instalar una versión específica de un paquete:**
     ```bash
-    pip install nombre_paquete==version
+    pip install nombre_paquete=version
     ```
 
 5. **Desinstalar un paquete:**

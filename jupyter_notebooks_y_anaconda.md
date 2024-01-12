@@ -42,7 +42,7 @@
 
 ### 🚀 Introducción a Notebook con VsCode
 
-1. **Manejadores de codigo: **
+**Manejadores de codigo: **
     ![Editores vs IDE](./images/editores%20vs%20ide.png)
 
 1. **Introducción: **
@@ -76,11 +76,11 @@
 
 ### 📈 Uso Básico
 
-4. **Guardar y Exportar: **Guardar y exportar el notebook.
+1. **Guardar y Exportar: **Guardar y exportar el notebook.
     - Guardar: `Ctrl + S` o `File -> Save and Checkpoint`
     - Exportar: `File -> Download as -> [Formato]`
 
-5. **Widgets Interactivos: **Crear widgets para interactividad.
+2. **Widgets Interactivos: **Crear widgets para interactividad.
     ```python
     from ipywidgets import interact
 
@@ -90,7 +90,7 @@
     interact(cuadrado, numero=5)
     ```
 
-6. **Extensiones: **Instalar y usar extensiones para mejorar la funcionalidad.
+3. **Extensiones: **Instalar y usar extensiones para mejorar la funcionalidad.
     ```bash
     pip install jupyter_contrib_nbextensions
     jupyter contrib nbextension install --user
@@ -98,67 +98,130 @@
 
 ## Anaconda
 
+> Conda es el entorno virtual para aislar las dependencias no solo de python, tambien de otros lenguajes y es el mas usado para ciencia de datos
+
 > Puedes instalar minicinda que viene con algunos paquetes y python o anaconda que viene con mas de 150 dependencias.
 ![Conda](./images/conda.jpeg){width:px}
 
 ### 🚀 Gestión de Entornos
 
-7. **Instalación de Anaconda: **Descargar e instalar Anaconda desde el sitio oficial.
+1. **Instalación de Anaconda: **Descargar e instalar Anaconda desde el sitio oficial.
     ```bash
         # Si es Linux deberas copiar la liga o el link de descarga y ejecutar el siguiente comando
         wget -O anaconda.sh linkDeDescarga
         bash anaconda.sh
         # Para saber si esta instalado, puedes reiniciar tu terminal y ejecutando
         conda info
+        # Recargala shel
+        zsh o bash
+        # SI no funciona puede ser que no se agrego correctamente la variable de entorno y puedes hacer lo siguiente
+        vim .zshrc
+        #Luego tecleas i para insertar, y colocas esta varias y luego le das esc y luego tecleas :wq para guardar y salir
+        export PATH="$HOME/miniconda3/bin:$PATH"
+        # Si luego hay algun error de inicialización ejecutas
+        conda init zsh o bash
+        # Luego recargas la shell
     ```
 
-8. **Crear Entorno: **Crear un entorno virtual con Anaconda.
+2. **Crear Entorno: **Crear un entorno virtual con Anaconda.
     ```bash
-    conda create --name mi_entorno python=3.8
+    # Forma 1, Aca no se instala nada, tampoco python
+    conda create --name mi_entorno
+    # Forma 2
+    conda create --name mi_entorno python=3.5 pandas
     ```
 
-9. **Activar Entorno: **Activar un entorno virtual con Anaconda.
+3. **Activar Entorno: **Activar un entorno virtual con Anaconda.
     - En Windows: `activate mi_entorno`
     - En macOS/Linux: `source activate mi_entorno`
+    - Tambien `conda activate mi_entorno`
 
-10. **Desactivar Entorno: **Desactivar un entorno virtual con Anaconda.
+4. **Desactivar Entorno: **Desactivar un entorno virtual con Anaconda.
     - En Windows: `deactivate`
     - En macOS/Linux: `source deactivate`
+    - Tambien `conda deactivate`conda inf
 
 ### ⚙ Gestión de Paquetes
 
-11. **Instalar Paquetes: **Instalar paquetes con conda.
+5. **Instalar Paquetes: **Instalar paquetes con conda.
     ```bash
     conda install nombre_paquete
+    # Para especificar versión
+    conda install pandas=1.2
+    conda install python=3.11 panda=1.2
     ```
 
-12. **Actualizar Paquetes: **Actualizar paquetes con conda.
+6. **Actualizar Paquetes: **Actualizar paquetes con conda.
     ```bash
     conda update nombre_paquete
     ```
 
-13. **Listar Paquetes: **Listar paquetes instalados en el entorno.
+7. **Listar Paquetes: **Listar paquetes instalados en el entorno.
     ```bash
     conda list
+    # Para buscar una liberia
+    conda list pandas
     ```
 
-14. **Eliminar Paquetes: **Eliminar paquetes con conda.
+7. **Listar Entornos: **Listar entornos creados
+    ```bash
+    conda env list
+    ```
+
+9. **Eliminar Paquetes: **Eliminar paquetes con conda.
     ```bash
     conda remove nombre_paquete
     ```
 
-### 🛠️ Otras Funcionalidades
-
-15. **Jupyter con Anaconda: **Usar Jupyter Notebooks con Anaconda.
+9. **Eliminar entornos: **
     ```bash
-    conda install -c conda-forge notebook
+    conda env remove --name nombre_entorno
     ```
 
-16. **Ambientes Virtuales en Jupyter: **Agregar entornos virtuales de Anaconda a Jupyter.
+11. **Clonar un entorno a otro: **
     ```bash
-    conda install nb_conda
+    create --name entorno2 --copy --clone entorno1
     ```
 
-17. **Gestión de Ambientes: **Gestionar entornos virtuales con Anaconda Navigator.
+12. **Revisiones: **Las revisiones sirven para regresar en el tiempo
+    ```bash
+    # Para listar revisiones
+    conda list --revision
+    # Voy a encontrra historia de instalaciones de librerias anteriores o cambios de las versiones
+    # Si quiero regresar a una revisión
+    conda install --revision numero_de_revision
+    ```
 
-<!-- Continuar con la sección avanzada... -->
+13. **Exportar requisitos de conda:**
+    ```bash
+    conda env export --from-history --file enviroment.yml
+    ```
+
+11. **Instalar requisitos desde un archivo:**
+    ```bash
+    conda env create --file enviroment.yml
+    # o para requirements.txt que se instala las dependencias en un entorno ya existente
+    conda install --file requirements.txt
+    ```
+
+### Mamba
+
+> Es un acelerador de creación de ambiente de conda, que usa la misma sintaxis
+
+1. **Instalar mamba**
+    ```bash
+    conda install --channel conda-forge mamba
+    # Para probar
+    mamba --help
+    ```
+
+1. **Usar mamba**
+    ```bash
+    # Traer ambiente de un archivo yml
+    # Primero eliminas el ambiente de conda
+    conda env remove --name nombbre_entorno
+    mamba env create --file enviroment.yml
+    # Y lo activas con conda
+    conda activate nombre_entorno
+    # Lo demas se usa con mamba al inicio
+    ```
