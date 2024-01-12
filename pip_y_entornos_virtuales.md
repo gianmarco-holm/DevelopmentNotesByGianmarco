@@ -80,6 +80,10 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 
 ## ⚙ Gestión de Requisitos
 
+> *VirtualEnv y Venv son herramientas para crear entornos virtuales, para python 2 es recomendable usar VirtualEnv y para pthon3 se usa Venv ya que tiene mejor rendimiento.*
+
+> *Tambien existe Conda, pero es usado para ciencia de datos y además de crear un entorno virtual, tambien gestiona dependencias y no solo de python, sino de otros lenguajes tambien.*
+
 10. **Exportar requisitos de un entorno:**
     ```bash
     pip freeze > requirements.txt
@@ -96,73 +100,117 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 
 12. **Crear un entorno virtual con requisitos:**
     ```bash
+    # Para virtualenv
     virtualenv nombre_entorno && source nombre_entorno/bin/activate && pip install -r requirements.txt
+    # Para venv
+    python -m venv nombre_entorno && source nombre_entorno/bin/activate && pip install -r requirements.txt
     ```
 
-## 📚 Manejo Avanzado de Entornos Virtuales
-
-13. **Crear un entorno virtual con Python específico:**
-    ```bash
-    virtualenv -p /ruta/a/python nombre_entorno
-    ```
-
-14. **Clonar un entorno virtual:**
-    ```bash
-    virtualenv --relocatable nombre_entorno
-    ```
-
-15. **Eliminar un entorno virtual:**
+13. **Eliminar un entorno virtual:**
     ```bash
     rm -r nombre_entorno
     ```
 
 ## 🌐 Uso de Pipenv
 
-16. **Instalar Pipenv (si no está instalado):**
+> *Es otra herramienta como venv o virtualenv, es mas popular para proyectos web y combina la gestión de dependencia con la gestión de entornos virtuales, 2 en 1, además permite bloquear la verción de las dependencias instaladas, permitiendo la creación de entornos exactos.*
+
+14. **Instalar Pipenv (si no está instalado):**
     ```bash
     pip install pipenv
     ```
 
-17. **Crear un entorno virtual con Pipenv:**
+15. **Crear un entorno virtual con Pipenv:**
     ```bash
     pipenv install
     ```
 
-18. **Activar un entorno virtual con Pipenv:**
+16. **Activar un entorno virtual con Pipenv:**
     ```bash
     pipenv shell
     ```
 
-19. **Desactivar un entorno virtual con Pipenv:**
+17. **Desactivar un entorno virtual con Pipenv:**
     ```bash
     exit
     ```
 
-20. **Instalar un paquete con Pipenv:**
+18. **Instalar un paquete con Pipenv:**
     ```bash
     pipenv install nombre_paquete
     ```
 
-## 🛠️ Otras Herramientas
+## 🛠️ Docker
 
-21. **pyenv: **Gestor de versiones de Python.
+> *Docker y los entornos virtuales se usan juntos
++Los entornos virtuales son útiles para aislar las dependencias de tu proyecto en un espacio separado, evitando conflictos entre diferentes proyectos
++Docker se utiliza para encapsular aplicaciones en contenedores, siendo valioso cuando necesitas asegurarte de que tu aplicación se ejecute de la misma manera en diferentes entornos*
+
+19. **Paso 1: **Se crea el archivo Dockerfile
     ```bash
-    pyenv install version
+    # Para scripts de python
+    FROM python:3.10
+
+    WORKDIR /app
+    COPY requirements.txt /app/requirements.txt
+
+    RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+    COPY . /app/
+
+    CMD bash -c "while true; do sleep 1; done"
+
+    FROM python:3.10
+
+    # Para scripts de python de web service
+    WORKDIR /app
+    COPY requirements.txt /app/requirements.txt
+
+    RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+
+    COPY . /app
+
+    CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
     ```
 
-22. **venv: **Módulo incorporado para entornos virtuales (Python 3.3+).
+20. **Paso 2: **Se crea el archivo docker-compose.yml
     ```bash
-    python3 -m venv nombre_entorno
+    # Para scripts de python
+    services:
+        aplicacion:
+            build:
+                context: .
+                dockerfile: dockerfile
+            volumes:
+                - .:/app
+
+    # Para scripts de python de web service
+    services:
+        web-server:
+            build:
+                context: .
+                dockerfile: dockerfile
+            volumes:
+                - .:/app
+            ports:
+            - '80:80'
     ```
 
-23. **conda: **Gestor de entornos y paquetes para Python y otros lenguajes.
+20. **Paso 3: **Luego se ejecuta los siguientes comandos en la terminal
     ```bash
-    conda create --name nombre_entorno
+    #Enciendes docker, entrando al app, para ello ya debe estar instalado docker y docker-compose
+    #Para construir el contenedor
+    docker-compose build
+    #Para levantar el contenedor
+    docker-compose up -d
+    #Para ver el estado del contenedor
+    docker-compose ps
+    # Para ingresar al contenedor y poder interactuar como linux
+    docker-compose exec aplicacion bash
+    #Para salir del bash del contenedor
+    exit
     ```
 
-24. **pipx: **Instala y ejecuta aplicaciones Python independientes.
-    ```bash
-    pipx install nombre_aplicacion
-    ```
+
 
 
