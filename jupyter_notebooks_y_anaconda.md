@@ -1,6 +1,9 @@
 # 📊 Apuntes de Jupyter Notebooks y Anaconda
 
 ## Jupyter Notebooks
+>Una notebooks a diferencia de un script, nos va a ayudar mas a experimentar, documentar que esta pasando y presentar nuestros descubrimientos.
+
+>**Notebooks locales vs en la nube** Ambos son utiles, pero los de las nube nos va ahorrar tiempo en configuración del entorno, tiempo de ejecución y escalabilidad
 
 ### 🚀 Introducción a Jupyter
 
@@ -63,6 +66,12 @@
     # Luego se abre VsCode y se instala la extensión WSL
     # Luego en la terminal se abre con
     code .
+    # Agregar las siguientes extenciones
+    # WSL
+    # Python
+    # Magic Python
+    # Material Icon Theme
+    # Rainbow Brackets
     ```
 
 ### 📈 Uso Básico
@@ -89,9 +98,19 @@
 
 ## Anaconda
 
+> Puedes instalar minicinda que viene con algunos paquetes y python o anaconda que viene con mas de 150 dependencias.
+![Conda](./images/conda.jpeg){width:px}
+
 ### 🚀 Gestión de Entornos
 
 7. **Instalación de Anaconda: **Descargar e instalar Anaconda desde el sitio oficial.
+    ```bash
+        # Si es Linux deberas copiar la liga o el link de descarga y ejecutar el siguiente comando
+        wget -O anaconda.sh linkDeDescarga
+        bash anaconda.sh
+        # Para saber si esta instalado, puedes reiniciar tu terminal y ejecutando
+        conda info
+    ```
 
 8. **Crear Entorno: **Crear un entorno virtual con Anaconda.
     ```bash
