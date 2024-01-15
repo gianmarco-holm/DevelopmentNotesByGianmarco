@@ -472,6 +472,7 @@ Usando todo esto podemos leer el conjunto de permisos rwxr-xr--, así:
 11. **ln -s ruta_de_archivo:** Crea un enlace simbólico a un archivo.
     ```bash
     ln -s ruta_de_archivo
+    ln -s /mnt/c/Proyectos Proyectos
     ```
 
 12. **variables de entorno:** Muestra todas las variables de entorno.
