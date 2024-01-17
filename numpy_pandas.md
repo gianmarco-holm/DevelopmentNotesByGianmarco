@@ -112,7 +112,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
 
     0
 
-    * Scalar, Un solo dato o valor
+    * Vector, Una serie de datos
 
     | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
     |---|---|---|---|---|---|---|---|---|
@@ -549,20 +549,78 @@ Pandas está enfocada a la manipulación y análisis de datos.
     import pandas as pd
     ```
 
-2. **Series en Pandas:** Creación y manipulación de Series.
+2. **Series en Pandas:** Es muy parecido a un array de una dimensión (o vector) de NumPy.
+
+    • Arreglo unidimensional indexado
+    • Búsqueda por índice
+    • Slicing
+    • Operaciones aritméticas
+    • Distintos tipos de datos
+
     ```python
     import pandas as pd
 
     serie = pd.Series([1, 2, 3, 4, 5])
+
+    psg_players = pd.Series(['Navas','Mbappe','Neymar','Messi'], index=[1,7,10,30])
+
+    psg_players
+    ---> 1      Navas
+        7     Mbappe
+        10    Neymar
+        30     Messi
+        dtype: object
+
+    dict = {1: 'Navas', 7: 'Mbappe', 10: 'Neymar', 30:'Messi'}
+    pd.Series(dict)
+    ---> 1 Navas
+    7 Mbappe
+    10 Neymar
+    30 Messi
+    dtype: object
+
+    psg_players[7]
+    ----> 'Mbappe'
+
+    psg_players[0:3]
+    -----> 0     Navas
+        1    Mbappe
+        2    Neymar
+        dtype: object
     ```
 
-3. **DataFrames en Pandas:** Creación y manipulación de DataFrames.
+3. **DataFrames en Pandas:** Muy parecido a las estructuras matriciales trabajadas con NumPy.
+
+    • Estructura principal
+    • Arreglo de dos dimensiones
+    • Búsqueda por índice (columnas o filas)
+    • Slicing
+    • Operaciones aritméticas
+    • Distintos tipos de datos
+    • Tamaño variable
+
     ```python
     import pandas as pd
 
     datos = {'Nombre': ['Alice', 'Bob', 'Charlie'],
              'Edad': [25, 30, 35]}
     df = pd.DataFrame(datos)
+
+    dict = {'Jugador':['Navas','Mbappe','Neymar','Messi'],
+    'Altura':[183.0, 170.0, 170.0, 163.0],
+    'Goles':[2, 200, 150, 500]}
+    df_players = pd.DataFrame(dict, index=[1,7,10,30])
+    --->   Jugador Altura Goles
+            1 Navas    183    2
+            7 Mbappe   170    200
+            10 Neymar   170    150
+            30 Messi    163    500
+
+    df_players.columns
+    ---> Index(['Jugador', 'Altura', 'Goles'], dtype='object')
+
+    df_players.index
+    ------> RangeIndex(start=0, stop=4, step=1)
     ```
 
 ### 🔄 Operaciones Básicas en Pandas
