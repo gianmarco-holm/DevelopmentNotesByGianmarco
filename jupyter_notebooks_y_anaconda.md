@@ -1,23 +1,26 @@
 # 📊 Apuntes de Jupyter Notebooks y Anaconda
 
 ## Jupyter Notebooks
->Una notebooks a diferencia de un script, nos va a ayudar mas a experimentar, documentar que esta pasando y presentar nuestros descubrimientos.
 
+>Una notebooks a diferencia de un script, nos va a ayudar mas a experimentar, documentar que esta pasando y presentar nuestros descubrimientos.
 >**Notebooks locales vs en la nube** Ambos son utiles, pero los de las nube nos va ahorrar tiempo en configuración del entorno, tiempo de ejecución y escalabilidad
 
 ### 🚀 Introducción a Jupyter
 
-1. **Instalación de Jupyter: **Instala Jupyter Notebook usando pip.
+1. **Instalación de Jupyter:** Instala Jupyter Notebook usando pip.
+
     ```bash
     pip install jupyter
     ```
 
-2. **Iniciar Jupyter Notebook: **Inicia el servidor Jupyter localmente.
+2. **Iniciar Jupyter Notebook:** Inicia el servidor Jupyter localmente.
+
     ```bash
     jupyter notebook
     ```
 
-3. **Celdas: **Tipos de celdas (código, markdown) y su uso.
+3. **Celdas:** Tipos de celdas (código, markdown) y su uso.
+
     ```python
     # Esto es una celda de código
     print("Hola, Jupyter!")
@@ -32,7 +35,8 @@
 
 ### 🚀 Introducción a Google Colab
 
-1. **Ingreso: **
+1. **Ingreso:**
+
     ```bash
     # Se puede ingresar desde la web como google colaboratory
     # Tambien puedes ingresar desde Google Drive -> Nuevo -> Conectar
@@ -42,10 +46,11 @@
 
 ### 🚀 Introducción a Notebook con VsCode
 
-**Manejadores de codigo: **
+**Manejadores de codigo:**
     ![Editores vs IDE](./images/editores%20vs%20ide.png)
 
-1. **Introducción: **
+1. **Introducción:**
+
     ```bash
     # Descargo e instalo el editor de codigo VsCode
     # Instalar WSL con power shell
@@ -76,11 +81,12 @@
 
 ### 📈 Uso Básico
 
-1. **Guardar y Exportar: **Guardar y exportar el notebook.
+1. **Guardar y Exportar:** Guardar y exportar el notebook.
     - Guardar: `Ctrl + S` o `File -> Save and Checkpoint`
     - Exportar: `File -> Download as -> [Formato]`
 
-2. **Widgets Interactivos: **Crear widgets para interactividad.
+2. **Widgets Interactivos:** Crear widgets para interactividad.
+
     ```python
     from ipywidgets import interact
 
@@ -90,7 +96,8 @@
     interact(cuadrado, numero=5)
     ```
 
-3. **Extensiones: **Instalar y usar extensiones para mejorar la funcionalidad.
+3. **Extensiones:** Instalar y usar extensiones para mejorar la funcionalidad.
+
     ```bash
     pip install jupyter_contrib_nbextensions
     jupyter contrib nbextension install --user
@@ -99,13 +106,14 @@
 ## Anaconda
 
 > Conda es el entorno virtual para aislar las dependencias no solo de python, tambien de otros lenguajes y es el mas usado para ciencia de datos
-
 > Puedes instalar minicinda que viene con algunos paquetes y python o anaconda que viene con mas de 150 dependencias.
+
 ![Conda](./images/conda.jpeg){width:px}
 
 ### 🚀 Gestión de Entornos
 
-1. **Instalación de Anaconda: **Descargar e instalar Anaconda desde el sitio oficial.
+1. **Instalación de Anaconda:** Descargar e instalar Anaconda desde el sitio oficial.
+
     ```bash
         # Si es Linux deberas copiar la liga o el link de descarga y ejecutar el siguiente comando
         wget -O anaconda.sh linkDeDescarga
@@ -123,7 +131,20 @@
         # Luego recargas la shell
     ```
 
-2. **Crear Entorno: **Crear un entorno virtual con Anaconda.
+    ```bash
+        # Para miniconda
+        mkdir -p ~/miniconda3
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+        bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+        rm -rf ~/miniconda3/miniconda.sh
+        # Despues inicialice el shell
+        ~/miniconda3/bin/conda init bash
+        ~/miniconda3/bin/conda init zsh
+        # https://docs.conda.io/projects/miniconda/en/latest/
+    ```
+
+2. **Crear Entorno:** Crear un entorno virtual con Anaconda.
+
     ```bash
     # Forma 1, Aca no se instala nada, tampoco python
     conda create --name mi_entorno
@@ -131,19 +152,20 @@
     conda create --name mi_entorno python=3.5 pandas
     ```
 
-3. **Activar Entorno: **Activar un entorno virtual con Anaconda.
+3. **Activar Entorno:** Activar un entorno virtual con Anaconda.
     - En Windows: `activate mi_entorno`
     - En macOS/Linux: `source activate mi_entorno`
     - Tambien `conda activate mi_entorno`
 
-4. **Desactivar Entorno: **Desactivar un entorno virtual con Anaconda.
+4. **Desactivar Entorno:** Desactivar un entorno virtual con Anaconda.
     - En Windows: `deactivate`
     - En macOS/Linux: `source deactivate`
     - Tambien `conda deactivate`conda inf
 
 ### ⚙ Gestión de Paquetes
 
-5. **Instalar Paquetes: **Instalar paquetes con conda.
+1. **Instalar Paquetes:** Instalar paquetes con conda.
+
     ```bash
     conda install nombre_paquete
     # Para especificar versión
@@ -151,39 +173,46 @@
     conda install python=3.11 panda=1.2
     ```
 
-6. **Actualizar Paquetes: **Actualizar paquetes con conda.
+2. **Actualizar Paquetes:** Actualizar paquetes con conda.
+
     ```bash
     conda update nombre_paquete
     ```
 
-7. **Listar Paquetes: **Listar paquetes instalados en el entorno.
+3. **Listar Paquetes:** Listar paquetes instalados en el entorno.
+
     ```bash
     conda list
     # Para buscar una liberia
     conda list pandas
     ```
 
-7. **Listar Entornos: **Listar entornos creados
+4. **Listar Entornos:** Listar entornos creados
+
     ```bash
     conda env list
     ```
 
-9. **Eliminar Paquetes: **Eliminar paquetes con conda.
+5. **Eliminar Paquetes:** Eliminar paquetes con conda.
+
     ```bash
     conda remove nombre_paquete
     ```
 
-9. **Eliminar entornos: **
+6. **Eliminar entornos:**
+
     ```bash
     conda env remove --name nombre_entorno
     ```
 
-11. **Clonar un entorno a otro: **
+7. **Clonar un entorno a otro:**
+
     ```bash
     create --name entorno2 --copy --clone entorno1
     ```
 
-12. **Revisiones: **Las revisiones sirven para regresar en el tiempo
+8. **Revisiones:** Las revisiones sirven para regresar en el tiempo
+
     ```bash
     # Para listar revisiones
     conda list --revision
@@ -192,12 +221,14 @@
     conda install --revision numero_de_revision
     ```
 
-13. **Exportar requisitos de conda:**
+9. **Exportar requisitos de conda:**
+
     ```bash
     conda env export --from-history --file enviroment.yml
     ```
 
-11. **Instalar requisitos desde un archivo:**
+10. **Instalar requisitos desde un archivo:**
+
     ```bash
     conda env create --file enviroment.yml
     # o para requirements.txt que se instala las dependencias en un entorno ya existente
@@ -209,13 +240,15 @@
 > Es un acelerador de creación de ambiente de conda, que usa la misma sintaxis
 
 1. **Instalar mamba**
+
     ```bash
     conda install --channel conda-forge mamba
     # Para probar
     mamba --help
     ```
 
-1. **Usar mamba**
+2. **Usar mamba**
+
     ```bash
     # Traer ambiente de un archivo yml
     # Primero eliminas el ambiente de conda
