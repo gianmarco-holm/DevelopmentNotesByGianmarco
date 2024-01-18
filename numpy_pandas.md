@@ -1,11 +1,13 @@
 # 📊 Apuntes de NumPy y Pandas
-*Las 2 librerías muy importantes para la manipulación en la ciencia de datos (Numpy y Pandas)*
+
+Las 2 librerías muy importantes para la manipulación en la ciencia de datos (Numpy y Pandas)
 
 ---
 
 ## NumPy
 
 Es una librería enfocada al cálculo numérico y manejo de Arrays.
+
 * Es muy veloz, hasta 50 veces más rápido que usar una lista de Python o C.
 * Optimiza el almacenamiento en memoria.
 * Maneja distintos tipos de datos.
@@ -14,11 +16,13 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
 ### 🚀 Introducción a NumPy
 
 1. **Importar NumPy:** Cómo importar la biblioteca NumPy.
+
     ```python
     import numpy as np
     ```
 
 2. **Arrays en NumPy:** el objeto principal de numpy es el array, por lo cual siempre debemos convertir los datos en array
+
     ```python
     lista = [1, 2 , 3, 4, 5, 6, 7, 8, 9] 
     lista
@@ -42,6 +46,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     | Index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
     |-------|---|---|---|---|---|---|---|---|---|
     | 0     | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+
     ```python
     lista_convertida[1:6]
     ---> array([2, 3, 4, 5, 6])
@@ -55,6 +60,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     lista_convertida[::3]
     ---> array([1, 4, 7])
     ```
+
     >Matriz
 
     | Index | 0 | 1 | 2 |
@@ -62,6 +68,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     | 0     | 1 | 2 | 3 |
     | 1     | 4 | 5 | 6 |
     | 2     | 7 | 8 | 9 |
+
     ```python
     matriz_convertida[0]
     ---> array([1, 2, 3])
@@ -77,7 +84,9 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     ---> array([[4, 5],
                 [7, 8]])
     ```
+
 4. **tipos de datos:** Los arrays de NumPy solo pueden contener un tipo de dato, ya que esto es lo que le confiere las ventajas de la *optimización de memoria.*
+
     ```python
     arr = np.array([1, 2, 3, 4])
     arr.dtype
@@ -108,7 +117,8 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     ```
 
 5. **Dimensiones:** Con las matrices podemos crear varias dimensiones, vamos a nombrarlas
-    *  Scalar, Un solo dato o valor
+
+    * Scalar, Un solo dato o valor
 
     0
 
@@ -173,6 +183,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     ```
 
 6. **Agregar o eliminar dimenciones:**
+
     ```python
     # Se puede definir el número de dimensiones desde la declaración del array
     vector = np.array([1, 2, 3], ndmin = 10)
@@ -305,6 +316,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     ---> array([[4, 2, 4],
         [8, 4, 3]])
     ```
+
 9. **funciones principales:**
 
     ```python
@@ -423,30 +435,6 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     arr ----> array([ 0,  0,  0,  0,  0,  0,  6,  7,  8,  9, 10])
     ```
 
-10. **Copy:** .copy() nos permite copiar un array de NumPy en otra variable de tal forma que al modificar el nuevo array los cambios no se vean reflejados en array original.
-
-    ```python
-    arr = np.arange(0, 11)
-    arr ----> array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
-
-    # Tomamos un trozo del array original
-    arr[0:6] ----> array([0, 1, 2, 3, 4, 5])
-    trozo_de_arr = arr[0:6]
-
-    # Queremos pasar todas nuestras variables a 0
-    trozo_de_arr[:] = 0
-    trozo_de_arr ----> array([0, 0, 0, 0, 0, 0])
-
-    # Se han modificado los datos del array original porque seguía haciendo referencia a esa variable.
-    arr ----> array([ 0,  0,  0,  0,  0,  0,  6,  7,  8,  9, 10])
-
-    # Con .copy() creamos una copia para no dañar nuestro array original
-    arr_copy = arr.copy()
-    arr_copy[:] = 100
-    arr_copy ----> array([100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100])
-    arr ----> array([ 0,  0,  0,  0,  0,  0,  6,  7,  8,  9, 10])
-    ```
-
 11. **Condiciones:** Las condiciones nos permiten hacer consultas más específicas.
 
     ```python
@@ -473,7 +461,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     ---> array([ 1,  2,  3,  4,  5, 99, 99, 99, 99, 99], dtype=int8)
     ```
 
-12. **Operaciones:** 
+12. **Operaciones:**
 
     ```python
     # Existen diferentes operaciones que se pueden usar para los arrays de NumPy.
@@ -536,6 +524,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
 ## Pandas
 
 Pandas está enfocada a la manipulación y análisis de datos.
+
 * Al estar construido sobre NumPy es veloz.
 * Requiere poco código para manipular los datos.
 * Soporta múltiples formatos de archivos.
@@ -545,6 +534,7 @@ Pandas está enfocada a la manipulación y análisis de datos.
 ### 🚀 Introducción a Pandas
 
 1. **Importar Pandas:** Cómo importar la biblioteca Pandas.
+
     ```python
     import pandas as pd
     ```
@@ -625,20 +615,21 @@ Pandas está enfocada a la manipulación y análisis de datos.
 
 ### 🔄 Operaciones Básicas en Pandas
 
-4. **Seleccionar Datos:** Cómo seleccionar columnas y filas en un DataFrame.
+1. **Seleccionar Datos:** Cómo seleccionar columnas y filas en un DataFrame.
+
     ```python
     columna = df['Nombre']
     fila = df.loc[0]
     ```
 
-5. **Filtrar Datos:** Cómo aplicar condiciones para filtrar datos.
+2. **Filtrar Datos:** Cómo aplicar condiciones para filtrar datos.
+
     ```python
     filtrado = df[df['Edad'] > 30]
     ```
 
-6. **Operaciones con Columnas:** Realizar operaciones en columnas.
+3. **Operaciones con Columnas:** Realizar operaciones en columnas.
+
     ```python
     df['Doble Edad'] = df['Edad'] * 2
     ```
-
-
