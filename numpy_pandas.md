@@ -615,17 +615,65 @@ Pandas está enfocada a la manipulación y análisis de datos.
 
 ### 🔄 Operaciones Básicas en Pandas
 
-1. **Seleccionar Datos:** Cómo seleccionar columnas y filas en un DataFrame.
+1. **Leer archivos CSV y JSON con Pandas:**
 
     ```python
-    columna = df['Nombre']
-    fila = df.loc[0]
+    cpd.read_csv('/work/DataFrames/bestsellers-with-categories.csv')
+
+    # En algunas ocasiones el archivo podría estar separado por " | " y se vería así.
+    # Para solucionar esto, usamos el atributo "Sep = ’ , ’ " y ya quedará bien organizado.
+    pd.read_csv('/work/DataFrames/bestsellers-with-categories.csv', sep=  ' | ')
+
+    # Cambiar el encabezado, lo podemos hacer con “Header”, este pondrá de encabezado los valores que tenga en esa posición.
+    pd.read_csv('/work/DataFrames/bestsellers-with-categories.csv', header = 2)
+
+    # Cambiar el nombre de las columnas con “names”.
+    pd.read_csv('/work/DataFrames/bestsellers-with-categories.csv',header = 0, names = ['Namesss', 'Authhhhhor', 'User Rating', 'Reviews', 'Price', 'Year', 'Genre'])
+
+    # Para ***agregar un archivo ‘JSON’***, se hace de igual manera, pero en esta ocasión usamos
+    pd.read_json('/work/DataFrames/hpcharactersdataraw.json')
     ```
 
-2. **Filtrar Datos:** Cómo aplicar condiciones para filtrar datos.
+2. **Filtrado con loc y iloc:** Cuando queremos navegar por un dataFrame estas funciones permiten filtrar datos de manera más específica
 
     ```python
-    filtrado = df[df['Edad'] > 30]
+    import pandas as pd
+    df_books = pd.read_csv('bestsellers-with-categories.csv', sep=',', header=0)
+    # Filtro por fila
+    df_books[0:4]
+    ---> # Muestra las filas del indice 0 al 4
+    # Filtro por columna
+    df_books[['Autor', 'Libro']]
+    ---> # Muestra la columna de autor y libro
+
+    # Pero que pasaria si queremos filtrar por fila y columna al mismo tiempo?, ahí aparece loc e iloc
+
+    # LOC
+    # Filtra según un label
+
+    df_books.loc[:]
+    ---> #muestra todos los datos del dataFrame
+
+    df_books.loc[0:4] 
+    ---> #muestra los datos de la fila 0 a la fila 4
+
+    df_books.loc[0:4, ['Name', 'Author']] 
+    ----> #filtra los datos de la fila que va de 0 a 4 y de las columnas Name y Author
+
+    df_books.loc[:, ['Reviews']] * -1
+    ---> #multiplica por -1 todos los valores de la columna Reviews
+
+    df_books.loc[:, ['Author']] == 'JJ Smith' 
+    ----> #muestra la columna Author con True en los valores que cumplen la condicion y False para los que no la cumplen
+
+    # ILOC
+    # Filtra por indices
+
+    df_books.iloc[:] ---> #muestra todos los datos del dataframe
+
+    df_books.iloc[:4, 0:2] ---> #muestra los datos de las filas que van de 0 a 3 y las columnas con indices 0 y 1
+
+    df_books.iloc[1,3] ---> #muestra el dato alojado en la fila 1 columna 3
     ```
 
 3. **Operaciones con Columnas:** Realizar operaciones en columnas.
