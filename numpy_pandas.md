@@ -618,7 +618,7 @@ Pandas está enfocada a la manipulación y análisis de datos.
 1. **Leer archivos CSV y JSON con Pandas:**
 
     ```python
-    cpd.read_csv('/work/DataFrames/bestsellers-with-categories.csv')
+    pd.read_csv('/work/DataFrames/bestsellers-with-categories.csv')
 
     # En algunas ocasiones el archivo podría estar separado por " | " y se vería así.
     # Para solucionar esto, usamos el atributo "Sep = ’ , ’ " y ya quedará bien organizado.
@@ -676,8 +676,120 @@ Pandas está enfocada a la manipulación y análisis de datos.
     df_books.iloc[1,3] ---> #muestra el dato alojado en la fila 1 columna 3
     ```
 
-3. **Operaciones con Columnas:** Realizar operaciones en columnas.
+3. **Agregar o eliminar datos:** Muchas ocasiones necesitamos agregar, eliminar o separar datos y pandas nos ofrece varias funciones para que este proceso se vuelva mucho más sencillo.
 
     ```python
-    df['Doble Edad'] = df['Edad'] * 2
+    # Muestra las primeras 5 líneas del DataFrame
+    df_books.head() 
+    ---> muestra las primeras 5 lineas del dataFrame
+
+    # Eliminar columnas de la salida pero no del DataFrame
+    df_books.drop('Genre', axis=1).head()
+    ---> #elimina la columna Genre de la salida pero no del dataFrame
+
+    # Si queremos eliminarlo del dataframe
+    df_books.drop('Genre', axis=1, inplace=True).head()
+
+    # Eliminar una columna
+    del df_books['Price'] 
+    ---> #elimina la columna Price del dataFrame
+
+    # Eliminar filas
+    df_books.drop(0, axis=0)
+    ---> #elimina la fila 0 del dataFrame
+
+    # Eliminar un conjunto de filas mediante una lista
+    df_books.drop([0,1,2], axis=0)
+    ---> #elimina las filas 0, 1 y 2 del dataFrame
+
+    # Elimina un conjunto de filas mediante un rango
+    df_books.drop(range(0,10), axis=0)
+    ---> #elimina las primeras 10 filas del dataFrame
+
+    # Agregar una nueva columna con valores Nan
+    df_books['Nueva_columna'] = np.nan
+    ---> #Crea una nueva columna con el nombre de Nueva_columna de valores Nan
+
+    # Mostrar el número de filas o columnas que tiene un DataFrame
+    df_books.shape[0]
+    ---> #Muestra el numero de filas que posee el dataFrame
+
+    # Agregar valores a una nueva columna
+    data = np.arange(0, df_books.shape[0])
+    df_books['Rango'] = data
+    ---> #Crea una nueva columna llamada Rango con los valores del array
+
+    # Para añadir filas se utiliza la función append de Python añadiendo como parámetro una lista, diccionario o añadiendo los valores manualmente.
+    df_books.append(df_books)
+    ---> #Duplica las filas del dataFrame porque se agrega a si mismo
+    nueva_fila = {'nombre': 'Juan', 'apellido': 'Alarcon7'}
+    df = df.append(nueva_fila, ignore_index=True)
+    ---> # Añade una nueva fila a un dataframe que tiene dos columnas
+    ```
+
+4. **Manejo de datos nulos:** Los datos nulos son dolores de cabeza para este mundo de la ciencia de datos y se van a encontrar mucho en nuestros DataFrames.
+
+    ```python
+    # Creamos un DataFrame con algunos valores nulos
+    import pandas as pd
+    import numpy as np
+
+    dict = {'Col1':[1,2,3,np.nan],
+    'Col2':[4, np.nan,6,7],
+    'Col3':['a','b','c', None]}
+    df = pd.DataFrame(dict)
+    ---> Col1 Col2 Col3
+    0   1       4    a
+    1   2     nan    b
+    2   3       6    c
+    3  nan      7   None
+
+    # Identificar valores nulos en un DataFrame
+    df.isnull()
+    ---->    Col1   Col2   Col3
+    0       false   false  false
+    1       false   true   false
+    2       false   false  false
+    3       true    false  true
+
+    # Identificar valores nulos con un valor numérico
+    df.isnull()*1
+    ---> Col1   Col2   Col3
+    0       0      0       0
+    1       0      1       0
+    2       0      0       0
+    3       1      0       1
+
+    # Sustituir los valores nulos por una cadena
+    df.fillna('Missing')
+    --->  Col1   Col2   Col3
+    0       1.0    4.0     a
+    1       2.0  Missing   b
+    2       3.0    6.0     c
+    3       Missing 7.0  Missing
+
+    # Sustituir valores nulos por una medida estadística realizada con los valores de las columnas
+    df.fillna(df.mean())
+    ---->    Col1   Col2   Col3
+    0           1      4      a
+    1           2      5.667  b
+    2           3      6      c
+    3           2      7     None
+
+    # Sustituir valores nulos por valores de interpolación
+    df.interpolate()
+    ---->    Col1   Col2   Col3
+    0           1      4      a
+    1           2      5      b
+    2           3      6      c
+    3           3      7     None
+
+    # Eliminar valores nulos
+    df.dropna()
+    --->  Col1   Col2   Col3
+    0       1      4      a
+    2       3      6      c
+
+    # Eliminar todos los valores nulo de una columna
+    df.dropna(subset='col1')
     ```
