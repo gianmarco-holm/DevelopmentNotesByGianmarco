@@ -793,3 +793,391 @@ Pandas está enfocada a la manipulación y análisis de datos.
     # Eliminar todos los valores nulo de una columna
     df.dropna(subset='col1')
     ```
+
+5. **Filtrado por condiciones:** Funciona por lógica booleana y retorna los valores que están en “True”. Es muy útil porque en ocasiones queremos filtrar o separar datos.
+
+    ```python
+    # Llamamos los datos de un archivo csv para manejarlos
+    df_books = pd.read_csv('bestsellers-with-categories.csv')
+    df_books.head(2) ---> #muestra los primeros dos registros del dataFrame
+
+    # Mostrar datos que sean mayores a cierto valor
+    mayor2016 = df_books['Year'] > 2016
+    mayor2016
+    ---> #muestra el dataFrame con valores booleanos. True para libros publicados desde el 2017
+
+    # Filtrar datos en nuestro DataFrame que sean mayores a cierto valor
+    df_books[mayor2016]
+    ---> #filtra los datos que cumplen con la condicion
+
+    # También se puede colocar la condición directamente como parámetro
+    df_books[df_books['Year'] > 2016]
+    ---> #filtra los datos que cumplen con la condicion
+
+    # Mostrar los datos que sean igual a cierto valor
+    genreFiction = df_books['Genre'] == 'Fiction'
+    genreFiction ---> #muestra el dataFrame con valores booleanos. True para libros de tipo Fiction
+
+    # Filtrado con varias condiciones
+    df_books[genreFiction & mayor2016]
+    ---> #Filtra los libros que sean de tipo Fiction y que hayan sido publicado desde 2017
+
+    # Filtrado con negación
+    df_books[~mayor2016]
+    ---> #Filtra los libros publicados antes o igual al 2016
+    ```
+
+6. **Funciones principales de Pandas:** Hay ciertas funciones que son muy importantes y que siempre estaremos usando a la hora de hacer análisis de datos, para mayor facilidad y comprensión del DataFrame.
+
+    ```python
+    # Mostrar las primeras dos líneas de registro
+    df_books.head(2)
+    ---> #muestra los primeros dos registros del dataFrame
+
+    # Mostrar los diferentes datos que contiene el DataFrame
+    df_books.info()
+    ---> py
+    RangeIndex: 550 entries, 0 to 549        #numero de registro
+    Data columns (total 7 columns):          #total de columnas
+
+    #   Column       Non-Null Count  Dtype  #tipos de cada columna
+    ---  ------       --------------  -----
+    0   Name         550 non-null    object
+    1   Author       550 non-null    object
+    2   User Rating  550 non-null    float64
+    3   Reviews      550 non-null    int64
+    4   Price        550 non-null    int64
+    5   Year         550 non-null    int64
+    6   Genre        550 non-null    object
+    dtypes: float64(1), int64(3), object(3)
+
+    # Obtener diferentes datos estadísticos de las columnas numéricas.
+    df_books.describe()
+    --->  User.Rating  Reviews   Price     Year
+    count    550       550       550       550
+    mean    4.618   11953.281    13.1      2014
+    std     0.226   11731.132    10.84     3.165
+    min      3.3        37         0       2009
+    25%      4.5      4058         7       2011
+    50%      4.7      8580        11       2014
+    75%      4.8    17253.25      16       2017
+    max      4.9      87841      105       2019
+
+    # Mostrar los últimos 5 registros del DataFrame
+    df_books.tail()
+    ---> #muestra los ultimos 5 registros
+
+    # Obtener el uso de la memoria de cada columna
+    df_books.memory_usage(deep=True)
+    --->
+    Index            128
+    Name           59737
+    Author         39078
+    User Rating     4400
+    Reviews         4400
+    Price           4400
+    Year            4400
+    Genre          36440
+    dtype: int64
+
+    # Obtener cuantos datos tenemos de algo en específico
+    df_books['Author'].value_counts()
+    ---> Muestra cuantos datos hay de cada autor
+
+    # Eliminar registros duplicados
+    df_books.drop_duplicates()
+
+    # Ordenar los registros según valores de la columna (orden ascendente)
+    df_books.sort_values('Year')
+    ---> #ordena los valores de menor a mayor segun el año
+
+    # Ordenar los registros según valores de la columna (orden descendente)
+    df_books.sort_values('Year', ascending=False)
+    ---> #ordena los valores de mayor a menor segun el año
+    ```
+
+7. **groupby:** Permite agrupar datos en función de los demás. Es decir, hacer el análisis del DataFrame en función de una de las columnas.
+
+    ```python
+    # Agrupar por Author y mostrar el conteo de los datos de las demás columnas
+    df_books.groupby('Author').count()
+    --->              Name    User Rating    Reviews    Price    Year   Genre
+    Abraham Verghese    2      2     2         2       2       2
+    Adam Gasiewski      1       1     1         1       1       1
+    Adam Mansbach       1       1     1         1       1       1
+    Adir Levy           1       1      1         1       1       1
+
+    # Agrupar por Author y mostrar la media de los datos de las demás columnas
+    df_books.groupby('Author').median()
+    --->            User Rating    Reviews    Price    Year
+    Abraham Verghese   4.6          4866       11      2010.5
+    Adam Gasiewski     4.4          3113       6       2017
+    Adam Mansbach      4.8          9568       9       2011
+    Adir Levy          4.8          8170       13      2019
+
+    # La columna Author, en los casos anteriores, pasa a ser el índice.
+    #----------------------------------------------------------------
+
+    # Podemos usar loc y acceder a un dato específico del DataFrame. Agrupar por autor y mostrar la suma de los valores de las demás columnas para William Davis
+    df_books.groupby('Author').sum().loc['William Davis']
+    ---> 
+    User Rating        8.8
+    Reviews        14994.0
+    Price             12.0
+    Year            4025.0
+    Name: William Davis, dtype: float64
+
+    # Agrupar por author y mostrar la suma de los valores de las demás columnas. Colocar los índices que el DataFrame trae por defecto
+    df_books.groupby('Author').sum().reset_index()
+    --->              Author    User Rating    Reviews    Price    Year 
+    0         Abraham Verghese      9.2         9732       22      4021
+    1         Adam Gasiewski        4.4         3113       6       2017
+    2         Adam Mansbach         4.8         9568       9       2011
+    3         Adir Levy             4.8         8170       13      2019
+
+    # La función agg() permite aplicar varias funciones al DataFrame una vez agrupado según una columna específica. Agrupar por Author y mostrar el mínimo y máximo de las demás columnas
+    df_books.groupby('Author').agg(['min','max'])
+    ---> #muestra cada columna dividida en dos: min y max. Estas contienen los valores maximo y minimo de la columna para cada Author
+
+    # Agrupar por Author, obtener el mínimo y máximo de la columna ‘Reviews’ y sumar los valores de la columna ‘User Rating’
+    df_books.groupby('Author').agg({'Reviews':['min','max'], 'User Rating':'sum'})
+    --->                 Reviews min    Reviews max    User Rating 
+    Abraham Verghese         4866           4866          9.2
+    Adam Gasiewski           3113           3113          4.4
+    Adam Mansbach            9568           9568          4.8
+    Adir Levy                8170           8170          4.8
+
+    # Agrupar por ‘Author - Year’ y contar los valores de las demás columnas
+    df_books.groupby(['Author','Year']).count()
+    --->                        Name    User Rating    Reviews    Price    Genre
+    ('Abraham Verghese', 2010)   1       1     1         1        1
+    ('Abraham Verghese', 2011)   1       1      1         1        1
+    ('Adam Gasiewski', 2017)     1       1      1         1        1
+    ('Adam Mansbach', 2011)      1       1      1         1        1
+    ```
+
+8. **Combinando DataFrames:** Existen diferentes formas de fusionar dos DataFrames. Esto se hace a través de la lógica de combinación como se muestra a continuación:
+
+    ![merge](./images/merge.png)
+    ![merge](./images/merge_detallado.jpeg)
+    ![merge](./images/concat_axis0.jpeg)
+    ![merge](./images/concat_axis1.jpeg)
+
+    ```python
+    # Como podemos usar la lógica anteriormente vista en código, usando los parámetros de Pandas
+
+    # CONCAT
+
+    # En esta ocasión vamos a crear un DataFrame nuevo
+    df1 = pd.DataFrame({'A':['A0', 'A1', 'A2','A3'],
+                        'B':['B0', 'B1', 'B2','B3'],
+                        'C':['C0', 'C1', 'C2','C3'],
+                        'D':['D0', 'D1', 'D2','D3']})
+
+    df2 = pd.DataFrame({'A':['A4', 'A5', 'A6','A7'],
+                        'B':['B4', 'B5', 'B6','B7'],
+                        'C':['C4', 'C5', 'C6','C7'],
+                        'D':['D4', 'D5', 'D6','D7']})
+
+    # Concatenar los DataFrames
+    pd.concat([df1,df2])
+    ---> A  B   C   D
+    0   A0  B0  C0  D0
+    1   A1  B1  C1  D1
+    2   A2  B2  C2  D2
+    3   A3  B3  C3  D3
+    0   A4  B4  C4  D4
+    1   A5  B5  C5  D5
+    2   A6  B6  C6  D6
+    3   A7  B7  C7  D7
+
+    # Corregir los índices
+    pd.concat([df1,df2], ignore_index= True)
+    ---> A  B   C   D
+    0   A0  B0  C0  D0
+    1   A1  B1  C1  D1
+    2   A2  B2  C2  D2
+    3   A3  B3  C3  D3
+    4   A4  B4  C4  D4
+    5   A5  B5  C5  D5
+    6   A6  B6  C6  D6
+    7   A7  B7  C7  D7
+
+    # Por axis 1
+    pd.concat([df1,df2], axis = 1)
+    ---> A  B   C   D   A.1 B.1 C.1 D.1
+    0   A0  B0  C0  D0  A4  B4  C4  D4
+    1   A1  B1  C1  D1  A5  B5  C5  D5
+    2   A2  B2  C2  D2  A6  B6  C6  D6
+    3   A3  B3  C3  D3  A7  B7  C7  D7
+
+    # MERGE
+
+    # MERGE 1
+    izq = pd.DataFrame({'key' : ['k0', 'k1', 'k2','k3'],
+    'A' : ['A0', 'A1', 'A2','A3'],
+    'B': ['B0', 'B1', 'B2','B3']})
+
+    der = pd.DataFrame({'key' : ['k0', 'k1', 'k2','k3'],
+    'C' : ['C0', 'C1', 'C2','C3'],
+    'D': ['D0', 'D1', 'D2','D3']})
+
+    # Unir el DataFrame Der a Izq
+    izq.merge(der)
+    ---> key A  B   C   D
+    0   k0  A0  B0  C0  D0
+    1   k1  A1  B1  C1  D1
+    2   k2  A2  B2  C2  D2
+    3   k3  A3  B3  C3  D3
+
+    # MERGE 2
+    izq = pd.DataFrame({'key' : ['k0', 'k1', 'k2','k3'],
+    'A' : ['A0', 'A1', 'A2','A3'],
+    'B': ['B0', 'B1', 'B2','B3']})
+
+    der = pd.DataFrame({'key_2' : ['k0', 'k1', 'k2','k3'],
+    'C' : ['C0', 'C1', 'C2','C3'],
+    'D': ['D0', 'D1', 'D2','D3']})
+
+    # Hay diferencias entre algunas columnas, por esa razón hay que separarlos de esta manera:
+    izq.merge(der, left_on = 'key', right_on='key_2')
+    ---> key A  B   key_2   C   D
+    0   k0  A0  B0  k0    C0  D0
+    1   k1  A1  B1  k1    C1  D1
+    2   k2  A2  B2  k2    C2  D2
+    3   k3  A3  B3  k3    C3  D3
+
+    # MERGE 3
+    izq = pd.DataFrame({'key' : ['k0', 'k1', 'k2','k3'],
+    'A' : ['A0', 'A1', 'A2','A3'],
+    'B': ['B0', 'B1', 'B2','B3']})
+
+    der = pd.DataFrame({'key_2' : ['k0', 'k1', 'k2',np.nan],
+    'C' : ['C0', 'C1', 'C2','C3'],
+    'D': ['D0', 'D1', 'D2','D3']})
+
+    # Si tenemos un NaNen nuestro DataFrame, pandas no lo detectará como un mach. Se soluciona con How, dando así, una preferencia.
+    izq.merge(der, left_on = 'key', right_on='key_2', how='left')
+    ---> key A  B   key_2   C   D
+    0   k0  A0  B0  k0    C0  D0
+    1   k1  A1  B1  k1    C1  D1
+    2   k2  A2  B2  k2    C2  D2
+    3   k3  A3  B3  NaN  NaN  NaN
+
+    # JOIN
+
+    # Join Es otra herramienta para hacer exactamente lo mismo, una combinación. La diferencia es que join va a ir a los índices y no a columnas específicas.
+
+    izq = pd.DataFrame({'A': ['A0','A1','A2'],
+                        'B':['B0','B1','B2']},
+                        index=['k0','k1','k2'])
+
+    der =pd.DataFrame({'C': ['C0','C1','C2'],
+                        'D':['D0','D1','D2']},
+                        index=['k0','k2','k3'])
+
+    # Combinamos izq con der
+    izq.join(der)
+    ---> A  B   C   D
+    k0  A0  B0  C0  D0
+    k1  A1  B1  nan nan
+    k2  A2  B2  C1  D1
+
+    # Traer todos los datos aunque no hagan match.
+    izq.join(der, how = 'outer')
+    ---> A  B   C   D
+    k0  A0  B0  C0  D0
+    k1  A1  B1  nan nan
+    k2  A2  B2  C1  D1
+    k3  nan nan C2  D2
+    ```
+
+    > *En temas de performance y velocidad, ¿cuál es mejor el Merge o el Join, cuando se trata de miles de registros?*
+    >*Respuesta:*
+    >*join suele ser mejor*
+
+9. **groupby:** Es un comando muy poderoso que nos deja aplicar funciones a nuestro DataFrame
+
+    ```python
+    # Creamos unos DataFrame habitual
+    import pandas as pd
+    df_books = pd.read_csv('/work/DataFrames/bestsellers-with-categories.csv')
+    df_books.head(2)
+
+    # Creamos nuestra función
+    def two_times(value):
+        return value * 2
+
+    # Lo aplicamos a la columna de User Rating
+    df_books['User Rating'].apply(two_times)
+    ---> Se multiplica por 2 todos los valores de la columna
+
+    # Podemos guardarlo en una columna nueva
+    df_books['User Rating2'] =df_books['User Rating'].apply(two_times)
+
+    # Se pueden crear lambda functions
+    df_books['User Rating2'] =df_books['User Rating'].apply(lambda x: x* 3)
+    ---> Multiplica todos los valores por 3
+
+    # Apply en varias columnas con condiciones, hay que especificar a que los vamos a aplicar (filas o columnas)
+    df_books.apply(lambda x: x['User Rating'] * 2 if x['Genre'] == 'Fiction' else x['User Rating'], axis = 1)
+    ---> Multiplica por 2 a los datos que cumplan la condición 
+    ```
+
+### Pivot y Melt
+
+Hola, te doy la bienvenida a la clase de pivot_table y melt, dos funciones que sirven para cambiar la estructura de nuestro DataFrame de acuerdo a nuestras necesidades.
+
+1. **Pivot_table:**
+
+    Esta función puede traer recuerdos a las personas interesadas en el mundo del SQL, ya que Oracle, PostgreSQL y otros motores de bases de datos la tienen implementada desde hace muchos años. Pivot, básicamente, transforma los valores de determinadas columnas o filas en los índices de un nuevo DataFrame, y la intersección de estos es el valor resultante.
+\
+    Entiendo que esto puede sonar algo confuso, pero no te preocupes, todo queda mucho más claro con un ejemplo.
+
+    ```python
+    # Carga el DataFrame que hemos usado en el curso
+    df_books = pd.read_csv('bestsellers with categories.csv',sep=',',header=0)
+
+    # Explóralo viendo sus primeras 5 filas
+    df_books.head()
+    ```
+
+    ![df_book](./images/datos_panda.webp)
+
+    ```python
+     # Aplica pivot_table
+    df_books.pivot_table(index='Author',columns='Genre',values='User Rating')
+    ```
+
+    Como resultado, los valores de Author pasan a formar el índice por fila y los valores de Genre pasan a formar parte de los índices por columna, y el User Rating se mantiene como valor.
+
+    ![df_book](./images/pivot_table.webp)
+
+    ```python
+     # Ejecuta la siguiente variación
+    df_books.pivot_table(index='Genre',columns='Year', values='User Rating',aggfunc='sum')
+    ```
+
+    ![df_book](./images/pivot_table2.webp)
+
+2. **melt:**
+
+    El método melt toma las columnas del DataFrame y las pasa a filas, con dos nuevas columnas para especificar la antigua columna y el valor que traía.
+\
+    Por ejemplo, simplemente al imprimir las cinco primeras filas del DataFrame con las columnas de Name y Genre se tiene este resultado.
+
+    ```python
+    # Para ello ejecuta la siguiente línea en tu Jupyter Notebook
+    ddf_books[['Name','Genre']].head(5).melt()
+    ```
+
+    Ahora cada resultado de las dos columnas pasa a una fila de este modo a tipo llave:valor.
+    ![df_book](./images/melt.webp)
+
+    ```python
+    # En el siguiente ejemplo ejecutemos melt de esta manera
+    df_books.melt(id_vars='Year',value_vars='Genre')
+    ```
+
+    Simplemente, podemos seleccionar las columnas que no quiero hacer melt usando el parámetro id_vars. Para este caso Year y también la única columna que quiero aplicar el melt, para este caso Genre con la propiedad value_vars.
+    ![df_book](./images/melt2.webp)
