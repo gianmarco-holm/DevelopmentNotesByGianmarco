@@ -1,5 +1,9 @@
 # 📊 Apuntes de Jupyter Notebooks y Anaconda
 
+## Tabla de Contenido
+
+[TOC]
+
 ## Jupyter Notebooks
 
 >Una notebooks a diferencia de un script, nos va a ayudar mas a experimentar, documentar que esta pasando y presentar nuestros descubrimientos.

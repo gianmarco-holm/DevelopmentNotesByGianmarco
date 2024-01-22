@@ -1,6 +1,6 @@
 # 📊 Fundamentos de Ingeniería de Datos
 
-**Tabla de Contenido**
+## Tabla de Contenido
 
 [TOC]
 
