@@ -24,6 +24,7 @@ La Ingeniería de Datos es una disciplina que se enfoca en el desarrollo y gesti
     - Mantenerse al tanto de las últimas tecnologías y tendencias en el campo.
 
 ### ¿Dónde ejercer como Data Engineer?
+
 *StartUp
 *Empresas de software
 *Corporaciones

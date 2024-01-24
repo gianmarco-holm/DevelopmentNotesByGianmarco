@@ -1,6 +1,6 @@
 # 🐍 Apuntes de PIP y Entornos Virtuales
 
-**Tabla de Contenido**
+## Tabla de Contenido
 
 [TOC]
 
@@ -13,11 +13,13 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 ## 🚀 Instalación de PIP
 
 1. **Verificar si PIP está instalado:**
+
     ```bash
     pip --version
     ```
 
 2. **Instalar PIP (si no está instalado):**
+
     ```bash
     # Para Python 2
     sudo apt-get install python-pip
@@ -28,7 +30,8 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 
 ## 📦 Manejo de Paquetes con PIP
 
-3. **Instalar un paquete:**
+1. **Instalar un paquete:**
+
     ```bash
     pip install nombre_paquete
     # Para instalar un paquete no encontrado por anaconda
@@ -36,19 +39,22 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
     conda install --channel canal_paquete nombre_paquete
     ```
 
-4. **Instalar una versión específica de un paquete:**
+2. **Instalar una versión específica de un paquete:**
+
     ```bash
     pip install nombre_paquete=version
     ```
 
-5. **Desinstalar un paquete:**
+3. **Desinstalar un paquete:**
+
     ```bash
     pip uninstall nombre_paquete
     ```
 
 ## 🌐 Entornos Virtuales
 
-6. **Instalar virtualenv (si no está instalado):**
+1. **Instalar virtualenv (si no está instalado):**
+
     ```bash
     # en PIP
     pip install virtualenv
@@ -57,7 +63,8 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
     # en windows ya viene instalada cuando instalas python
     ```
 
-7. **Crear un entorno virtual:**
+2. **Crear un entorno virtual:**
+
     ```bash
     # Para Python 2
     virtualenv nombre_entorno
@@ -66,17 +73,22 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
     python3 -m venv nombre_entorno
     ```
 
-8. **Activar un entorno virtual:**
+3. **Activar un entorno virtual:**
+
     - En Linux/Mac:
+
         ```bash
         source nombre_entorno/bin/activate
         ```
+
     - En Windows:
+
         ```bash
         .\nombre_entorno\Scripts\activate
         ```
 
-9. **Desactivar un entorno virtual:**
+4. **Desactivar un entorno virtual:**
+
     ```bash
     deactivate
     ```
@@ -84,10 +96,10 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 ## ⚙ Gestión de Requisitos
 
 > *VirtualEnv y Venv son herramientas para crear entornos virtuales, para python 2 es recomendable usar VirtualEnv y para pthon3 se usa Venv ya que tiene mejor rendimiento.*
-
 > *Tambien existe Conda, pero es usado para ciencia de datos y además de crear un entorno virtual, tambien gestiona dependencias y no solo de python, sino de otros lenguajes tambien.*
 
-10. **Exportar requisitos de un entorno:**
+1. **Exportar requisitos de un entorno:**
+
     ```bash
     pip freeze > requirements.txt
     # Para ver todas las librerías instaladas en el entorno
@@ -96,12 +108,14 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
     pip list
     ```
 
-11. **Instalar requisitos desde un archivo:**
+2. **Instalar requisitos desde un archivo:**
+
     ```bash
     pip install -r requirements.txt
     ```
 
-12. **Crear un entorno virtual con requisitos:**
+3. **Crear un entorno virtual con requisitos:**
+
     ```bash
     # Para virtualenv
     virtualenv nombre_entorno && source nombre_entorno/bin/activate && pip install -r requirements.txt
@@ -109,7 +123,8 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
     python -m venv nombre_entorno && source nombre_entorno/bin/activate && pip install -r requirements.txt
     ```
 
-13. **Eliminar un entorno virtual:**
+4. **Eliminar un entorno virtual:**
+
     ```bash
     rm -r nombre_entorno
     ```
@@ -118,27 +133,32 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 
 > *Es otra herramienta como venv o virtualenv, es mas popular para proyectos web y combina la gestión de dependencia con la gestión de entornos virtuales, 2 en 1, además permite bloquear la verción de las dependencias instaladas, permitiendo la creación de entornos exactos.*
 
-14. **Instalar Pipenv (si no está instalado):**
+1. **Instalar Pipenv (si no está instalado):**
+
     ```bash
     pip install pipenv
     ```
 
-15. **Crear un entorno virtual con Pipenv:**
+2. **Crear un entorno virtual con Pipenv:**
+
     ```bash
     pipenv install
     ```
 
-16. **Activar un entorno virtual con Pipenv:**
+3. **Activar un entorno virtual con Pipenv:**
+
     ```bash
     pipenv shell
     ```
 
-17. **Desactivar un entorno virtual con Pipenv:**
+4. **Desactivar un entorno virtual con Pipenv:**
+
     ```bash
     exit
     ```
 
-18. **Instalar un paquete con Pipenv:**
+5. **Instalar un paquete con Pipenv:**
+
     ```bash
     pipenv install nombre_paquete
     ```
@@ -149,7 +169,8 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
 +Los entornos virtuales son útiles para aislar las dependencias de tu proyecto en un espacio separado, evitando conflictos entre diferentes proyectos
 +Docker se utiliza para encapsular aplicaciones en contenedores, siendo valioso cuando necesitas asegurarte de que tu aplicación se ejecute de la misma manera en diferentes entornos*
 
-19. **Paso 1: **Se crea el archivo Dockerfile
+1. **Paso 1:**Se crea el archivo Dockerfile
+
     ```bash
     # Para scripts de python
     FROM python:3.10
@@ -176,7 +197,8 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
     CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
     ```
 
-20. **Paso 2: **Se crea el archivo docker-compose.yml
+2. **Paso 2:**Se crea el archivo docker-compose.yml
+
     ```bash
     # Para scripts de python
     services:
@@ -199,7 +221,8 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
             - '80:80'
     ```
 
-20. **Paso 3: **Luego se ejecuta los siguientes comandos en la terminal
+3. **Paso 3:**Luego se ejecuta los siguientes comandos en la terminal
+
     ```bash
     #Enciendes docker, entrando al app, para ello ya debe estar instalado docker y docker-compose
     #Para construir el contenedor
@@ -213,7 +236,3 @@ Un `entorno virtual` es un entorno de desarrollo Python aislado que permite gest
     #Para salir del bash del contenedor
     exit
     ```
-
-
-
-
