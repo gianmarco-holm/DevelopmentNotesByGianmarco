@@ -56,6 +56,7 @@ Todos las partes del flujo requiere del conocimiento en ciertas ramas de la esta
 
 ## Estadísticos para ingesta y procesamiento
 
-https://deepnote.com/workspace/gianmarco-holm-421cbaf8-26f8-4328-a3b6-8e02322986c3/project/Estadistica-descriptiva-en-la-Ciencia-de-Datos-4ae198ff-84f2-47b6-a278-e41621250eb4/notebook/02-tipos-de-datos-c16d8d19e24148c997ba2b85f44c6b1f
+[Tipos de Datos 🫵🏻](https://deepnote.com/workspace/gianmarco-holm-421cbaf8-26f8-4328-a3b6-8e02322986c3/project/Estadistica-descriptiva-en-la-Ciencia-de-Datos-4ae198ff-84f2-47b6-a278-e41621250eb4/notebook/02-tipos-de-datos-c16d8d19e24148c997ba2b85f44c6b1f)
+
 
 ## Estadísticos para analítica y exploración
