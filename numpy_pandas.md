@@ -356,7 +356,7 @@ Es una librería enfocada al cálculo numérico y manejo de Arrays.
     # Obtener un percentil (Busca la posición que esta a la mitad):
     np.percentile(arr, 50) ---> 10.0
 
-    # Mediana:
+    # Media:
     np.median(arr) ---> 10.0
 
     # Desviación estándar:
