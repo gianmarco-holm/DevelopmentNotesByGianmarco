@@ -15,6 +15,7 @@
 - [Pandas y Numpy](pandas_numpy.md) 🚀
 - [Matplotlib y Seaborn](matplotlib_seaborn.md) 🚀
 - [Estadística Descriptiva para Data Engineer](matplotlib_seaborn.md) 🏛️
+- [Análisis Exploratorio de Datos](analisis_exploratorio_de_datos.md) 🏸
 - [PostgreSQL](postgresql.md) 🐘
 
 ### Fuentes de Datos y Data Warehousing
