@@ -1,6 +1,7 @@
 # 🐍 Tutorial de Flujo de Trabajo en Python
 
-## Instalaciones:
+## Instalaciones
+
 ### Para WSL o  Linux
 
     ```bash
@@ -26,107 +27,122 @@
         #Luego tecleas i para insertar, y colocas esta varias y luego le das esc y luego tecleas :wq para guardar y salir
         export PATH="$HOME/miniconda3/bin:$PATH"
     ```
+
 ### Para Windows
 
 ## Paso 1: Crear un Repositorio en GitHub o el otro camino es crear una carpeta local
 
 ### Repositorio en github
 
-1. **Inicia Sesión en GitHub: **Inicia sesión en tu cuenta de GitHub.
+1. **Inicia Sesión en GitHub:** Inicia sesión en tu cuenta de GitHub.
 
-2. **Crea un Nuevo Repositorio: **En tu perfil, haz clic en "Repositories" y luego en "New". Completa la información del repositorio y haz clic en "Create Repository".
+2. **Crea un Nuevo Repositorio:** En tu perfil, haz clic en "Repositories" y luego en "New". Completa la información del repositorio y haz clic en "Create Repository".
 
-3. **Clonar el Repositorio: **Abre tu terminal y ejecuta el siguiente comando para clonar el repositorio a tu máquina local.
-    ```bash
+3. **Clonar el Repositorio:** Abre tu terminal y ejecuta el siguiente comando para clonar el repositorio a tu máquina local.
+
+        ```bash
         git clone url_repositorio
         # Luego te pedira correo y token
         # El token se obtiene de github>>Settings>>Developer settings>>Personal acces tokens>>Tokens classic>> Generate new token
-    ```
+        ```
 
-4. **Entrar al Repositorio: **Ingresa al directorio del repositorio clonado.
-    ```bash
-    cd nuevo-repositorio
-    ```
+4. **Entrar al Repositorio:** Ingresa al directorio del repositorio clonado.
+
+        ```bash
+        cd nuevo-repositorio
+        ```
 
 ### Si creas una carpeta local
 
 1. Tienes que juntar las dos historias.
-    ```bash
-   git remote add origin url_repositorio
-   git remote -v
-   git branch -m main
-   git push origin main
-   git pull origin main --allow-unrelated-histories
-   ```
+
+        ```bash
+        git remote add origin url_repositorio
+        git remote -v
+        git branch -m main
+        git push origin main
+        git pull origin main --allow-unrelated-histories
+        ```
 
 ## Paso 2: Configurar el Entorno Virtual
 
-5. **Crear un Entorno Virtual: **Usa venv o conda para crear un entorno virtual.
-    ```bash
-    # Usando venv
-    python3 -m venv env
+1. **Crear un Entorno Virtual:** Usa venv o conda para crear un entorno virtual.
 
-    # Usando conda
-    conda create --name mi_entorno
-    ```
+        ```bash
+        # Usando venv
+        python3 -m venv env
 
-6. **Activar el Entorno Virtual: **Activa el entorno virtual.
+        # Usando conda
+        conda create --name mi_entorno
+        ```
+
+2. **Activar el Entorno Virtual:** Activa el entorno virtual.
+
     - En Windows:
-        ```bash
-        .\env\Scripts\activate
-        ```
+
+            ```bash
+            .\env\Scripts\activate
+            ```
+
     - En macOS/Linux:
-        ```bash
-        source env/bin/activate
-        ```
+
+            ```bash
+            source env/bin/activate
+            ```
+
     - Para conda:
-        ```bash
-       conda activate mi_entorno
-        ```
+
+            ```bash
+        conda activate mi_entorno
+            ```
 
 ## Paso 4: Instalar Dependencias
 
-7. **Instalar Dependencias: **Usa pip o conda para instalar las dependencias.
-    ```bash
-    # Usando pip
-    pip install -r requirements.txt
+1. **Instalar Dependencias:** Usa pip o conda para instalar las dependencias.
 
-    # Usando conda
-    conda install --file requirements.txt
-    ```
+        ```bash
+        # Usando pip
+        pip install -r requirements.txt
+
+        # Usando conda
+        conda install --file requirements.txt
+        ```
 
 ## Paso 5: Desarrollar y Contribuir
 
-8. **Desarrollar tu Código: **Usa tu editor de código favorito para escribir tu código Python.
+1. **Desarrollar tu Código:** Usa tu editor de código favorito para escribir tu código Python.
 
-9. **Agregar Cambios: **Usa git para agregar y hacer commit de tus cambios.
-    ```bash
-    git add .
-    git commit -m "Agrega nueva funcionalidad"
-    ```
+2. **Agregar Cambios:** Usa git para agregar y hacer commit de tus cambios.
 
-10. **Subir Cambios: **Sube tus cambios al repositorio en GitHub.
-    ```bash
-    git push origin main
-    ```
+        ```bash
+        git add .
+        git commit -m "Agrega nueva funcionalidad"
+        ```
+
+3. **Subir Cambios:** Sube tus cambios al repositorio en GitHub.
+
+        ```bash
+        git push origin main
+        ```
 
 ## Paso 6: Colaborar con Otros
 
-11. **Crear Pull Request: **Cuando estés listo para incorporar tus cambios, crea un Pull Request en GitHub.
+1. **Crear Pull Request:** Cuando estés listo para incorporar tus cambios, crea un Pull Request en GitHub.
 
-12. **Revisar y Fusionar: **Revisa y discute los cambios con otros colaboradores antes de fusionarlos con la rama principal.
+2. **Revisar y Fusionar:** Revisa y discute los cambios con otros colaboradores antes de fusionarlos con la rama principal.
 
 ## Paso 7: Mantener el Proyecto
 
-13. **Actualizar Dependencias: **Actualiza las dependencias según sea necesario.
-    ```bash
-    # Usando pip
-    pip freeze > requirements.txt
+1. **Actualizar Dependencias:** Actualiza las dependencias según sea necesario.
 
-    # Usando conda
-    conda list --export > requirements.txt
-    ```
+        ```bash
+        # Usando pip
+        pip freeze > requirements.txt
 
-14. **Documentar y Etiquetar Versiones: **Documenta tu código y etiqueta nuevas versiones para un seguimiento claro del progreso del proyecto.
+        # Usando conda
+        conda list --export > requirements.txt
+        ```
+
+2. **Documentar y Etiquetar Versiones:** Documenta tu código y etiqueta nuevas versiones para un seguimiento claro del progreso del proyecto.
 
 ¡Listo! Ahora has configurado un flujo de trabajo básico para tu proyecto de Python. A medida que tu proyecto crece, puedes explorar herramientas adicionales y prácticas recomendadas. ¡Éxito con tu proyecto!
