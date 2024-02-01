@@ -103,3 +103,36 @@ Es el proceso de asegurar la consistencia y precisión dentro de un conjunto de 
 **6. Consistencia de expresiones:** se refiere a como la persona que recolecta los datos define sus variables. Formato de fecha, de hora, variables escritas de la misma forma en toda la tabla. No son datos erroneos, solo es cuestion de darle el formato adecuado.
 
 **7. Valores nulos:** pueden estar explicitos o implicitos en el dataset. Son datos faltantes. Porque esta vacio? puedo rellenarlo con otro dato? esta vacio por un proceso aleatorio o tiene un sentido?
+
+## Deepnote de practicas
+
+1. Colecta de datos
+2. Validación de datos
+3. Conteos y proporciones
+
+## Resumen
+
+1. ¿Qué es y para qué sirve el análisis exploratorio de datos?
+
+    > *Proceso de conocer a detalle tus datos, darle sentido. Determinar como tratarlos. Hacer preguntas y transformarlo en información util*
+
+2. Conocer el origen de tus datos es vital para:
+
+    >* Saber si los datos son confiables
+    >* Entender porque se colectaron los datos y que buscaban responder
+    >* Poder realizar preguntas mas detalladas sobre lo que quieres buscar o encontrar en tus datos
+
+3. ¿Cuáles son los tipos de recolección de datos?
+
+    > *Primaria, Secundaria y terciaria*
+
+4. ¿Cuáles son los tipos de recolección de datos?
+
+    >* Encontrar patrones ocultos en los datos
+    >* Establecer relaciones entre las variables
+    >* Escoger el modelo correcto para la necesidad correcta
+    >* Organizar y entender las variables
+
+5. ¿Cuáles son los pasos principales al realizar un análisis exploratorio de datos?
+
+    > *Hacer preguntas; Determinar el tamaño de los datos, Categorizar las variables; Limpieza y validación de datos; Establece relaciones; y comunicar resultados*
