@@ -108,7 +108,30 @@ Es el proceso de asegurar la consistencia y precisión dentro de un conjunto de 
 
 1. Colecta de datos
 2. Validación de datos
-3. Conteos y proporciones
+
+### Análisis Univariado
+
+1. Conteos y proporciones
+2. Medidas de tendencia central
+3. Nedidas de dispersión
+4. Estadística descriptiva aplicada: distribuciones
+
+    * Funcion de Probabilidad de masas (PMFs)
+    Nos dice la probabilidad de que una variable aleatoria discreta tome un valor determinado. Ejemplo, la probabilidad de que en un salon hayan personas con una edad especifica
+
+    * Funcion de Distribucion Acumulada (CDFs)
+    Devuelve la probabilidad de que una variable sea igual o menor que un valor determinado. Ejemplo, la probabilidad de que en un salon hayan personas menores o iguales a una edad especifica.
+
+    * Función de Probabilidad de Densidad (PDFs)
+    Determine la probabilidad de que una variable continua tome un valor determinado. Ejemplo, la probabilidad de que en el salón hayan personar con una altura especifica
+
+5. Teorema de los grandes números
+    La probabilidad experimental tiende a la probabilidad teorica a medida que aumenta el numero de repeticiones del experimento. Es muy util cuando no se conoce la probabilidad teorica de un evento y tenemos la capacidad de aumentar la muestra. Mediante este teorema, al incrementar la muestra la probabilidad experimental al final se convertira en la probabilidad teorica.
+    > Esto significa a que si tienes una probabilidad al inicio, y si aumenta la muestra, esta probabilidad va a seguir siendo la misma
+
+6. Teorema del Limite Central
+    La media de las muestras tiende aproximadamente a una distribución normal
+    La suma de n variables aleatorias independientes con medias y varianzas finitas converge en distribucion a una variable aleatoria normal
 
 ## Resumen
 
