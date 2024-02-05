@@ -106,6 +106,10 @@ Es el proceso de asegurar la consistencia y precisión dentro de un conjunto de 
 
 ## Deepnote de practicas
 
+Estas notas van acompañadas de este EDA que se encuentra en Deepnote
+
+<https://deepnote.com/workspace/gianmarco-holm-421cbaf8-26f8-4328-a3b6-8e02322986c3/project/Analisis-Exploratorio-de-Datos-EDA-95d3597a-89cb-4ce3-bed1-6723a82c391a/notebook/EDA_de_dataset_pinguins-6e3d62dfc0b646e2a83663525c5a3cd5>
+
 1. Colecta de datos
 2. Validación de datos
 
@@ -133,6 +137,53 @@ Es el proceso de asegurar la consistencia y precisión dentro de un conjunto de 
     La media de las muestras tiende aproximadamente a una distribución normal
     La suma de n variables aleatorias independientes con medias y varianzas finitas converge en distribucion a una variable aleatoria normal
 
+### Análisis Bivariado
+
+Nos permite ver la relación que hay entre 2 variables y visualizar como afecta una a la otra
+
+1. Graficos para el análisis bivariado
+2. Matrices de correlación
+3. Impacto de la relación
+    > Si bien es cierto que el coeficiente de correlación nos ayuda a saber si existe una relación entre 2 variables pero no sabemos el impacto de de esta relación, es decir si tenemos 2 variables x, y , si cambiamos o aumentamos el valor de x que tanto aumentaria el valor de y, a esto le llamamos la fuerza o el impacto de la relación, y se hace mediante una ecuación o análisis d eregresión simple, que es representada por una recta en el gráfico, si la recta es más empinada significa que hay un mayor impacto.
+
+4. Análisis de regresión simple
+5. Limitaciones de regresión simple
+    * La regresión lineal simple de A-B no es la misma que B-A.
+    * Si dos variables crecen o decrecen siguiendo las mismas pautas, no implica necesariamente que una cause a la otra.
+    * Solo puede manejar relaciones lineales y no maneja relaciones como parabolas.
+
+### Análisis Multivariado
+
+1. Análisis de regresión multiple
+    > Se utiliza para predecir una variable numérica continua basada en dos o más variables predictoras continuas o categóricas.
+
+2. Visualización de regresión múltiple
+3. Análisis de regresión lógica
+    > Se utiliza para predecir la probabilidad de que ocurra un evento binario (por ejemplo, sí/no, 1/0) basado en una o más variables predictoras continuas o categóricas.
+
+4. Paradoja de Simpson:
+    > Fenómeno en el cual es posible concluir dos cosas totalmente opuestas a partir de los mismos datos, dependiendo el como se clasifican estos, en el caso de deppnote vimos una regresión multiple muy distinta a cuando colocamaos especies, y a esto se le llama la paradoja de simpson
+
+5. Visuaalización de datos
+    * <https://www.data-to-viz.com/>
+    * <https://datavizproject.com/>
+
+### Que hacer cuando tengo muchas variables?
+
+Cuando se tiene muchas variables, un analisis de pares de variables puede ser confuso por lo que tenemos que recurrir a tecnicas que nos ayudan a entender la variacion de todos los datos de manera simple: Reduciendo las dimensiones para obtener un unico espacio (Pasar de 10 variables a solo 2). Algunas de estas tecnicas son:
+
+* Analisis de Componentes Principales (PCA): un ejemplo de utilidad es la demostracion de que los genes reflejan la geografia de Europa
+* TSNE (T - Distributed Stochastic Neighbor Embedding): Separacion de todos los tipos de cancer
+* UMAP (Uniform Manifold Approximation and Projection for Dimension Reduction): intenta capturar la estructura global preservando la estructura local de los datos utlizando proyecciones en un plano
+* Comparacion: algoritmo de reduccion de dimension vs conjunto de datos
+
+## Conclusiones
+
+* Las preguntas son la fuente de toda exploracion. Asegurate de definir qué quieres encontrar y quien necesita consultar los resultados desde un comienzo del EDA.
+* Es fundamental identificar el tipo de analisis de datos y variables que se requieren. Explora las dimensiones de tu conjunto de datos y qué tipo de variables contienen.
+* Siempre visualiza los estadisticos. Todos los conjuntos de datos son diferentes, concelos mas alla de sus numeros de resumen
+* Visualiza una o varias variables de distintas maneras. La diversidad de graficas te permitira conocer a detalle los matices de los datos
+
 ## Resumen
 
 1. ¿Qué es y para qué sirve el análisis exploratorio de datos?
@@ -159,3 +210,55 @@ Es el proceso de asegurar la consistencia y precisión dentro de un conjunto de 
 5. ¿Cuáles son los pasos principales al realizar un análisis exploratorio de datos?
 
     > *Hacer preguntas; Determinar el tamaño de los datos, Categorizar las variables; Limpieza y validación de datos; Establece relaciones; y comunicar resultados*
+
+6. ¿Qué son las proporciones?
+
+    > Relación de correspondencia entre las partes y el todo.
+
+7. ¿Qué es la Ley de los Grandes numéros?
+
+    > La probabilidad experimental tienda a la probabilidad teórica a medidad que aumente el número de repeticiones del experimento
+
+8. ¿Qué nos indica la función de probabilidad de masas (PMFs?)
+
+    > Nos indica la probabilidad de que una variable aleatoria discreta tome un valor determinado
+
+9. ¿Para qué sirven las medidas de tendencia central?
+
+    > Para representar una distribución o un conjunto de datos a un único valor. Su objetivo es proveer una forma acertada de describir todos los datos en la distribución
+
+10. ¿Que elementos no permite visualizar una distribución?
+
+    > Medidas de tendencia central
+
+11. ¿Qué cuantifica un coeficiente de correlación?
+
+    > Cuanatifica la intensidad de relación entre dos variabales en un análisis de correlación
+
+12. Una característica extra de los coeficientes de correlación es que nos habla del impacto de la relación. ¿Esto es verdadero o falso?
+
+    Falso
+
+13. ¿Qué significa que exista una correlación entre dos variables?
+
+    > Expresa hasta que punto dos variables estan relacionadaas entre si. Es decir, si cambian cambian conjuntamente
+
+14. En un análisis de regresión múltiple siempre es mejor incluir más variables explicativas.
+
+    > Falso, más datos no garaanatizan mejores resultados. Puede ser contraproducente.
+
+15. Un análisis de regresión múltiple nos permite incluir variables categóricas. ¿Verdadero o falso?
+
+    > Verdadero
+
+16. El modelo de regresión logística nos puede ayudar a modelar un evento binario con sencillez. ¿Es verdad o falso?
+
+    > Verdadero
+
+17. Visualizar y explorar tus datos es fundamental y puede ___.
+
+    > Verificar relaciones entre variables, ahorrar tiempo de trabajo extra, permitir tomar decisioens informadas
+
+18. Existe una infinidad de visualizaciones y estadísticos que puedes utilizar al momento de realizar un análisis exploratorio. ¿Cuál es más importante?
+
+    > Las preguntas, las visualizaciones y los estadísticos son solo medio de transición
