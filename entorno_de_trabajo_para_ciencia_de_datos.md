@@ -350,3 +350,202 @@ cookiecutter https://github.com/<usuario>/<repositorio>.git
 ```
 
 Cuando usas “cookiecutter” como parte del nombre de tu proyecto, este puede ser encontrado por otras personas en GitHub. De esta forma podrás ayudar a otros científicos de datos, facilitándoles el trabajo.
+
+## 2. Manejo de Archivos con Python
+
+### 2.1 Manejo de rutas: problemática
+
+Un problema común en el manejo de rutas es la incompatibilidad entre los sistemas de archivos de los sistemas operativos, ya sea Windows, Mac, Linux o WSL. Por ejemplo, Windows utiliza el “backslash” en sus rutas de archivos, mientras que el resto usa el “foward slash”.
+
+**Solución al manejo de rutas**
+Esto hace que, cuando inicies un nuevo proyecto, tengas que hacerte varias preguntas, por ejemplo:
+
+* ¿Habrá más personas involucradas?
+* ¿Habrá más de un ordenador involucrado?
+* ¿Cuál será la ubicación del proyecto, dentro del sistema de archivos de cada ordenador?
+* ¿Cómo se vería afectado un proyecto si reestructuras su contenido, en una fase intermedia de desarrollo?
+
+Deberías poder trabajar en tu proyecto y no tener que preocuparte por nada más que eso.
+
+### 2.2 Manejo de rutas del sistema: OS
+
+#### 2.2.1 Objetivo
+
+Crear la ruta “./data/raw/” independiente del sistema operativo. En este caso usaremos os, un módulo de Python que sirve para manejar rutas.
+
+IMPORTANTE: cerciórate de que estás trabajando en el entorno correcto.
+
+#### 2.2.2 Implementación
+
+Dentro del notebook de jupyter:
+
+```python
+import os
+
+CURRENT_DIR = os.getcwd()  # Ruta actual de trabajo
+DATA_DIR = os.path.join(CURRENT_DIR, os.pardir, "data", "raw")
+# este codigo une varias rutas, comenzando con
+#la ruta actual, luego usa os.pardir que significa
+#directorio del padre o .., haciendo retroceder una
+#carpeta, luego une a la ruta data y por ultimo a raw
+
+os.path.exists(DATA_DIR)  # Revisa si el path existe
+os.path.isdir(DATA_DIR)  # Revisa si es un directorio
+
+os.listdir(DATA_DIR)  # Itera por los archivos dentro del directorio
+
+os.mkdir(os.path.join(DATA_DIR, "os"))  # Crea la carpeta *"os"*
+```
+
+### 2.3 Manejo de rutas del sistema: Pathlib
+
+#### 2.3.1 Objetivo
+
+Crear la ruta “./data/raw/” independiente del sistema operativo. Ahora usaremos pathlib, otro módulo de Python.
+
+#### 2.3.2 Implementación
+
+Dentr del notebook de jupyter:
+
+```python
+import pathlib
+
+pathlib.Path()  # Genera un objeto Unix Path o 
+
+CURRENT_DIR = pathlib.Path().resolve()  # Path local completo
+DATA_DIR = CURRENT_DIR.parent.joinpath("data", "raw")  # Directorio objetivo
+
+DATA_DIR.exists()  # Revisa si el directorio existe
+DATA_DIR.is_dir()  # Revisa si es un directorio
+```
+
+Utiliza el método “parent” para obtener el directorio padre y de ahí concatenar el path de las carpetas “data” y “raw”.
+
+Puedes crear una carpeta dentro de un directorio, usando el método “mkdir”:
+
+```python
+DATA_DIR.joinpath("<nombre_carpeta>").mkdir()
+```
+
+Para buscar la ruta de un archivo dentro del proyecto, usando regex:
+
+```python
+list(DATA_DIR.glob("<nombre_archivo>"))
+```
+
+### 2.4 Manejo de rutas del sistema: PyFilesystem2
+
+#### 2.4.1 Objetivo
+
+Crear la ruta “./data/raw/” independiente del sistema operativo. Ahora usaremos PyFilesystem2.
+
+#### 2.4.2 Implementación
+
+Dentro del notebook de jupyter:
+
+```python
+import fs
+
+fs.open_fs(".")  # Abre una conexión con el path actual (OSFS)
+
+CURRENT_DIR = fs.open_fs(".")
+
+CURRENT_DIR.exists(".")  # Revisa si el directorio existe
+DATA_DIR.listdir(".")  # Muestra el contenido dentro de la ruta.
+```
+
+* PyFilesystem2 genera un objeto OSFS (Operating System Filesystem).
+
+* El inconveniente con este módulo es que el objeto OSFS solo detecta los objetos que existen en la ruta actual, por lo que si intentas acceder a un archivo ubicado en el directorio padre “…” te saltará un IndexError.
+
+* Si necesitas que el objeto OSFS también detecte el directorio padre, además de las carpetas “data” y “raw”, vuelve a generar el objeto de la siguiente forma:
+
+```python
+fs.open_fs("../data/raw/")  # Ruta objetivo
+```
+
+### 2.5 Crear referencias relativas de archivos
+
+#### 2.5.1 Objetivo
+
+Necesitamos encontrar una forma de evitar que nuestro proyecto se rompa cuando movamos de lugar un archivo dentro del proyecto, para esto usaremos Referencias Relativas.
+
+#### 2.5.2 Implementación
+
+Usando PyProjRoot:
+
+```python
+import pyprojroot
+
+pyprojroot.here()  # Esto es un Posix Path (pathlib)
+pyprojroot.here().joinpath("data", "raw")
+```
+
+* El path en pyprojroot se construye desde la raíz, no desde el path del archivo que lo ejecuta.
+* Puedes mover el archivo a cualquier parte de la carpeta del proyecto, pero los paths no se romperán.
+
+Usando PyHere:
+
+```python
+import pyhere
+
+pyhere.here()  # También regresa un Posix Path
+```
+
+* El directorio que regresa es el directorio padre del directorio actual.
+
+#### 2.5.3 Comparación
+
+Estas dos líneas de código regresan el mismo resultado:
+
+```python
+pyprojroot.here("data").joinpath("raw")
+pyhere.here().resolve() / "data" / "raw"
+```
+
+Estas dos librerías sirven para crear shortcuts. Para esto, se puede usar la siguiente función:
+Estos shorcuts nos va ayudar a encontrar rutas mas rapido, además solo tendriamos que colocar el directorio principal y luego lo que queremos buscar.
+
+```python
+def make_dir_function(dir_name):
+    def dir_function(*args):
+        return pyprojroot.here()joinpath(dir_name, *args)
+    return dir_function
+
+data_dir = make_dir_function("data")
+data_dir("raw", "pathlib")  # Devuelve el path personalizado
+```
+
+* Puedes crear la cantidad de shortcuts que tu proyecto necesite.
+
+## 3. Caso Práctico
+
+### 3.1 Descarga de plantilla y configuración de ambiente virtual
+
+#### 3.1.1 Descarga e Instalación
+
+En el buscador de github, con solo colocar [cookiecutter](https://github.com/search?q=cookiecutter&type=repositories) te va aparecer muchas plantillas, la mas usada para siencia de dato es de [drivedata](https://github.com/drivendata/cookiecutter-data-science), sin embargo, solo funciona con pip, asi que el siguiente ejemplo es con otra plantilla que usa conda.
+
+Para instalar y ejecutar la plantilla a usar, en el caso práctico, en una terminal escribir:
+
+```python
+conda create --name <nombre_entorno_cookiecutter> coockiecutter
+conda activate <nombre_entorno_cookiecutter>
+cookiecutter https://github.com/jvelezmagic/cookiecutter-conda-data-science
+```
+
+Durante la instalación de la plantilla y para que puedas reproducir el proyecto del profesor, elige las siguientes opciones:
+
+* Select project packages: Minimal
+* Python version: 3.9
+
+#### 3.1.2 Activación
+
+Para activar el proyecto, ejecutar lo siguiente en consola:
+
+```python
+cd <nombre_carpeta_proyecto>
+conda env create --file environment.yml
+conda list python
+code .
+```
