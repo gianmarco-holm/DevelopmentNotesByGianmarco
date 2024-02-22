@@ -40,6 +40,7 @@ DataOps es una metodología que busca mejorar la colaboración y eficiencia en e
 ## Integración de Metodologías
 
 ### 🚀 Agile en DataOps
+
 ![Agile](./images/Agile.PNG){width=500px}
 
 * **Scrum:**
@@ -283,7 +284,7 @@ Es importante tener medidores para detectar problemas antes que crezcan.
 
 A continuación, se detallan las diferencias, similitudes y límites de ambas metodologías:
 
-## Diferencias:
+## Diferencias
 
 - **DevOps** se enfoca en la automatización del ciclo de vida del software, desde el desarrollo hasta la implementación y operación, mientras que **DataOps** se centra en la automatización del ciclo de vida de los datos, desde la adquisición hasta el análisis y la entrega.
 
@@ -291,7 +292,7 @@ A continuación, se detallan las diferencias, similitudes y límites de ambas me
 
 - **DevOps** busca aumentar la velocidad y la calidad de la entrega de software, mientras que **DataOps** busca mejorar la calidad y la agilidad en la gestión de datos.
 
-## Similitudes:
+## Similitudes
 
 - Ambas metodologías se basan en la automatización y la mejora continua para mejorar la eficiencia y la calidad del trabajo.
 
@@ -299,7 +300,7 @@ A continuación, se detallan las diferencias, similitudes y límites de ambas me
 
 - Ambas buscan una entrega más rápida y eficiente de sus respectivos productos, ya sea software o datos.
 
-## Límites:
+## Límites
 
 - **DevOps** no se centra en la gestión de datos y su calidad, mientras que **DataOps** no se enfoca en el ciclo de vida completo del software.
 
@@ -309,7 +310,7 @@ A continuación, se detallan las diferencias, similitudes y límites de ambas me
 
 ## 5 Herramientas para DevOps y DataOps:
 
-### Herramientas de DevOps:
+### Herramientas de DevOps
 
 1. **Jenkins:** Automatización de integración continua y entrega continua.
 2. **Docker:** Plataforma de contenedores para creación, distribución y ejecución de aplicaciones.
@@ -317,7 +318,7 @@ A continuación, se detallan las diferencias, similitudes y límites de ambas me
 4. **GitLab:** Gestión de repositorios de código con colaboración y seguimiento del ciclo de vida del software.
 5. **Kubernetes:** Plataforma de orquestación de contenedores para gestión y escalabilidad de aplicaciones.
 
-### Herramientas de DataOps:
+### Herramientas de DataOps
 
 1. **Airflow:** Plataforma de orquestación de flujo de trabajo para automatización de procesos de datos.
 2. **Databricks:** Plataforma de análisis de datos que facilita la integración y colaboración entre equipos.
@@ -328,4 +329,3 @@ A continuación, se detallan las diferencias, similitudes y límites de ambas me
 ## Conclusión
 
 La Ingeniería de Datos es un campo dinámico y esencial en el mundo de la ciencia de datos. El Data Engineer desempeña un papel crucial en la creación y mantenimiento de infraestructuras para el procesamiento y análisis de datos. La combinación de habilidades técnicas, experiencia práctica y la adopción de metodologías ágiles son fundamentales para tener éxito en esta profesión en constante evolución.
-

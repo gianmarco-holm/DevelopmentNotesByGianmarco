@@ -549,3 +549,37 @@ conda env create --file environment.yml
 conda list python
 code .
 ```
+
+### 3.2 uso de scripts en notebooks
+
+Una vez descargado, puedes instalar un proyecto como módulo de Python usando el siguiente comando en la terminal:
+
+```python
+pip install --editable .
+```
+
+Para que se reinicie el kernel, cada vez que reimportes los módulos después de hacer un cambio en estos, agrega esto en la primera celda:
+
+```python
+%load_ext autoreload
+%autoreload 2
+```
+
+El hacer el autoreload te ayuda a externalizar trozos de código en archivos .py, como la creación de gráficos.
+Los notebooks son buenos para hacer exploración, pero no para producción.
+
+### 3.3 Flujo de trabajo de los notebooks
+
+Recomendaciones:
+
+* Crear subcarpetas dentro de la carpeta de notebooks para mayor organización del código.
+
+* Se recomienda utilizar un sistema de nombrado de los notebooks, como el siguiente:
+>
+><número_notebook>-<nombre_programador>-<nombre_notebook>.ipynb
+
+>0.0-ghm-transformacion_de_datos.ipynb
+>
+
+El número de notebook es para saber el orden en que se van a ejecutar las notebooks
+También puedes exportar el notebook a texto plano (archivo .py).

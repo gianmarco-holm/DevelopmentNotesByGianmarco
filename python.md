@@ -9,18 +9,24 @@
 ### 🚀 Fundamentos
 
 1. **Hello World:** Imprime "Hello, World!" en la consola.
+
     ```python
     print("Hello, World!")
     ```
+
 2. **input:** Captura de Python
+
     ```python
     last_name = input('¿Cuál es tu apellido? => ')
     ```
+
 3. **Variables:** Declaración y asignación de variables.
+
     ```python
     nombre = "Gianmarco"
     edad = 25
     ```
+
 4. **Tipos de Datos:** Enteros, flotantes, cadenas, booleanos.
     ```python
     entero = 42
