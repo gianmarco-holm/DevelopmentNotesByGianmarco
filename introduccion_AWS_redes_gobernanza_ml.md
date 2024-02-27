@@ -175,3 +175,150 @@ Entonces le damos a Crear VPC.
 Ya con esto creamos dos de los componentes de nuestra VPC.
 
 ---
+
+### 2.3 Cómo crear la tabla de enrutamiento y otros componentes
+
+Una vez que creamos nuestra VPC y el Internet Gateway y los conectamos, procedemos a crear la tabla de enrutamiento, las listas de acceso de control y las subredes.
+
+#### Pasos para crear la tabla de enrutamiento
+
+1. Desde la página del servicio de VPC, nos dirigimos a ``“Tablas de ruteo”``.
+2. Notamos que ya existe una tabla de ruteo asociada a nuestra VPC, que se creó automáticamente junto con la VPC.
+3. La seleccionamos, nos dirigimos a la sección de rutas, y hacemos clic en ``“Editar rutas”``, tambien podemos crear una nueva tabla de ruteo para nuesto vpc recién creado.
+4. Hacemos clic en ``“Agregar ruta”``, colocamos 0.0.0.0/0 y “Puerta de enlace de internet”, y seleccionamos el Internet Gateway que creamos en la clase pasada.
+5. Le damos en “Guardar cambios”. De esta manera, todo el mundo podrá acceder a nuestra VPC mediante el Internet Gateway.
+
+#### Pasos para crear Access Control List
+
+1. En el apartado de ``“Seguridad”`` del servicio de VPC, nos dirigimos a “ACL de red”.
+2. Le damos clic a ``“Crear ACL de red”``. Crearemos dos ACL de red, uno para cada subred. Le damos los nombres NACLA y NACLB, y en VPC escogemos nuestra VPC.
+3. Le damos clic en ``“Crear ACL de red”``.
+
+#### Pasos para añadir una regla de entrada y una de salida
+
+Ahora, para cada ACL de red creado debemos añadir una regla de entrada y una de salida, con el fin de permitir el tráfico HTTP en el puerto 80. Para esto:
+
+1. Seleccionamos una ACL de red
+2. Nos vamos a ``“Reglas de entrada” -> “Editar reglas de entrada”``.
+3. Le damos clic en “Añadir una nueva regla”. Y colocamos los siguientes parámetros
+   * Número de regla: 100 (las reglas se evalúan comenzando por la regla de número más bajo).
+   * Tipo: HTTP (80).
+   * Origen: 0.0.0.0/0.
+   * Permitir/denegar: Permitir.
+4. Le damos a ``“Guardar cambios”``.
+5. Repetimos el proceso con la regla de salida y con el otro ACL (NACLB), colocando los mismos parámetros anteriores. Ahora solo falta añadir estos ACL a nuestras subredes, las cuales crearemos a continuación.
+
+#### Pasos para crear subredes
+
+1. En la sección de “Subredes” vamos al botón ``“Crear subred”``.
+2. Escogemos nuestra VPC, y colocamos los siguientes parámetros:
+   * Nombre de la subred: DemoSubredA.
+   * Zona de dispinibilidad: la primera que te aparezca en el menú de selección, que termine en “a”.
+   * Bloque de CIDR IPv4: 10.0.0.0/25 (asumiendo que tu VPC tiene el bloque de CIDR 10.0.0.0/24)
+3. Le damos clic en ``“Crear subred”``
+4. Repetimos el procedimiento para la otra subred con los siguientes parámetros:
+   * Nombre de la subred: DemoSubredB.
+   * Zona de dispinibilidad: la segunda que te aparezca en el menú de selección, que termine en “b”.
+   * Bloque de CIDR IPv4: 10.0.0.128/25.
+
+Ahora solo falta asociar los ACL que creamos con las subredes. Para esto simplemente hacemos clic derecho en DemoSubredA y clic en “Editar la asociación de ACL de red”, y seleccionamos la ACL correspondiente (NACLA). Entonces le damos en Guardar, y repetimos el procedimiento con DemoSubredB.
+
+#### Recapitulación
+
+Ya creamos todos los componentes de nuestra VPC: el Internet Gateway, la tabla de enrutamiento, las Access Control List y las subredes. Además, dimos acceso público a dichas subredes mediante HTTP en el puerto 80.
+
+---
+
+## 3. Gobernanza
+
+---
+
+### 3.1 Administración y gobernanza con AWS
+
+En el pasado, las empresas u organizaciones tenían que lograr un equilibrio entre innovar y mantener un control de los costos, la seguridad y el cumplimiento. Los servicios de administración y gobernanza de AWS sirven para simplificar este equilibrio. Estos servicios buscan que la administración de AWS sea lo más fácil y optimizada posible.
+
+#### Administración de cuentas
+
+Entre los servicios que nos ayudan a administrar nuestras cuentas de AWS tenemos:
+
+* ``AWS Control Tower:`` una manera fácil de configurar y gobernar un entorno seguro de AWS de múltiples cuentas
+* ``AWS Organizations:`` nos brinda una forma de gobernar, de administrar de manera centralizada nuestros entornos en varias cuentas de AWS
+* ``AWS Budgets:`` nos ayuda a planificar y realizar control de costos
+
+#### Servicios de aprovisionamiento
+
+Estos servicios facilitan el aprovisionamiento o la creación y configuración de nuevos recursos de AWS:
+
+* ``AWS CloudFormation:`` permite modelar y aprovisionar todos sus recursos mediante código
+* ``AWS OpsWorks:`` ayuda a automatizar todas las operaciones con Chef y Puppet
+* ``AWS Service Catalog:`` un servicio para crear, organizar y gobernar nuestro propio catálogo curado de productos de AWS en toda nuestra organización
+* ``Marketplace:`` es donde vamos a poder encontrar, probar e implementar software que se ejecuta en AWS
+
+#### Servicios para operar el entorno AWS
+
+Estos servicios nos ayudan a operar nuestro entorno de AWS
+
+* ``Amazon CloudWatch:`` permite observar nuestros servicios a través de métricas y registros
+* ``Amazon Config:`` permite registrar y evaluar las configuraciones de nuestros recursos en AWS
+* ``AWS CloudTrail:`` rastrea toda la actividad del usuario de la cuenta de AWS. Esto es importante en investigaciones de seguridad
+* ``Systems Manager:`` optimiza el rendimiento y la seguridad mientras administramos una gran cantidad de sistemas
+* ``Amazon X-Ray:`` analiza y depura aplicaciones en producción
+
+---
+
+### 3.2 Qué es CloudFormation y cuáles son sus beneficios
+
+CloudFormation es un servicio que permite provisionar servicios como máquinas virtuales o VPCs mediante código. Para esto se usan las CloudFormation Templates, que son plantillas en donde especificamos los recursos que queremos desplegar. Estas plantillas pueden estar en formato JSON o YAML, y en ellas se define un stack o pila de recursos a provisionar.
+
+#### Beneficios de CloudFormation
+
+¿Por qué es útil desplegar infraestructura y recursos basados en una plantilla de CloudFormation? Porque ofrece las siguientes ventajas.
+
+##### Control de versiones
+
+Ya que podemos definir los recursos que queremos desplegar mediante código, este código lo podemos mantener en un sistema de control de versiones como Git y GitHub. Esto permite tener un historial completo de nuestros recursos en un solo archivo, así como la colaboración en el despliegue de la infraestructura.
+
+##### Automatización
+
+CloudFormation permite a los encargados de DevOps automatizar la creación de infraestructura y recursos en AWS.
+
+##### Escala
+
+Gracias a las plantillas podemos replicar la infraestructura en distintas cuentas de AWS y en distintas regiones. Solo debemos ajustar ciertos parámetros.
+
+---
+
+### 3.3 Qué es Cloudwatch
+
+CloudWatch es un servicio de supervision y observabilidad para AWS. Está diseñado para que podamos ver todo lo que sucede dentro de nuestra cuenta de AWS. En este sentido, CloudWatch ofrece la posibilidad de:
+
+* Recopilar métricas o datos de sus servicios
+* Integrar con unos 80 servicios de AWS
+* Tener métricas predefinidas
+* Recopilar y desplegar datos en una vista unificada con distintos gráficos.
+* Configurar de alarmas de acuerdo a los graficos que nos muestre cloudWaatch
+* Enviar archivos de registro y buscar de forma interactiva datos de registros. Posee un almacén de registros centralizado. Esto nos ayuda a encontrar y resolver problemas de manera eficaz.
+
+#### Caso de uso de CloudWatch
+
+Imagínate que tienes una máquina virtual a la cual se accede mediante SSH. Si queremos saber cuando alguien intenta piratear nuestra máquina virtual con SSH, podemos enviar los logs de inicio de sesión a CloudWatch.
+
+Mediante CloudWatch, podemos usar un filtro para visualizar el número de intentos de sesión fallidos. Además, podemos configurar una alerta en el caso de que los intentos fallidos superen cierto límite en un periodo específico de tiempo.
+
+---
+
+### 3.4 Cómo aplicar autoescalamiento
+
+El auto escalamiento ``(autoscaling)`` nos permite escalar la capacidad de nuestras instancias de máquinas virtuales automáticamente, de acuerdo con nuestras condiciones definidas.
+
+Podemos aumentar la cantidad de instancias que tenemos en ejecución durante los picos de demanda y disminuirlos cuando no los necesitemos. Esto trae una alta disponibilidad, tolerancia a fallos y un ahorro de costos.
+
+#### Pasos para aplicar autoescalamiento
+
+* Para aprovechar el autoescalamiento, debemos crear un grupo de auto escalamiento que asocie nuestras instancias.
+* En este grupo especificaremos un tamaño mínimo (el número mínimo de instancias a correr), y una capacidad deseada (el número óptimo de instancias en función de las necesidades).
+* Entonces se agregarán más instancias según sea necesario hasta alcanzar un máximo.
+
+Cabe destacar que el ``Load Balancer`` de AWS es lo que permite distribuir automaticamente las conexiones a medida que aparecen y desaparecen estos servidores.
+
+> Nota: EC2 no es el único servicio que tiene auto escalamiento. DynamoDB y Aurora también implementan este concepto.
