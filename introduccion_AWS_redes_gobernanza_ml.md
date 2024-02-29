@@ -322,3 +322,208 @@ Podemos aumentar la cantidad de instancias que tenemos en ejecución durante los
 Cabe destacar que el ``Load Balancer`` de AWS es lo que permite distribuir automaticamente las conexiones a medida que aparecen y desaparecen estos servidores.
 
 > Nota: EC2 no es el único servicio que tiene auto escalamiento. DynamoDB y Aurora también implementan este concepto.
+
+---
+
+### 3.5 Laboratorio: empezando con CloudFormation
+
+CloudFormation nos permite provisionar infraestructura como código. Para poner a prueba CloudFormation, mediante una plantilla vamos a crear un stack a partir del cual se desplegará un bucket de S3. Luego, actualizaremos el stack añadiendo otro bucket de S3, y finalmente lo eliminaremos.
+
+![Laboratorio](./images/laboratorio%2035.webp)
+
+#### Entendiendo la plantilla
+
+En este repositorio encontrarás la plantilla de CloudFormation que usaremos. La plantilla tiene la siguiente estructura JSON (recuerda, CloudFormation acepta formato JSON o YAML):
+
+```JSON
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "this template does XXXX",
+  "Metadata": {},
+  "Parameters": {},
+  "Mappings": {},
+  "Conditions": {},
+  "Transform": {},
+  "Resources": {},
+  "Outputs": {}
+}
+```
+
+Estos parámetros corresponden a lo siguiente:
+
+* AWSTemplateFormatVersion: este parámetro es opcional. Aquí especificamos la versión de la plantilla
+* Description: cadena de texto que describe la plantilla. Debe ir después de AWSTemplateFormatVersion
+* Metadata: objetos que proporcionan información adicional sobre la plantilla
+* Parameters: valores que pasaremos a la plantilla al ejecutarse, ya sea durante la creación o actualización del *stack
+* Mappings: permite asignar un conjunto de valores a una clave específica. Por ejemplo, para establecer valores en función de una región, podemos crear un mapping que usa el nombre de una región como clave y contiene los valores que deseemos especificar para cada región
+* Conditions: controla que se creen recursos o se asignen valores a dichos recursos en función de una condición. Por ejemplo, podemos asignar valores distintos para entornos de producción o de prueba
+* Transform: especifica las macros que AWS CloudFormation usa para procesar la plantilla
+Resources: aquí se declaran los recursos a incluir en el stack. Por ejemplo, instancias EC2 o buckets de S3.
+* Outputs: declara valores de salida que pueden ser usados en otros stacks
+
+#### Pasos para crear el stack
+
+1. Nos dirigimos a la página de ``CloudFormation`` desde nuestra cuenta de AWS (en esta página podremos conocer más sobre el servicio en cuestión).
+2. Aquí le damos a “Crear stack”.
+3. Para crear el stack, en “Especificar plantilla” seleccionamos “Cargar un archivo de plantilla”, y cargamos el archivo createstack.json. Este archivo simplemente define un bucket de S3 llamado “platzilab”.
+
+```JSON
+{
+  "Resources": {
+    "platzilab": {
+      "Type": "AWS::S3::Bucket"
+    }
+  }
+}
+```
+
+1. Le damos clic a siguiente y, a continuación, escogemos un nombre para el stack o pila. En este caso, la llamamos cfnlab, y le damos a siguiente.
+2. Opcionalmente, podemos añadir etiquetas para identificar la pila, y un rol de IAM.
+3. Dejamos el resto de configuraciones por defecto y le damos a siguiente. Entonces nos llevará a revisar las configuraciones, y le damos a “Crear pila”.
+4. Podremos ver el proceso de creación de la pila, los eventos y los recursos que fueron creados. Si te fijas en el nombre del bucket creado, verás que este está compuesto por el nombre de la pila, el nombre que le asignamos al bucket en la plantilla, y una cadena de texto aleatoria. Esto es para evitar crear recursos con nombre duplicados.
+
+---
+
+### 3.6 Laboratorio: actualizando y eliminando la stack
+
+Ahora que creamos nuestra pila de CloudFormation, procederemos a actualizarla añadiendo otro bucket de S3. Después, veremos cómo eliminar la pila.
+
+#### Pasos para actualizar la pila
+
+1. Para actualizar la pila primero usaremos el archivo updatestack1.json. El contenido de este archivo es el siguiente:
+
+   ```JSON
+   {
+   "Resources": {
+      "platzilab": {
+         "Type": "AWS::S3::Bucket"
+      },
+      "platzilabalexis": {
+         "Type": "AWS::S3::Bucket"
+      }
+   }
+   }
+   ```
+
+   Como podrás notar, definimos el mismo bucket que en la clase anterior, más un nuevo bucket con ID lógico “platzilabelalexis”.
+
+2. Ahora, en la página de CloudFormation, escogemos la pila que creamos y le damos a “Actualizar”.
+
+3. En “Preparar la plantilla” escogemos “Reemplazar la plantilla actual” y cargamos el archivo updatestack1.json.
+
+4. Le damos a Siguiente tres veces, y notamos que en “Vista previa del conjunto de cambios” nos muestra que solo va a añadir un nuevo bucket de S3, puesto que el bucket con ID lógico “platzilab” ya existe. Entonces le damos a “Actualizar pila”.
+
+Si nos vamos a ver nuestros buckets de S3, encontraremos que se ha creado uno nuevo cuyo nombre incluye “platzilabalexis”.
+
+#### Crear una pila con un nombre de bucket explícito
+
+Podemos crear otra pila dándole un nombre explícito a los buckets que queremos provisionar. Para ello, usemos el archivo updatestack2.json.
+
+```JSON
+{
+  "Resources": {
+    "platzilab": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "mibucket123"
+      }
+    },
+    "platzilabalexis  ": {
+      "Type": "AWS::S3::Bucket"
+    }
+  }
+}
+```
+
+Nota que en este caso el bucket con ID lógico “platzilab” tiene en sus propiedades el nombre de bucket “mibucket123”. Este nombre debe ser único en todo AWS. Si intentamos crear la pila con un bucket con nombre repetido, tendremos un error y no se creará la pila.
+
+#### Cómo eliminar las pilas
+
+Para ello simplemente seleccionamos una pila y le damos a “Eliminar”. Nos va a pedir confirmación, entonces le damos a “Eliminar pila”. Repetimos el proceso para todas las pilas. Si exploramos nuestros buckets de S3, veremos que ya no están los que creamos con CloudFormation.
+
+---
+
+## 4. Machine Learning
+
+---
+
+### 4.1 Empezando con Machine Learning
+
+El machine learning es un tipo de inteligencia artificial donde podemos escribir programas que aprenden de los datos que se le proporcionan, y “recuerdan” los resultados de procesar estos datos. Un programa de machine learning aprende al ejecutarse una y otra vez. Esta clase de programas tienen usos en distintas industrias:
+
+* Automóviles automáticos
+* Relojes Inteligentes
+* Agricultura
+* Perfil Financiero
+* Correos electrónicos
+
+#### Servicios de inteligencia artificial en AWS
+
+Entre los servicios de AWS que usan inteligencia artificial o machine learning encontramos:
+
+* ``Amazon Kendra:`` provee un sistema de búsqueda inteligente a nuestros clientes
+* ``Amazon Personalize:`` brinda recomendaciones personalizadas a nuestros clientes
+
+#### Servicios de analisis de métricas comerciales
+
+* ``Amazon Lookout for metrics:`` detecta automáticamente cambios inesperados en aspectos como el rendimiento de los ingresos y la retención de los clientes, ayudándonos a identificar la causas
+* ``Amazon Forecast:`` nos ayuda a crear modelos de pronósticos precisos
+* ``Amazon Fraud Detector:`` identifica actividades en línea potencialmente fraudulentas
+
+#### Servicios de visión artificial
+
+``Amazon Rekognition`` permite analizar imágenes, videos y extraer el significado de estos. Es uno de los servicios más populares de AWS en cuanto a inteligencia artificial.
+
+#### Servicios de idiomas
+
+* ``Amazon Polly:`` ayuda a convertir el texto en un habla realista
+* ``Amazon Transcribe:`` permite agregar traducciones de voz a texto de calidad
+* ``Amazon Lex:`` permite generar agentes conversacionales o bots de chat
+
+---
+
+### 4.2 Qué es AWS Rekognition
+
+Amazon Rekognition es un servicio que nos permite analizar imágenes y videos mediante aprendizaje automático. Para ello, le pasamos una imagen al servicio, y nos devuelve una lista de elementos que puede contener esa imagen, junto con un porcentaje de confianza para cada elemento.
+
+Un caso de uso de Rekognition es para detectar imágenes con contenido para adultos o violento, a fin de moderar lo que se sube en alguna plataforma.
+
+#### Explorando Rekognition
+
+Iniciamos sesión en AWS y nos dirigimos a la página de `Rekognition`. En la parte de Demos, escogemos “Celebrity recognition”. Nos encontraremos una imagen de Jeff Bezos junto a un porcentaje de confianza.
+
+Podemos subir la imagen de cualquier celebridad y obtendremos un porcentaje de confianza. Probemos con una imagen de los 3 Spider-Man (Tom Holland, Andrew Garfield y Tobey Maguire). Para ello simplemente le damos a “Upload” y escogemos la imagen.
+
+![Muestra de Rekognition](./images/rekognition.webp)
+
+Como se puede apreciar, `Rekognition` reconoce a los tres actores con un porcentaje de confianza.
+
+Cabe destacar que `Rekognition` también nos retorna un objeto Response, el cual contiene distintas características de la imagen, como la posición de los actores, e incluso un estimado de cuál sentimiento expresan sus caras.
+
+---
+
+### 4.3 Amazon Polly
+
+Amazon Polly nos permite generar discursos realistas a partir de texto. Exploremos cómo podemos usar Amazon Polly.
+
+#### Explorando Amazon Polly
+
+Nos dirigimos a la página del servicio de `Polly`, y le damos clic a “Pruebe `Polly`”. Aquí tenemos distintas opciones de idioma, dialectos y voces, en función del motor que escojamos.
+
+Podemos escoger un motor neural o estándar. El motor neural produce el habla más similar a la humana posible, mientras que el estándar solo provee voz con un sonido natural, pero nos da más opciones de voces.
+
+Una vez que escojamos el motor, idioma y voz, podemos probar `Polly` introduciendo un texto y dándole a “Escuchar”.
+
+Cabe destacar que podemos guardar el resultado en un bucket de S3. Además, podemos personalizar el formato de archivo a guardar y la pronunciación, esto en “Configuración adicional”.
+
+---
+
+### 4.4 Amazon Transcribe
+
+`Amazon Transcribe` permite crear transcripciones de voz a texto de calidad para un amplio abanico de casos de uso (por ejemplo, accesibilidad). Exploremos cómo podemos usar `Amazon Transcribe`.
+
+#### Explorando Amazon Transcribe
+
+En la página del servicio de `Amazon Transcribe` podemos explorar sus opciones y casos de uso. También podemos poner a prueba el servicio haciendo clic en “Create a transcript”.
+
+A continuación, escogemos el lenguaje y presionamos en “Start streaming”. El navegador nos va a pedir permiso para usar el micrófono. Una vez que otorgamos el permiso, podemos comenzar a hablar y veremos como nuestro discurso se transcribe en tiempo real. Para detener la transcripción, simplemente le damos a “Stop streaming”.
