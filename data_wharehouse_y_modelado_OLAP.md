@@ -140,3 +140,35 @@ Puede ser una opción intermedia para aquellas organizaciones que desean aprovec
 ![WareHouse vs Lake vs lakehouse](./images/warehouse-lake-datalake.jpeg)
 
 ### 2.2 Tipos de esquemas dimensionales
+
+![Modelo Multidimensional](./images/modelo-multidimensional.jpeg)
+
+Como se ve en la imagen, un esquema dimensional esta compuesta por una tabla de hechos y sus dimensiones que la contextualizan, recordemos que en la tabla hecho es donde estan los datos númericos y métricas que son las medidas de interes. Ahora el esquema dimensional se divide en tipos:
+
+* Esquema Estrella (Star Schema):
+
+  * Características:
+    * Estructura centralizada con una tabla de hechos rodeada de tablas de dimensiones.
+    * Las dimensiones se conectan directamente a la tabla de hechos.
+  * Ventajas:
+    * Diseño simple y fácil de entender.
+    * Rendimiento optimizado para consultas de agregación.
+
+* Esquema Copo de Nieve (Snowflake Schema):
+
+  * Características:
+    * Similar al esquema estrella, pero las dimensiones se normalizan en múltiples tablas.
+    * Puede haber jerarquías de dimensiones más profundas.
+  * Ventajas:
+    * Ahorro de espacio al normalizar dimensiones.
+    * Mayor consistencia en los datos dimensionales.
+
+* Esquema Constelación (Galaxy Schema):
+
+  * Características:
+    * Múltiples tablas de hechos comparten dimensiones comunes.
+    * Adecuado para situaciones donde diferentes procesos comerciales comparten algunas dimensiones.
+  * Ventajas:
+    * Flexibilidad para representar relaciones complejas entre hechos y dimensiones.
+
+### 2.3 Dimensiones lentamente cambiantes
