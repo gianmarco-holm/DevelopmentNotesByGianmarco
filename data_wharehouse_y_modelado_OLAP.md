@@ -208,3 +208,254 @@ Las SCD son un aspecto crucial de los almacenes de datos, ya que permiten repres
 
 ### 2.4 Tabla de hechos (fact)
 
+* Contienen información cuantitativa de un proceso de negocio
+* Medidas - Métricas
+* Contiene claves foráneas de las dimensiones
+
+Estas son las dimenciones:
+
+![Dimensiones](./images/tabla%20hechos%201.jpeg)
+
+Y estas es la tabla hecho fabricada:
+
+![Tabla hecho](./images/tabla%20hechos%202.jpeg)
+
+### 2.5 Configuración de herramientas para Data Warehouse y ETL
+
+¡Hola, te doy la bienvenida a este tutorial! Configurarás las bases de datos y herramientas que usaremos para el ETL y crear un data warehouse.
+
+Usaremos PostgreSQL con la base de datos Adventureworks. Será nuestra base de datos transaccional y la fuente de información para llevar al data warehouse.
+
+Ejecuta las siguientes instrucciones para configurar esto:
+
+#### Ruby
+
+Instalación de Ruby en Ubuntu o WSL con Ubuntu:
+
+1. Abre la terminal de Ubuntu
+2. Ejecuta el siguiente comando en la terminal para actualizar la lista de paquetes disponibles:
+
+    `sudo apt-get update`
+
+3. Una vez actualizada la lista de paquetes, instala Ruby ejecutando el siguiente comando en la terminal:
+
+    `sudo apt-get install ruby-full`
+
+4. Verifica que Ruby se haya instalado correctamente ejecutando `ruby -v` en la terminal.
+
+#### Instalación de Ruby en Windows
+
+1. Descarga el instalador de Ruby desde la página oficial de Ruby para Windows: https://rubyinstaller.org/downloads/
+2. Selecciona la versión de Ruby que deseas instalar.
+3. Ejecuta el instalador y sigue las instrucciones del asistente de instalación.
+4. Una vez completada la instalación, abre la línea de comandos de Windows (cmd.exe) y escribe `ruby -v` para verificar que la instalación se haya realizado correctamente.
+
+#### Instalación de Ruby en macOS
+
+1. Abre la terminal de macOS.
+2. Instala Homebrew ejecutando el siguiente comando en la terminal:
+
+    ```BASH
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+3. Una vez instalado Homebrew, ejecuta el siguiente comando en la terminal para instalar Ruby:
+
+    `brew install ruby`
+
+4. Verifica que Ruby se haya instalado correctamente ejecutando `ruby -v` en la terminal.
+
+Con estos pasos ya has instalado Ruby.
+
+#### PostgreSQL y pgAdmin o DBeaver
+
+Estas herramientas ya deberías tenerla instaladas. Si no las tienes, vuelve a revisar esta clase tutorial o sigue la documentación de PostgreSQL. ⬅️💡
+
+1. Ingresa a https://www.postgresql.org/
+2. Descargar -> Descargar el instalador
+3. Instala, y no selecciones StackBuilder
+
+#### Descarga y configuración de la base de datos AdventureWorks
+
+1. Descarga el repositorio en https://github.com/lorint/AdventureWorks-for-Postgres
+
+    Ejecuta el siguiente comando de Git:
+
+    `git clone https://github.com/lorint/AdventureWorks-for-Postgres.git`
+
+    Este repositorio contiene los archivos para crear las tablas y vistas de la base de datos.
+
+2. Descarga [Adventure Works 2014 OLTP Script](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks-oltp-install-script.zip).
+
+    Contiene los archivos para llenar las tablas de la base de datos.
+
+3. Copia y pega el archivo AdventureWorks-oltp-install-script.zip en el directorio AdventureWorks-for-Postgres.
+
+4. En tu terminal úbicate en el directorio AdventureWorks-for-Postgres y descomprime AdventureWorks-oltp-install-script.zip:
+
+    ```BASH
+    cd AdventureWorks-for-Postgres/
+    unzip AdventureWorks-oltp-install-script.zip
+    ```
+
+5. En la terminal, ubicándote en el directorio AdventureWorks-for-Postgres, ejecuta el siguiente comando para convertir los archivos csv:
+
+    `ruby update_csvs.rb`
+
+6. Activa la conexión con postgresql, si postgresql esta instalado en windows, puedes activar el servicio llendo a servicios y luego clic derecho, iniciar, despues creas la base de datos con psql o ingresas a la shell de postgress con el comando `psql -U postgres`:
+
+    `sudo service postgresql start`
+
+7. Crea la base de datos con el siguiente comando de PostgreSQL:
+
+    `psql -c "CREATE DATABASE \"Adventureworks\";"`
+
+    o
+
+    `psql -c "CREATE DATABASE \"Adventureworks\";" -U postgres -h localhost`
+
+8. Ejecuta el script que llena las tablas de la base de datos:
+
+    `psql -d Adventureworks < install.sql`
+
+    o
+
+    `psql -d Adventureworks < install.sql -U postgres -h localhost`
+
+9. Conecta tu base de datos en DBeaver o pgAdmin.
+
+   1. Abre DBeaver o pgAdmin.
+
+   2. Selecciona la opción para crear una nueva conexión.
+
+   3. Selecciona PostgreSQL en la lista de bases de datos.
+
+   4. Ingresa la información de conexión necesaria en la pestaña.
+
+      * Host: localhost
+      * Port: 5432
+      * Base de datos: Adventureworks
+      * Nombre de usuario: postgres
+      * Password: la que tengas de tu user de postgresql.
+
+10. Haz clic en **Test Connection** para asegurarte de que los detalles de conexión sean correctos y que puedas conectarte a la base de datos.
+
+11. Si la prueba de conexión es exitosa, haz clic en "Finalizar" para guardar la configuración de la conexión.
+
+#### Configuración de Pentaho
+
+Esta herramienta la utilizaremos para crear las ETL de los datos transaccionales (DB Adventureworks) en Postgres a el Data Warehouse en AWS Redshift.
+
+1. Instala pentaho https://sourceforge.net/projects/pentaho/
+2. Instala Java https://www.java.com/es/download/ie_manual.jsp
+3. Ejecuta Spoon
+
+    Para acceder al programa solo hace falta abrir el archivo “Spoon” del tipo Batch file (con la extensión .bat).
+
+#### Instalación y configuración de AWS CLI
+
+Este servicio lo usarás para realizar la conexión a S3 y cargar archivos planos que luego serán cargados a AWS Redshift con el comando COPY.
+
+* Instalar AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+* Configurar AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+
+#### Configuración de AWS Redshift
+
+AWS Redshift será utilizado como data warehouse. Será el lugar donde construiremos las dimensiones, tablas de hechos y llevaremos los datos modelados y limpios que se obtuvieron del sistema transaccional.
+
+* Crea un nuevo clúster de AWS Redshift
+
+### 2.6. Modelado dimensional: identificación de dimensiones, métricas, preguntas de negocio y reglas de negocio
+
+#### Pregunta de negocio
+
+Una pregunta de negocio se refiere a una consulta específica relacionada con las operaciones, estrategias o desafíos de una empresa, buscando obtener información clave para la toma de decisiones.
+
+![Identificacion de métricas y dimensiones](/images/identificacion-dim.jpeg)
+
+#### Regla de negocio
+
+Por otro lado, una regla de negocio es una declaración que describe una política, restricción o requerimiento que guía o controla las actividades dentro de una organización, estableciendo cómo deben realizarse ciertas acciones o procesos en el contexto empresarial.
+
+Ejemplo:
+
+* Crear un campo con el nombre completo del cliente
+* El campo de observación del producto es demasiado largo. Recortar los primeros 100 caracteres.
+* Si un vendedor tiene personas a cargo marcarlo como beneficiario del bono
+
+### 2.7 Modelado dimensional: diseño de modelo
+
+Para elaborar el diseño dimensional ingresamos a:
+
+https://dbdiagram.io/home
+
+En este caso elaboraremos el siguiente modelo dimensional, solo escribimos este codigo y el diagrama se elaborara automáticamente:
+
+```sql
+Table dwh.dim_clientes {
+  id_cliente int pk
+  codigo_cliente varchar
+  nombre varchar
+  apellido varchar
+  nombre_completo varchar
+  numero_celular varchar
+  numero_casa varchar
+  numero_trabajo varchar
+  ciudad_casa varchar
+}
+Ref: dwh.dim_clientes.id_cliente < dwh.fact_ventas.id_cliente
+
+Table dwh.dim_productos {
+  id_producto int pk
+  codigo_producto varchar
+  nombre varchar
+  color varchar
+  tamano varchar
+  categoria varchar
+}
+Ref: dwh.dim_productos.id_producto < dwh.fact_ventas.id_producto
+
+Table dwh.dim_territorios {
+  id_territorio int pk
+  codigo_territorio varchar
+  nombre varchar
+  continente varchar
+}
+Ref: dwh.dim_territorios.id_territorio < dwh.fact_ventas.id_territorio
+
+Table dwh.dim_vendedores {
+  id_vendedor int pk
+  codigo_vendedor varchar
+  identificacion varchar
+  nombre varchar
+  apellido varchar
+  nombre_completo varchar
+  rol varchar
+  fecha_nacimiento date
+  genero varchar
+  ind_activo boolean
+  ind_bono boolean
+  fecha_inicio date
+  fecha_fin date
+}
+Ref: dwh.dim_vendedores.id_vendedor < dwh.fact_ventas.id_vendedor
+
+Table dwh.fact_ventas {
+  id_fecha int pk
+  id_territorio int pk
+  id_cliente int pk
+  id_vendedor int pk
+  id_producto int pk
+  codigo_venta_detalle varchar
+  codigo_venta_encabezado varchar
+  cantidad int
+  valor decimal
+  descuento decimal
+}
+```
+
+## 3. ETL para inserción en Data WareHouse
+
+### 3.1. Documento de mapeo para el ETL
+
+

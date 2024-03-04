@@ -7,10 +7,13 @@
 ## Nivel Básico
 
 ### ¿Qué es la Terminal?
+
 La terminal es una interfaz de texto que permite a los usuarios interactuar con el sistema operativo utilizando comandos. Proporciona acceso directo al núcleo del sistema y es una herramienta poderosa para realizar diversas tareas.
 
 ### ¿Qué es WSL y Cómo Instalarlo?
+
 WSL (Windows Subsystem for Linux) es una característica de Windows que permite ejecutar un sistema operativo Linux directamente en Windows. Para instalarlo, sigue estos pasos:
+
 ```bash
 # Abre PowerShell como administrador.
 # Ejecuta el siguiente comando para habilitar WSL:
