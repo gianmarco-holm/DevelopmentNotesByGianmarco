@@ -1168,7 +1168,7 @@ Hola, te doy la bienvenida a la clase de pivot_table y melt, dos funciones que s
 
     ```python
     # Para ello ejecuta la siguiente línea en tu Jupyter Notebook
-    ddf_books[['Name','Genre']].head(5).melt()
+    df_books[['Name','Genre']].head(5).melt()
     ```
 
     Ahora cada resultado de las dos columnas pasa a una fila de este modo a tipo llave:valor.
