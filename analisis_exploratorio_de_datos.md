@@ -15,12 +15,12 @@ Con el análisis exploratorio de datos, vamos a poder:
 ### Pasos de una Análisis Exploratorio de Datos
 
 ```mermaid
-graph LR;
-    id1>Hacer preguntas]-->
-    id2>Determinar el tamaño de los datos]-->
-    id3>Categorizar las variables]-->
-    id4>Limpieza de datos]-->
-    id5>Establecer relaciones];
+    graph LR;
+        id1>Hacer preguntas]-->
+        id2>Determinar el tamaño de los datos]-->
+        id3>Categorizar las variables]-->
+        id4>Limpieza de datos]-->
+        id5>Establecer relaciones];
 ```
 
 #### Hacer preguntas sobe los datos
@@ -94,7 +94,7 @@ Es el proceso de asegurar la consistencia y precisión dentro de un conjunto de 
 
 **2. Seguimiento de formato estándar de archivos:** verifica que la extensión de los archivos que estas manejando correspondan con el formato interno que tienen. Asegurate que los numeros se expresen en el formato que estas trabajando.
 
-**3. Tipos de Datos:** verifica que los datos sen del tipo que se indica en el dataset
+**3. Tipos de Datos:** verifica que los datos esten del tipo que se indica en el dataset
 
 **4. Rango de variables:** verifica que las variables estén dentro del rango establecido en la recoleccion de datos. En caso de encontrar variables fuera del rango preguntate: como llegaron esos datos aqui? tienen algun significado alterno? debo preservarlos o eliminarlos?
 
@@ -117,7 +117,7 @@ Estas notas van acompañadas de este EDA que se encuentra en Deepnote
 
 1. Conteos y proporciones
 2. Medidas de tendencia central
-3. Nedidas de dispersión
+3. Medidas de dispersión
 4. Estadística descriptiva aplicada: distribuciones
 
     * Funcion de Probabilidad de masas (PMFs)
@@ -129,11 +129,13 @@ Estas notas van acompañadas de este EDA que se encuentra en Deepnote
     * Función de Probabilidad de Densidad (PDFs)
     Determine la probabilidad de que una variable continua tome un valor determinado. Ejemplo, la probabilidad de que en el salón hayan personar con una altura especifica
 
-5. Teorema de los grandes números
+5. Teorema de los grandes números:
+
     La probabilidad experimental tiende a la probabilidad teorica a medida que aumenta el numero de repeticiones del experimento. Es muy util cuando no se conoce la probabilidad teorica de un evento y tenemos la capacidad de aumentar la muestra. Mediante este teorema, al incrementar la muestra la probabilidad experimental al final se convertira en la probabilidad teorica.
     > Esto significa a que si tienes una probabilidad al inicio, y si aumenta la muestra, esta probabilidad va a seguir siendo la misma
 
-6. Teorema del Limite Central
+6. Teorema del Limite Central:
+
     La media de las muestras tiende aproximadamente a una distribución normal
     La suma de n variables aleatorias independientes con medias y varianzas finitas converge en distribucion a una variable aleatoria normal
 

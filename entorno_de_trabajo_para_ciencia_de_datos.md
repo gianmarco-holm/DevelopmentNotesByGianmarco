@@ -529,8 +529,9 @@ En el buscador de github, con solo colocar [cookiecutter](https://github.com/sea
 Para instalar y ejecutar la plantilla a usar, en el caso práctico, en una terminal escribir:
 
 ```python
-conda create --name <nombre_entorno_cookiecutter> coockiecutter
-conda activate <nombre_entorno_cookiecutter>
+conda config --add channels conda-forge
+conda create --name <nombre_ambiente> coockiecutter=1.7.3 coockiecutter
+conda activate <nombre_ambiente>
 cookiecutter https://github.com/jvelezmagic/cookiecutter-conda-data-science
 ```
 
