@@ -694,3 +694,114 @@ Sensor:
 - Nos permiten sustituir información durante la ejecución.
 - Nos dan flexibilidad cuando definimos tareas.
 - Son creados usando el "templating language" Jinja.
+
+      ```python
+            from datetime import datetime
+            from airflow import DAG
+            from airflow.operators.bash import BashOperator
+
+
+            # Imprime la fecha actual y el nombre del archivo
+            templated_command = """
+            {% for file in params.filenames %}
+            echo "{{ ds }}"
+                  echo "{{ file }}"
+            {% endfor %}
+            """
+
+
+            with DAG(dag_id="8-templating",
+            description="Example using templates",
+            schedule_interval="@daily",
+            start_date=datetime(2022, 8, 10),
+            end_date=datetime(2022, 8, 25),
+            max_active_runs=1
+            ) as dag:
+
+            t1 = BashOperator(task_id="tarea_1",
+                                          bash_command=templated_command,
+                                          params={"filenames": ["file1.txt", "file2.txt"]},
+                                          depends_on_past=True)
+
+            t1
+      ```
+
+### 7.2. ¿Qué son los Xcoms?
+
+Los XComs (abreviatura de"cross-communications") son un mecanismo que permite que las tasks se comuniquen entre sí, ya que por defecto estas están totalmente aisladas y pueden estar ejecutándose en máquinas totalmente diferentes.
+
+      ```python
+            from datetime import datetime
+            from airflow import DAG
+            from airflow.operators.bash import BashOperator
+            from airflow.operators.python import PythonOperator
+            from airflow.models.xcom import XCom
+
+            default_args = {"depends_on_past": True}
+
+            # Si queremos compartir el output con python, se debe crear una función con context y luego llamar a la columna ti
+            # ti significa task instance, en este caso se esta llamando al output de la tarea 2 y se resta 24
+            def myfunction(**context):
+            print(int(context["ti"].xcom_pull(task_ids='tarea_2')) - 24)
+
+            with DAG(dag_id="9-XCom",
+            description="Probando los XCom",
+            schedule_interval="@daily",
+            start_date=datetime(2022, 1, 1),
+                  default_args=default_args,
+            max_active_runs=1
+            ) as dag:
+
+            # Aca mostramos como se realiza el xcom con bash operator, en este caso la tarea 2 llama al resultado de la tarea 1
+            t1 = BashOperator(task_id="tarea_1",
+                                          bash_command="sleep 5 && echo $((3 * 8))")
+
+            t2 = BashOperator(task_id="tarea_2",
+                                          bash_command="sleep 3 && echo {{ ti.xcom_pull(task_ids='tarea_1') }}")
+
+            t3 = PythonOperator(task_id="tarea_3", 
+                                    python_callable=myfunction)
+
+            t1 >> t2 >> t3
+      ```
+
+## 8. BranchPythonOperator
+
+### 8.1. BranchPythonOperator
+
+Aveces queremos que nuestros procesos tome un camino u otro, para ello debemos hacer un branching, que es una condicion y poder darle dos caminos, si se cumple o no se cumple la condición.
+
+      ```python
+            from airflow import DAG
+            from airflow.operators.bash import BashOperator
+            from airflow.operators.python import BranchPythonOperator
+            from datetime import datetime, date
+
+            default_args = {
+            'start_date': datetime(2022, 8, 20),
+            'end_date': datetime(2022, 8, 25)
+            }
+
+            # Para python se crea una funcion con la condicion
+            # si la fecha de la logica es menor al 23 de agosto entonces se ejecutara la tarea finish_22_june sino start_23_june
+            def _choose(**context):
+            if context["logical_date"].date() < date(2022, 8, 23):
+                  return "finish_22_june"
+            return "start_23_june"
+
+            with DAG(dag_id="10-branching",
+            schedule_interval="@daily",
+                  default_args=default_args
+            ) as dag:
+
+            branching = BranchPythonOperator(task_id="branch",
+                                                python_callable=_choose)
+
+            finish_22 = BashOperator(task_id="finish_22_june",
+                                          bash_command="echo 'Running {{ds}}'")
+
+            start_23 = BashOperator(task_id="start_23_june",
+                                          bash_command="echo 'Running {{ds}}'")
+
+            branching >> [finish_22, start_23]
+      ```
