@@ -111,13 +111,13 @@ Tenemos tres tipos de mecanismo de valores faltantes:
 * Missing not at Random (Perdidos no al azar)
 
 1. Missing Completely at Random (MCAR)
-Son datos ocasionados por herramientas que dejan de funcionar sin ninguna razon detras. La localizacion de los valores faltantes ocurre completamente al azar, esto no depende de ningun otro dato
+En este caso, la probabilidad de que un valor falte es independiente tanto de los valores observados como de los no observados. En otras palabras, la falta de datos no está relacionada con ninguna característica de los datos observados o no observados. La ausencia de datos es aleatoria y no sistemática. Por ejemplo, si los datos faltantes en un estudio se deben a un error de entrada de datos aleatorio o a un mal funcionamiento del equipo de medición, entonces el mecanismo de falta de datos es MCAR.
 
 2. Missing at Random (MAR)
-Las herramientas necesitan mantenimiento periodico para asegurar su funcionamiento constante. En las fechas donde se le hace mantenimiento sabemos que ocurrira una falta de datos por lo que esos datos faltantes son localizados. La localizacion de los valores faltantes en el conjunto de datos depende de otros valores observados
+En este caso, la probabilidad de que un valor falte puede depender de las variables observadas, pero no de las variables no observadas. Esto significa que, aunque los datos faltantes pueden estar relacionados con alguna característica observable, una vez que estas variables observadas se han tenido en cuenta, los datos faltantes no están relacionados con las variables no observadas. Por ejemplo, en un estudio de ingresos, si las mujeres tienen más probabilidades de no proporcionar sus ingresos que los hombres, siempre y cuando se tenga en cuenta el género, el mecanismo de falta de datos se considera MAR.
 
 3. Missing not at Random (MNAR)
-Las herramientas tienen limites. Al tratar de hacer seguimientos fuera de su rango de medicion, se generan valores faltantes. La localizacion de los valores faltantes en el conjunto de datos dependen de los valores faltantes en si mismos
+En este caso, la falta de datos está relacionada con la variable no observada. Esto significa que la probabilidad de que un valor falte depende de la información no observada. Los datos faltantes están influenciados por la variable que falta en sí misma. Por ejemplo, si las personas con ingresos más altos son menos propensas a revelar sus ingresos en una encuesta de ingresos, independientemente del género, entonces el mecanismo de falta de datos se considera MNAR.
 
 **Puedo tener seguridad sobre que mecanismo de valores faltantes es correcto para mis datos?**
 
@@ -145,4 +145,11 @@ Luego se debe obtener lo siguiente:
 
 [Notebook Práctivo](./deteccion_exploracion_de_datos_faltantes/exploration-missing-values-app.ipynb)
 
-## 4. Tratamiento de Valores Faltantes
+### 3.3 Correlación de Nulidad
+
+[Notebook Práctivo](./deteccion_exploracion_de_datos_faltantes/exploration-missing-values-app.ipynb)
+
+## 4. Tratamiento de valores faltantes
+
+### 4.1. Eliminación de valores faltantes: pairwise y listwise
+

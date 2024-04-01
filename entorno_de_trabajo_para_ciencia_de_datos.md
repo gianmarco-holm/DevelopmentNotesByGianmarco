@@ -128,7 +128,7 @@ Existen 3 tipos diferentes de bloques:
 Adentro del archivo README.md agrega las siguientes líneas que lo harán un archivo dinámico:
 
 ```bash
-    # {{ cookiecutter.project_name }} 
+    # {{ cookiecutter.project_name }}
 
     By: {{ cookiecutter.project_author_name }}.
 
