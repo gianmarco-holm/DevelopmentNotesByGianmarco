@@ -48,7 +48,7 @@ El escalamiento es una de las características más importantes que tienen las b
 >
 > ✨Escalamiento Horizonal: Aca se copia la maquina en varias maquinas, lo que asegura la alta disponibilidad, tener sistemas de replicación, o tener un sistema que responda en simultaneo.
 >
-> 👉🏻 Tambien se sabe que el escalamiento vertical es más facil de implementar pero a lo largo del tiempo es más costoso, sin emabrgo, el escalamiento horizontal es más dificil de implementar, pero tiene un menor costo a lo largo del tiempo.
+> 👉🏻 Tambien se sabe que el escalamiento vertical es más facil de implementar pero a lo largo del tiempo es más costoso, sin embargo, el escalamiento horizontal es más dificil de implementar, pero tiene un menor costo a lo largo del tiempo.
 
 #### Replicación
 
@@ -107,26 +107,22 @@ Dentro de las Tecnologías de la Información (TI), Cluster significa integrar d
 - Ingresar y regsitrarse en https://www.mongodb.com/es
 - En MongoAtlas hay Organizaciones que esta en la parte superior izquierda, y estas pueden tener muchos proyectos, y cada proyecto puede tener varias bases de datos.
 - Escogemos la organización y proyecto y creamos nuestro cluster
-- En este caso escogí M0 o pan free, le coloque como nombres Cluster0, proveedore de nube AWS, region Sao Paulo, luego agregamos el nombre de usuario y contraseña (holm0101)
+- En este caso escogí M0 o pan free, le coloque como nombres Cluster0, proveedore de nube AWS, region Sao Paulo, luego agregamos el nombre de usuario y contraseña (holm0101).
+- En proveedor sobre donde quiero usar esta base de datos, en este caso escogí AWS.
+- Escogo la region de la nube.
+- Coloco el nombre del cluster.
+- Crear cluster.
+- Coloco el usuario y contraseña para la base de datos.
+- En direcciones IP coloco 0.0.0.0/0 y en descripción localhost ya que me voy a conectar desde el local host.
+- Ahora vamos a cargar los dataset que tienen por defecto Mongo Atlas, para ello, vamos a Database, luego en cluster le damos los 3 puntos y colocamos ``Load Sample Dataset``
 
-    Como conectarse:
+### 1.5. Usando Mongo Compass
 
-    ```python
-        # mongodb+srv://holm0101:<password>@cluster0.homdcvg.mongodb.net/
-        # python -m pip install "pymongo[srv]"
+Es una interfaz visual para hacer consulta y conectarnos a nuestra base de datos, y tambien nos sirve para hacer conexión a bases de datos en local.
 
-        from pymongo.mongo_client import MongoClient
-        from pymongo.server_api import ServerApi
+#### Pasos para usar Mongo Compass
 
-        uri = "mongodb+srv://Usuario:Contraseña@cluster0.homdcvg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+- Primero en Database se da click en ``Conectar > Compass > Descargar la app > copiar la url > abres el app > pegas la url > colocas la contraseña > conectar``
+- Con esto ya nos podemos conectar a un entorno gráfico y realizar consultas, por ejemplo al entrar a la bd Zip, vemos que hay 29470 documentos, y si en busqueda colocamos {state: 'NY'} para sbaer cuando documentos hay de Nueva york sale que hay mas de 1500.
 
-        # Create a new client and connect to the server
-        client = MongoClient(uri, server_api=ServerApi('1'))
-
-        # Send a ping to confirm a successful connection
-        try:
-            client.admin.command('ping')
-            print("Pinged your deployment. You successfully connected to MongoDB!")
-        except Exception as e:
-            print(e)
-    ```
+### 1.6. Mongo en VSCode
