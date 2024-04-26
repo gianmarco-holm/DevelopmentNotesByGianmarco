@@ -35,24 +35,24 @@ La Ingeniería de Datos es una disciplina que se enfoca en el desarrollo y gesti
 
 DataOps es una metodología que busca mejorar la colaboración y eficiencia en el ciclo de vida de los datos. Combina prácticas de desarrollo de software con operaciones de datos para lograr una entrega más rápida y confiable de información de calidad.
 
-![dataops](./images/dataOps.PNG){width=500px}
+![dataops](./images/dataOps.PNG)
 
 ## Integración de Metodologías
 
 ### 🚀 Agile en DataOps
 
-![Agile](./images/Agile.PNG){width=500px}
+![Agile](./images/Agile.PNG)
 
-* **Scrum:**
+- **Scrum:**
 
 Roles definidos (Scrum Master, Product Owner, Equipo de Desarrollo).
 Iterativo e incremental en sprints.
 Eventos predeterminados (Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective).
 Uso de Backlog de Producto y Sprint Backlog.
 Estimaciones de tiempo (puntos de historia).
-![Scrum](./images/scrum.jpeg){width=500px}
+![Scrum](./images/scrum.jpeg)
 
-* **Kanban:**
+- **Kanban:**
 
 Roles flexibles, sin roles predeterminados.
 Flujo continuo de trabajo, sin iteraciones fijas.
@@ -60,9 +60,9 @@ No tiene eventos predeterminados.
 Utiliza un tablero Kanban para visualizar el flujo de trabajo.
 No tiene Sprint Backlog ni Backlog de Producto.
 Evita estimaciones de tiempo, se centra en limitar el trabajo en curso (WIP).
-![Kanban](./images/kanban.jpeg){width=500px}
+![Kanban](./images/kanban.jpeg)
 
-* **Kanban:**
+- **Kanban:**
     -Trello
     -Jira
     -Asana
@@ -72,15 +72,14 @@ Evita estimaciones de tiempo, se centra en limitar el trabajo en curso (WIP).
 - **Eliminación de Desperdicios:**
   - Identificar y eliminar actividades que no agregan valor.
   - Mejora continua en la entrega de datos.
-![data engineer](./images/lean.PNG){width=500px}
-
+![data engineer](./images/lean.PNG)
 
 ### 🤝 DevOps en DataOps
 
 - **Colaboración:**
   - Superar las barreras entre desarrollo y operaciones.
   - Automatización en todas las etapas del ciclo de vida de los datos.
-![data engineer](./images/devops.PNG){width=500px}
+![data engineer](./images/devops.PNG)
 
 ### Por Qué se Integra
 
@@ -98,33 +97,39 @@ Evita estimaciones de tiempo, se centra en limitar el trabajo en curso (WIP).
 
 ## Lengujes de Programación para Data Engineering
 
-* Python:
+- Python:
+
 >Nos ayuda mucho en Data Science, posee muchas librerías de código científico.
 Puede ser más lento que otras opciones.
 Es muy sencillo.
 
-*  R:
+- R:
+
 >Es un antecesor de Python.
 Es muy útil para trabajar con estadísticas y modelos.
 Importante para analistas.
 
-* Scala:
+- Scala:
+
 >Usa java de base.
 Con la implementación y optimización de PySpark bajó su necesidad.
 Interesante para programación funcional.
 
-* Java:
+- Java:
+
 >Scala corre sobre java.
 Su escalabilidad es envidiable.
 Puede ser un cómodo siguiente paso.
 
-*  JavaScript:
+- JavaScript:
+
 >Navaja suiza para web developers.
 Super flexible y útil para muchos ámbitos.
 Imponente por la cantidad de herramientas que tiene.
 Visualizaciones de datos más bellas posibles.
 
-* C++ y derivados:
+- C++ y derivados:
+
 >Columna vertebral para muchos proyectos.
 Curva de aprendizaje potente.
 Muchas herramientas usan C en el fondo.
@@ -132,45 +137,49 @@ Implementaciones modernas ayudan a que no sea tan difícil de implementar.
 
 ## Donde y como escribir codigo de ingeniería de datos
 
-*  Jupyter notebooks : Jupyter Lab
-*  IDE : Data Spell
-*  Editor de codigo : VsCode
-*  Complementos : Tener de amiga a la terminal, usar tambien git, github o gitlab.
+- Jupyter notebooks: Jupyter Lab
+- IDE : Data Spell
+- Editor de codigo : VsCode
+- Complementos : Tener de amiga a la terminal, usar tambien git, github o gitlab.
 
 ## Automatización y Scripting
 
 - Porque debo automatizar las tareas?
-    * Para trabajar de manera inteligente
-    * Optimizar el proceso
-    * Utilizar recursos externos
+  - Para trabajar de manera inteligente
+  - Optimizar el proceso
+  - Utilizar recursos externos
+
 - Porque debo usar python?
-    * Porque es un lenguaje sencillo
-    * Librerias variadas
-    * Comunidad activa
-    * Multiplataforma
+  - Porque es un lenguaje sencillo
+  - Librerias variadas
+  - Comunidad activa
+  - Multiplataforma
+
 > **Cuando debemos automatizar una tarea?**
 Cuando se aplique la regla Beetlejuice, que quiere decir que despues de repetir 3 veces la tarea, tendras mas claro lo que vas a automatizar y porque
 
 ## Fuentes de Datos
 
 - SQL
-    * Lenguaje de consulta pero tambien el nombre con que se identifican las bases de datos
-    * Excelentes para las transacciones por los principios ACID (Atomicity, Consistency, Isolation, Durability)
+  - Lenguaje de consulta pero tambien el nombre con que se identifican las bases de datos
+  - Excelentes para las transacciones por los principios ACID (Atomicity, Consistency, Isolation, Durability)
 - NoSQL
-    * Por su cercania a los lenguajes de programacion son utiles para guardar objetos flexibles
-    * La mas famosa es mongoDB, otras importantes como Redis, ElasticSearch, HBase
+  - Por su cercania a los lenguajes de programacion son utiles para guardar objetos flexibles
+  - La mas famosa es mongoDB, otras importantes como Redis, ElasticSearch, HBase
 - API
-    * Consume informacion de otras plataformas
-    * Permite utilizar capacidades mandando un input, recibiendo un output
-    * Pueden ser creadas por uno, externas y de paga
+  - Consume informacion de otras plataformas
+  - Permite utilizar capacidades mandando un input, recibiendo un output
+  - Pueden ser creadas por uno, externas y de paga
 - Web scraping
-    * Es traernos informacion disponible que esta en internet
-    * parsehub, Scrapy
+  - Es traernos informacion disponible que esta en internet
+  - parsehub, Scrapy
 
 ## Procesamiento de Datos
 
 > El procesamiento de datos se refiere al conjunto de operaciones y transformaciones realizadas en datos para obtener información útil. Incluye la recopilación, limpieza, análisis y presentación de datos de manera que se puedan tomar decisiones informadas.
+
 Para ello tenemos:
+
 - Apache Spark:
 Motor de procesamiento de datos en memoria y distribuido.
 
@@ -204,10 +213,10 @@ En el formato DAG es como le hablamos a Airflow para que ejecute las tareas en u
 ## Testing de Software y Datos
 
 - Implementar pruebas para garantizar la calidad de software y datos.
-    * Pruebas unitarias (de funciones)
-    * Pruebas de integración ( para saber si integra bien con otras librerias, apis o aplicaciones)
-    * Pruebas E2E para saber si el resultado es lo que esperamos
-    * Y otras pruebas
+  - Pruebas unitarias (de funciones)
+  - Pruebas de integración ( para saber si integra bien con otras librerias, apis o aplicaciones)
+  - Pruebas E2E para saber si el resultado es lo que esperamos
+  - Y otras pruebas
 
 ## CI/CD
 
@@ -216,32 +225,33 @@ En el formato DAG es como le hablamos a Airflow para que ejecute las tareas en u
 ## Servidores y Computación en la Nube para Data
 
 - Alternativas del mercado y sus similitudes
-    * AWS
-    * Azure
-    * Google Cloud
+  - AWS
+  - Azure
+  - Google Cloud
 
 - Cosas a tener en cuenta
-    * Manteniendo recursos
-    * Manteniendo usuarios
-    * Manteniendo costos
-    * Distribuyendo carga
-    * Consideraciones de seguridad
+  - Manteniendo recursos
+  - Manteniendo usuarios
+  - Manteniendo costos
+  - Distribuyendo carga
+  - Consideraciones de seguridad
 
 ## Medición de indicadores y seguimiento a proyectos
+
 Es importante tener medidores para detectar problemas antes que crezcan.
+
 - Puntos de riesgo:
-    * A la entrada del servicio
-    * A la entrada del modelo
-    * Durante el proceso
-    * Datos de consulta externa
-    * A la salida del modelo
-    * A la salida del servicio
-    * Lo que s ele msotro al cliente
+  - A la entrada del servicio
+  - A la entrada del modelo
+  - Durante el proceso
+  - Datos de consulta externa
+  - A la salida del modelo
+  - A la salida del servicio
+  - Lo que s ele msotro al cliente
 
 - Para tener visibiidad:
-    * Tener dashboards
-    * Tener alertas y notificaciones
-
+  - Tener dashboards
+  - Tener alertas y notificaciones
 
 ## Buscando Oportunidades
 
@@ -264,27 +274,29 @@ Es importante tener medidores para detectar problemas antes que crezcan.
 ![Camino02](./images/camino2.jpeg){width=500px}
 
 **Y hay un tercer camino:**
-*  Cambiar a Ciencia de datos
-*  Arquitectura
-*  DevOps y Cloud
+
+- Cambiar a Ciencia de datos
+- Arquitectura
+- DevOps y Cloud
 
 ## Trabajando en equipo como Data Engineer
+
 >Los data engineer trabajan en equipo, hay cuatro roles muy importantes Data Analyst, nos ayuda a presentar los datos, los ingenieros de machine learning nos ayudan a publicar modelos, los data Scientist nos ayudan en todo el proceso, pero no saben mucho publicar código en producción con otros lenguajes de programación. Nuestro rol, es apoyar a los tres perfiles con procesos de datos adecuado, a poca latencia y muy escalables y estables, somos un soporte. Colaboramos con personas de producto y con el equipo de desarrollo de apps, para poder conectarnos a las fuentes de datos.
 
 ![posición](./images/posición.jpeg){width=500px}
 
 >Pasos y roles en el flujo de trabajo del data sciencie
 
-![flujoDataEngineeer](./images/flujo.jpeg){width=500px}
+![flujoDataEngineeer](./images/flujo.jpeg)
 ---
 
-# DevOps y DataOps: Buscan mejorar la eficiencia y la calidad del trabajo
+## DevOps y DataOps: Buscan mejorar la eficiencia y la calidad del trabajo
 
 **DevOps** y **DataOps** son dos metodologías diferentes que buscan mejorar la eficiencia y la calidad del trabajo en la gestión de software y datos, respectivamente. Aunque tienen objetivos diferentes, ambos se centran en la automatización, la colaboración y la mejora continua.
 
 A continuación, se detallan las diferencias, similitudes y límites de ambas metodologías:
 
-## Diferencias
+### Diferencias
 
 - **DevOps** se enfoca en la automatización del ciclo de vida del software, desde el desarrollo hasta la implementación y operación, mientras que **DataOps** se centra en la automatización del ciclo de vida de los datos, desde la adquisición hasta el análisis y la entrega.
 
@@ -292,7 +304,7 @@ A continuación, se detallan las diferencias, similitudes y límites de ambas me
 
 - **DevOps** busca aumentar la velocidad y la calidad de la entrega de software, mientras que **DataOps** busca mejorar la calidad y la agilidad en la gestión de datos.
 
-## Similitudes
+### Similitudes
 
 - Ambas metodologías se basan en la automatización y la mejora continua para mejorar la eficiencia y la calidad del trabajo.
 
@@ -300,7 +312,7 @@ A continuación, se detallan las diferencias, similitudes y límites de ambas me
 
 - Ambas buscan una entrega más rápida y eficiente de sus respectivos productos, ya sea software o datos.
 
-## Límites
+### Límites
 
 - **DevOps** no se centra en la gestión de datos y su calidad, mientras que **DataOps** no se enfoca en el ciclo de vida completo del software.
 

@@ -4,9 +4,12 @@
 
 ## Data Engineer
 
-### Introducción a programación e ingeniería de datos
+### Bases de Datos para Data Engineers
 
 - [Fundamentos de Ingeniería de Datos](introduccion_data_engineer.md)❤️
+- [Curso de Fundamentos de Bases de datos]()
+- [PostgreSQL](postgresql.md) 🐘
+
 - [Python](python.md) 🐍
 - [Terminal y Linea de Comandos](terminal_y_lineas_de_comandos.md) 💻
 - [Git, GitHub y GitFlow](git_github_gitflow.md) 🌐
@@ -16,7 +19,6 @@
 - [Matplotlib y Seaborn](matplotlib_seaborn.md) 🚀
 - [Estadística Descriptiva para Data Engineer](matplotlib_seaborn.md) 🏛️
 - [Análisis Exploratorio de Datos](analisis_exploratorio_de_datos.md) 🏸
-- [PostgreSQL](postgresql.md) 🐘
 
 ### Fuentes de Datos y Data Warehousing
 
