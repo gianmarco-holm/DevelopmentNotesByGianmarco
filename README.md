@@ -7,8 +7,12 @@
 ### Bases de Datos para Data Engineers
 
 - [Fundamentos de Ingeniería de Datos](introduccion_data_engineer.md)❤️
-- [Curso de Fundamentos de Bases de datos]()
+- [Curso de Fundamentos de Bases de datos](fundamentos_bd.md)
 - [PostgreSQL](postgresql.md) 🐘
+- [PostgreSQL Práctico](postgresql_practico.md) 🐘
+- [PostgreSQL Para Ciencia de Datos](postgresql_para_cienciadedatos.md) 🐘
+- [Introducción a MongoDB](introduccion_MongoDB.md)📃
+- [Modelado de datos en MongoDB](modelado_mongoDB.md)📃
 
 - [Python](python.md) 🐍
 - [Terminal y Linea de Comandos](terminal_y_lineas_de_comandos.md) 💻

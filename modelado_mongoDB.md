@@ -1,4 +1,4 @@
-# Curso de Modelado de Datos en MongoDB
+# Modelado de Datos en MongoDB
 
 ## 1. Introducción
 

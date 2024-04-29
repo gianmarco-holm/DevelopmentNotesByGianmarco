@@ -1,0 +1,71 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: password
+
+  postgresql:
+    image: postgres:14.0
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: mypassword
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  mysql-data:
+  pgdata:
+  pgadmin-data:
+
+# PARA MYSQL
+# Ejecutar el siguiente comando
+# docker-compose up -d mysql phpmyadmin
+# Puedes acceder a phpMyAdmin desde tu navegador web visitando http://localhost:8080.
+# Utiliza el nombre de usuario root y la contraseña my-secret-pw
+
+# PARA POSTGRESQL
+# Ejecutar el siguiente comando
+# docker-compose up -d postgresql pgadmin
+# Puedes acceder a pgAdmin desde un navegador web en http://localhost:5050.
+# Usa las credenciales de usuario y contraseña que definiste en el archivo docker-compose.yml
+# (en este caso, admin@example.com y mypassword).
+# Para registrar un servidor en pgAdmin debes de ingresar servers > register > nombre: cuaquiera
+# > en conexión > dirección del servidor es la imagen es decir "postgresql", puerto: 5432, usuario: postgres
+# contraseña: mypassword > salvar o guardar
+# PARA BASH DE POSTGRESQL
+# docker-compose exec postgresql bash
+
