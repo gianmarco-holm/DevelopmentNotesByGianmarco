@@ -340,5 +340,212 @@ SELECT
   info ->> 'cliente' AS cliente
 FROM ordenes
 WHERE info -> 'items' ->> 'producto' = 'Biberon';
+
+--Trabajando con objetos
+--Forma 1
+SELECT
+    MAX((info -> 'items' ->> 'cantidad')::INTEGER),
+    MIN((info -> 'items' ->> 'cantidad')::INTEGER),
+    SUM((info -> 'items' ->> 'cantidad')::INTEGER),
+    AVG((info -> 'items' ->> 'cantidad')::INTEGER)
+FROM orders;
+
+--Forma 2
+SELECT 
+    MIN(
+        CAST (info -> 'items' ->> 'cantidad' AS INTEGER)
+    ),
+    MAX(
+        CAST (info -> 'items' ->> 'cantidad' AS INTEGER)
+    ),
+    AVG(
+        CAST (info -> 'items' ->> 'cantidad' AS INTEGER)
+    ),
+    SUM(
+        CAST (info -> 'items' ->> 'cantidad' AS INTEGER)
+    )
+FROM ordenes;
 ```
 
+### 2.4. Common table expressions
+
+Las Common Table Expressions (CTEs) son una característica de SQL que permite definir una consulta nombrada dentro de otra consulta, es decir crear tablas virtuales y reutilizarla en otra consulta. Esto proporciona una forma de modularizar y reutilizar partes de una consulta SQL, lo que puede hacer que las consultas sean más legibles y mantenibles.
+
+Aquí tienes ejemplos de CTEs en niveles básico, intermedio y avanzado:
+
+#### Nivel Básico
+
+En este ejemplo, utilizaremos una CTE para calcular la suma de los primeros 10 números naturales:
+
+```sql
+WITH numeros AS (
+    SELECT generate_series(1, 10) AS numero
+)
+SELECT SUM(numero) AS suma_total
+FROM numeros;
+```
+
+En este caso, la CTE llamada numeros genera una serie de números del 1 al 10. Luego, fuera de la CTE, realizamos una consulta que suma todos los números generados.
+
+#### Nivel Intermedio
+
+En este ejemplo, utilizaremos una CTE para encontrar los empleados que ganan más que el salario promedio en una tabla de empleados:
+
+```sql
+WITH salario_promedio AS (
+    SELECT AVG(salario) AS salario_promedio
+    FROM empleados
+)
+SELECT nombre, salario
+FROM empleados
+WHERE salario > (SELECT salario_promedio FROM salario_promedio);
+```
+
+Aquí, la CTE salario_promedio calcula el salario promedio de todos los empleados. Luego, la consulta principal selecciona los empleados cuyos salarios son mayores que el salario promedio calculado en la CTE.
+
+#### Nivel Avanzado
+
+En este ejemplo, utilizaremos múltiples CTEs y combinaremos los resultados utilizando una consulta final:
+
+```sql
+WITH
+  cte_ventas AS (
+    SELECT producto_id, SUM(monto) AS total_ventas
+    FROM ventas
+    GROUP BY producto_id
+  ),
+  cte_productos_mas_vendidos AS (
+    SELECT producto_id
+    FROM cte_ventas
+    WHERE total_ventas > 1000
+  )
+SELECT p.nombre, v.total_ventas
+FROM cte_productos_mas_vendidos c
+JOIN cte_ventas v ON c.producto_id = v.producto_id
+JOIN productos p ON p.id = v.producto_id;
+```
+
+En este ejemplo, la primera CTE (cte_ventas) calcula el total de ventas para cada producto. Luego, la segunda CTE (cte_productos_mas_vendidos) selecciona los productos que tienen ventas totales superiores a 1000. Finalmente, la consulta principal une las CTEs y selecciona el nombre del producto y el total de ventas para cada producto que cumple con el criterio especificado.
+
+### 2.5. Window functions
+
+Las funciones de ventana (window functions) son una característica poderosa de SQL que te permite realizar cálculos sobre un conjunto de filas relacionadas con la fila actual. Aquí tienes ejemplos en niveles básico, intermedio y avanzado utilizando funciones de ventana:
+
+```sql
+--En esta consulta, la función SUM() se utiliza como una función de ventana con la cláusula OVER. Estamos calculando la suma acumulativa de la columna monto ordenada por la columna fecha.
+SELECT fecha, monto,
+       SUM(monto) OVER (ORDER BY fecha) AS suma_acumulativa
+FROM ventas;
+
+--Aquí, la función RANK() se utiliza como una función de ventana para asignar un rango a cada fila en función del valor de la columna monto. Las filas con el mismo valor de monto recibirán el mismo rango, y los rangos serán asignados en orden descendente.
+SELECT fecha, monto,
+       RANK() OVER (ORDER BY monto DESC) AS ranking_ventas
+FROM ventas;
+
+--Salario promedio
+SELECT JOB_TITLE, SALARY, AVG(SALARY) OVER(PARTITION BY JOB_TITLE) AS AVG_SALARY
+FROM salary_info
+--Verificamos duplicados creando particiones de columnas combinadas
+SELECT *
+FROM (
+    SELECT id,
+    ROW_NUMBER() OVER(
+        PARTITION BY
+            nombre,
+            apellido,
+            email,
+            colegiatura,
+            fecha_incorporacion,
+            carrera_id,
+            tutor_id
+        ORDER BY id ASC
+         )AS row,
+    *
+    FROM public.alumnos
+    )AS duplicados
+WHERE duplicados.row > 1;
+```
+
+Las Window Functions son similares a la agregación realizada en la cláusula GROUP BY. Sin embargo, las filas no se agrupan en una sola fila, cada fila conserva su identidad separada. Es decir, una Window Functions puede devolver un solo valor para cada fila.
+
+![wf1](./images/wf1.png)
+![wf2](./images/wf2.png)
+
+### 2.6. Top 10
+
+```sql
+SELECT
+    peliculas.pelicula_id AS id,
+    peliculas.titulo,
+    COUNT(*) AS numero_rentas,
+    ROW_NUMBER () OVER (
+        ORDER BY COUNT(*) DESC
+    ) AS lugar
+FROM rentas
+    INNER JOIN inventarios ON rentas.inventario_id = inventarios.inventario_id
+    INNER JOIN peliculas ON inventarios.pelicula_id = peliculas.pelicula_id
+GROUP BY peliculas.pelicula_id
+ORDER BY numero_rentas DESC
+LIMIT 10;
+```
+
+### 2.7. Actualizando precios
+
+```sql
+--Crear el PLPGSQL
+CREATE OR REPLACE FUNCTION public.precio_peliculas_tipo_cambio()
+    returns trigger
+    LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO precio_peliculas_tipo_cambio(
+    pelicula_id,
+    tipo_cambio_id,
+    precio_tipo_cambio,
+    ultima_actualizacion
+    )
+    select  NEW.pelicula_id,
+            tipos_cambio.tipo_cambio_id,
+            tipos_cambio.cambio_usd * NEW.precio_renta AS precio_tipo_cambio,
+            CURRENT_TIMESTAMP
+    FROM tipos_cambio
+    WHERE tipos_cambio.codigo = 'MXN';
+    RETURN NEW;
+END
+$$
+;
+
+--Crear el trigger
+DROP TRIGGER IF EXISTS trigger_update_tipos_cambio
+  ON public.peliculas;
+
+CREATE TRIGGER trigger_update_tipos_cambio
+    AFTER INSERT OR UPDATE
+    ON public.peliculas
+    FOR EACH ROW
+    EXECUTE PROCEDURE public.precio_peliculas_tipo_cambio();
+```
+
+### 2.8. Usando rank y percent rank
+
+Las funciones RANK, DENSE_RANK y PERCENT_RANK son funciones de ventana en SQL que se utilizan para asignar rangos a filas dentro de un conjunto de datos ordenado. Aquí te explico las diferencias y te doy un ejemplo de cada una:
+
+1. RANK: Esta función asigna un rango a cada fila en función de su valor de ordenación. Si hay filas con valores idénticos, todas recibirán el mismo rango y el siguiente rango será saltado.
+2. DENSE_RANK: Similar a RANK, pero los rangos se asignan de manera secuencial, sin saltar ningún rango, incluso si hay filas con valores idénticos.
+3. PERCENT_RANK: Esta función calcula el rango relativo de cada fila como un valor entre 0 y 1, donde 0 representa la primera fila y 1 representa la última fila. Este valor se calcula dividiendo el rango menos 1 por el número total de filas menos 1.
+
+```sql
+SELECT 
+    peliculas.pelicula_id AS id,
+    peliculas.titulo,
+    COUNT(*) AS numero_rentas,
+    DENSE_RANK () OVER (
+        ORDER BY COUNT(*) DESC
+    ) AS lugar
+FROM rentas
+    INNER JOIN inventarios ON rentas.inventario_id = inventarios.inventario_id
+    INNER JOIN peliculas ON inventarios.pelicula_id = peliculas.pelicula_id
+GROUP BY peliculas.pelicula_id
+ORDER BY numero_rentas DESC
+;
+```
