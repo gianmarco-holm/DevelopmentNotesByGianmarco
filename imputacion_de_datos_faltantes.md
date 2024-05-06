@@ -1,0 +1,236 @@
+# Manejo de Datos Faltantes: Imputación
+
+## 1. Problemática de Valores Faltantes
+
+### 1.1. El problema de trabajar con valores faltantes
+
+- Ignorar a los valores faltantes puede introducir sesgos en tus análisis y modelos.
+- Multiples algoritmos disponibles fallarán.
+- Imputación: Estimar los valores ausentes con base en los valores válidos de otras variables y/o casos de muestra.
+
+### 1.2. Procesi de análisis y limpiesa de datos
+
+[Enlace](./imputacion_de_datos_faltantes/download-data-and-load-it.ipynb)
+
+### 1.3. Visualizar y eliminar valores faltantes
+
+[Enlace](./imputacion_de_datos_faltantes/download-data-and-load-it.ipynb)
+
+### 1.4. Implicaciones de los distintos tipos de valores faltantes
+
+Existen 3 mecanismos de valores faltanes:
+
+#### MCAR (Missing Complettely At Random)
+
+La localización de los valores faltantes en el conjunto de datos ocurren completamente al azar, estos no dependen de ningún otro dato.
+
+**Eliminación de valores faltantes:**
+
+- Reducción del tamaño de muestra.
+- Inferencia limitada.
+- No produce sesgos
+
+**Imputación de valores faltantes:**
+
+- De hacerlo bien, no produce sesgos
+- La imputación es recomendada sobre la deleción.
+
+#### MAR (Missing At Random)
+
+La localización de los valores faltantes en el conjunto de datos dependen de otros valores observados.
+
+**Eliminación de valores faltantes:**
+
+- Ignorarlos produce sesgos
+
+**Imputación de valores faltantes:**
+
+- La mayor parte de métodos de imputación asumen MAR
+- La imputación es necesaria
+
+#### MNAR (Missing Not At Random)
+
+La localización de los valores faltantes en el conjunto de datos dependen de otros valores faltantes en sí mismos.
+
+**Eliminación de valores faltantes:**
+
+- Ignorarlos produce sesgos
+
+**Imputación de valores faltantes:**
+
+- La imputación no es recomendada, a no ser que sea sobre la deleción.
+
+💡 Mejorar experimentos o realizar análisis de sensibilidad (repetir los experimentos, explorar los parámetros, ver como cambian los análisis al modificar algunos datos y establecer intervalos de confianza)
+
+### 1.5. Amplía tu conjunto de herramientas para explorar valores faltantes
+
+[Enlace](./imputacion_de_datos_faltantes/download-data-and-load-it.ipynb)
+
+Aca mostramos un nuevo grafico de tres variables para poder analizar nuestros valores faltantes llamado mosaico.
+
+### 1.6. Tratamiento de variables categóricas para imputación
+
+Para poder manejar los valores faltantes de las variables categorícas es recomendable codificarlos.
+
+- **Ordinal Encoder o Codificación ordinal:** Aca se le asigna un número a cada categoría.
+  - Ejemplo:
+    |Categorias|Codificación|
+    |----------|------------|
+    |Perro|0|
+    |Gato|1|
+    |Rata|2|
+    |Paloma|3|
+
+- **One-hot encoding:** Se le asigna 1 y 0 a las categorías generando un codigo para cada uno.
+  - Ejemplo:
+
+    |Perro|Gato|Rata|Paloma|
+    |-----|----|----|------|
+    |1|0|0|0|
+    |0|1|0|0|
+    |0|0|1|0|
+    |0|0|0|1|
+
+[Enlace](./imputacion_de_datos_faltantes/download-data-and-load-it.ipynb)
+
+### 1.7. Métodos de imputación de valores faltantes
+
+En el manejo de valores faltantes existen dos tipos de tratamientos, pero primero entendamos lo siguiente.
+
+> Que son las imputaciones con base en el donante?\
+> Completa los valores que faltan para unidad copiando los valores observados de otra unidad, el donante.
+>
+> Que son las imputaciones basadas en el modelo?\
+> El objetivo de la imputación basada en modelos es encontrar un modelo predictivo para cada variable objetivo en el conjunto de datos que contiene valores faltantes.
+
+**Tratamientos de valores faltantes:**
+
+- `Delecciones / Eliminaciones:` Aca existen diferentes métodos que se vio en el anterior notebook.
+  - Pairwise deletion (Eliminación por parejas)
+  - Listwise deletion (Eliminación por filas)
+  - Eliminación completa de columnas
+  - Elimina únicamente los valores faltantes
+  - Elimina las filas con valores faltantes
+  - Elimina las columnas con valores faltantes
+- `Imputaciones:` Deducen los valores faltantes.
+  - General
+    - Datos que no son series de tiempo
+      - Imputar con una constante `(Imputación por donante)`
+      - Imputar con media, mediana o moda `(Imputación por donante)`
+    - Datos que son series de tiempo
+      - Llenado hacia atras `(Imputación por donante)`
+      - Llenado hacia adelante `(Imputación por donante)`
+      - Interpolación
+  - Avanzada
+    - KNN `(Imputación por donante)`
+    - MICE `(Imputación por modelo)`
+    - NN `(Imputación por modelo)`
+    - SVM `(Imputación por modelo)`
+    - Otros modelos `(Imputación por modelo)`
+
+## 2. Imputación basada en el donante
+
+### 2.1. Imputación por media, mediana y moda
+
+**Ventajas:**
+
+- Rapido y facil de implementar.
+- La media puede ser util en presencia de outliers.
+- No afectara el estadistico en cuestion ni el tamano de la muestra.
+
+**Desventajas:**
+
+- Puede sesgar los resultados, dado que modifica la distribucion por debajo (curtosis). Zona donde se estan aglomerando los datos
+- Pierdes correlaciones entre variables dado que no es muy preciso o muy real. Carece de variabilidad.
+- No puedes usarlo en variables categoricas (a excepcion de la moda ya que puedes usar el valor mas frecuente).
+
+### 2.2. Imputación por llenado hacia atrás y hacia adelante
+
+**Ventajas:**
+
+- Rapido y facil de implementar.
+- Los datos imputados no son constantes
+- Existen trucos para evitar romper las relaciones
+
+**Desventajas:**
+
+- Relaciones multivariables pueden ser distorsionadas
+
+### 2.3. Imputación por interpolación
+
+La interpolación puede tener distintas formas, y puede ser imputación por modelo o donante, ya que puede obtener valores según una línea recta por modelo, o puede recibir valores de adelante o de atras.
+
+**Ventajas:**
+
+- Sencillo de implementar
+- Útil para series de tiempo
+- Variabilidad de opciones al alcance
+
+**Desventajas:**
+
+- Puede romper relaciones entre variables
+- Puede introducir valores fuera de rango
+
+### 2.4. Imputación por KNN
+
+Pasos para imputación pork-Nearest-Neighbors
+
+1. Encuentra otras K observaciones (donadores, vecinos) que sean más similares a esa observación.
+2. Reemplaza los valores faltantes con los valores agregados de los K vecinos.
+
+Para determinar cuales son los vecinos mas similares se utilizan las metricas de distancia la cual cuantifica la distancia que hay entre dos observaciones. Entre los distintos tipos de metrica de distancia tenemos:
+
+- Distancia Euclidiana: util para las variables numericas, se traza una linea recta entre dos puntos, porque se considera el camino mas corto en un espacio euclidiano, y esa distancia se utiliza como parametro para definir si se encuentra lejos o cerca de otro punto.
+
+- Distancia Manhattan: es muy util para variables de tipo factor (dias de la semana, condiciones como lento, rapido), se trata de la distancia absoluta que debemos recorrer para llegar del punto a al punto b.
+
+- Distancia de Hamming: es util para variables categoricas, cuantifica la diferencia entre los textos.
+
+- Distancia de Gower: util para conjuntos de datos con variables mixtas, se define como la distancia de un vecino a otros vecinos para determinar la distancia global referente a la fila que contiene el valor faltante.
+
+**Ventajas:**
+
+- Sencillo de implementar.
+- buen rendimiento con conjunto de datos pequenos.
+- Excelente para datos numericos, pero tambien funciona para datos mixtos
+
+**Desventajas:**
+
+- Su escalabilidad puede ser comprometedora dependiendo del numero de variables y el tamano de las observaciones.
+- Requiere transformaciones especiales para las variables categoricas ya que no solo estas introduciendo numeros y se necesita cuntificar estas distancias.
+- Posee sensibilidad a valores atipicos
+
+## 3. imputación basada en modelos
+
+### 3.1. Introducción a la imputación basada en modelos
+
+**Ventajas:**
+
+- Mejora sobre la imputacion basada en donantes sencilla
+- Presenta gran variedad de opciones para imputar. Puedes elegir tecnicas de Machine Learning como puede ser un SVM o tecnicas de Deep Learning como Redes Neuronales.
+- Preserva la relacion entre las variables
+
+**Desventajas:**
+
+- Puede subestimar la varianza. Tambien arrastra todos los defecto que presente el modelo.
+- Los modelos funcionan mal si las variables observadas y faltantes son independientes.
+- Es mas complicado que la imputacion basada en donantes
+
+### 3.2. Imputaciones Múltiples por Ecuaciones Encadenadas (MICE)
+
+Permite preserva las relaciones entre las variables y por tanto es preferido sobre las imputaciones simples. Consiste en tratar inicialmente con un conjunto de datos con valores faltantes, luego crea copias de dicho conjunto de datos a los que vas a imputar valores para obtener copias con valores completos, analizas los resultados y finalmente agrupas los resultados de cada conjunto de datos para dar un informe con intervalos de confianza que contribuyan a la variabilidad de los datos. Es decir primero coge una variable trata de predecir los valores faltantes en base a las demas variables y cuando este completa esta variable target sigue con el siguiente.
+
+**Ventajas:**
+
+- Mantiene la distribucion relativa similar antes y despues de la imputacion.
+- Puede ser utilizado en cualquier tipo de analisis. Generalmente es mas utilizado para datos de tipo MCAR y MAR pero tambien para los de tipo MNAR aunque con mucha cautela.
+- Multiples variables son imputadas.
+
+**Desventajas:**
+
+- Para funcionar bien, necesitas pensar en el modelo de imputacion y el modelo de analisis para que asi todo el estudio tenga sentido de acuerdo a los datos. No todos los algoritmos funcionan para todos los conjuntos de datos.
+- Solo funciona como los metodos de imputacion seleccionados. Al iniciar el tratamiento de valores faltantes debemos definir un estimador que nos indica como vamos ajustando las variables o predecirlas en funcion del resto de variables. Por tanto necesitas pensar que estimador es el adecuado considerando sus ventajas y desventajas
+
+### 3.3. Transformación inversa de los datos
+
+Como hemos transformado a números nuestras variables categóricas, despues de haber hecho la imputación, necesitamos regresarlo a texto.
