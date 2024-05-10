@@ -195,7 +195,7 @@
 
 ## 🌌 GitHub
 
-### 🌟 Flujo Básico de GitHub
+### 🌟 Flujo Intermedio de GitHub
 
 #### Acceso mediante HTTPS
 
@@ -242,9 +242,9 @@
 
 5. Luego tu llave publica de ssh le entregas a github para enlazarlos
 
-#### Opcional
+#### Otra casuística
 
-Cuando se clona un repositorio se crea automaticamente el remoto, solo se crea remoto cuando:
+Solo se crea remoto cuando:
 
 * Creas un nuevo repositorio local sin clonar desde un remoto existente.
 * Si trabajas en un proyecto que tiene múltiples repositorios remotos.
