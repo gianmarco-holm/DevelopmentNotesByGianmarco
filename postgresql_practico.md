@@ -1,3 +1,4 @@
+
 # PostgreSQL Práctico
 
 ## 1. Introducción
@@ -26,7 +27,7 @@ No confundir las relaciones del álgebra relacional con las relaciones de una ba
 
 Tipos de operadores
 
-- Operadores unarios.- Requiere una relación o tabla para funcionar. 
+- Operadores unarios.- Requiere una relación o tabla para funcionar.
   - Proyección (π): Equivale al comando Select. Saca un número de columnas o atributos sin necesidad de hacer una unión con una segunda tabla. π<Nombre, Apellido, Email>(Tabla_Alumno)
   - Selección (σ): Equivale al comando Where. Consiste en el filtrado de de tuplas. σ<Suscripción=Expert>(Tabla_Alumno) ⠀
 
@@ -311,11 +312,11 @@ ON datos_alumnos.colegiatura = segunda_mayor_colegiatura.colegiatura;
 
 --Cuarta forma
 SELECT *
-FROM platzi.alumnos AS datos_alumnos 
+FROM platzi.alumnos AS datos_alumnos
 WHERE colegiatura = (
     SELECT DISTINCT colegiatura
     FROM platzi.alumnos
-    WHERE tutor_id = 20 
+    WHERE tutor_id = 20
     ORDER BY colegiatura DESC
     LIMIT 1 OFFSET 1
 );

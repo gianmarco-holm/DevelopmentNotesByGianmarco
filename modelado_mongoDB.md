@@ -68,7 +68,7 @@ El Workload o Carga de trabajo se construye tomando en cuenta los Escenarios, lo
 
 Para construir el Workload podemos usar un documento (no limitativo) que nos permita empezar a definir el modelado y saber que aspectos debemos tener en cuenta al momento de diseñar la base de datos. El documento puede tener las siguientes secciones:
 
-* Casos de usos: Describimos lo mas importante acerca del caso de negocio que se esté manejando.
+* Casos de usos: Describimos lo mas importante acerca del caso de negocio que se esté manejando. Los casos de uso son descripciones detalladas de cómo los usuarios interactúan con un sistema para lograr objetivos específicos.
 * Sección principal: Se resaltan los actores principales.
 Suposiciones acerca del negocio: Establecemos ciertas declaraciones que pueden ir variando a través del tiempo.
 * Operaciones: Se detallan mas a fondo los actores que influyen en nuestro negocio y la forma en la que se relacionan con nuestra base de datos resaltando aspectos importantes como: frecuencia, información que se envía, tipo de operación, etc.
@@ -716,7 +716,7 @@ db.orders.updateOne( // actualizamos la orden
                 name: 'Producto 1',
                 qty: 2,
                 price: 12,
-                product_id: ObjectId('649923f457514437ac501dd4')  
+                product_id: ObjectId('649923f457514437ac501dd4') 
             }
         },
         $inc: { // incrementador
