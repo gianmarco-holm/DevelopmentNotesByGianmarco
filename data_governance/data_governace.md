@@ -853,3 +853,30 @@ compartir conocimientos.
 * Permite establecer políticas y reglas para el acceso, uso y manejo de los datos en toda la empresa
 * Proporciona un marco de trabajo para eI monitoreo y cumplimiento de políticas y regulaciones, con alertas y notificaciones
 * Puede ser una buena opción para empresas que buscan una solución completa e integrada con otras soluciones de IBM
+
+## 6. Caso Practico
+
+[Enlace](./Caso+Práctico.pdf)
+
+Solucion:
+
+* **Implementar DataMesh:** Debido a que se necesitan soluciones que fomenten la comunicación y colaboración entre departamentos
+y sistemas. Como ya sabemos, el data mehs se centra en la descentralización de los datos, permitiendo a los equipos y departamentos poseer y gestionar sus propios dominios de datos. Esto fomenta la autonomía y la responsabilidad de los equipos en la gestión y el uso de sus propios datos, lo que puede mejorar la calidad de los datos y la rapidez de acceso a los mismos. Además de que promueve la colaboración y la comunicación entre los equipos y departamentos, lo que puede ayudar a resolver los problemas de falta de comunicación y sinergia mencionados por los empleados.
+
+* **Modelo operativo (Combinación de una estructura de data mesh con un enfoque de gobierno centralizado):** El modelo operativo que propondríamos sería una combinación de la estructura del data mesh. Con un enfoque de gobierno centralizado y coordinado, se establecerían políticas y estándares claros para la gestión de datos en toda la organización que nacerían de la capa directiva y se crearía una oficina de gobierno del dato con roles y responsabilidades definidos para garantizar el cumplimiento de estas políticas y estándares.
+
+* **Estructura (Cuerpo directivo, Data engineers, Data Arquitects, Data users):** La estructura de la Oficina de Gobierno del Dato incluiría un CDO como líder de la estrategia y gobierno de datos. Un equipo de arquitectos de datos para garantizar la calidad y consistencia de los datos y un equipo de ingenieros de datos para implementar las soluciones tecnológicas necesarias. Se establecerían comités de coordinación entre los departamentos para asegurar la colaboración y la comunicación y se fomentaría la transparencia y la responsabilidad en la gestión de los datos.
+
+* **Oficina (Chief Data Officer, Data Arquitect Officer, Governance Officer, Data Protection Officer, Data Quality Officer):** Para establecer una estructura de gobierno de datos efectiva, propondríamos la creación de la Oficina de Gobierno del Dato encargada de definir, implementar y supervisar las políticas y estándares de gestión de datos en toda la organización.
+Esta oficina estaría dirigida por el CDO y estaría compuesta por los siguientes roles y responsabilidades uno.
+  * Data Architect Officer, responsable de diseñar la arquitectura de datos y establecer los estándares técnicos para la gestión de datos en toda la organización.
+  * Data Quality Officer responsable de supervisar la calidad de los datos en toda la organización y trabajar con los propietarios de datos para mejorar la calidad de los mismos.
+  * Governance Officer responsable de liderar y supervisar la implementación de políticas y procedimientos para garantizar el cumplimiento de los objetivos de Gobierno de datos de la organización.
+  * Data Protection Officer. Responsable de garantizar que la organización cumpla con las normativas de privacidad, seguridad y protección de datos en todo momento, trabajando con los equipos de seguridad para minimizar los riesgos.
+
+* **Comite de Gobernanza (CEO, CDO, CIO, BA rep), Comite de calidad: (CDO, DQO, BA rep):** Comité de Gobernanza de datos que estaría encargado de supervisar y aprobar las políticas y estándares de gestión de datos. Este comité estaría compuesto por miembros clave de la organización, incluyendo representantes de cada departamento o área de negocio el CEO, el CDO y el CEO. Por otro lado, también sugeriría mos la creación de un comité de calidad de datos que estaría encargado de supervisar y evaluar la calidad de los datos en toda la organización. ste comité estaría compuesto por miembros clave de la organización, incluyendo representantes de cada departamento o área de negocio, el gestor de calidad de datos y el CDO. Estos comités trabajarían en estrecha colaboración con la Oficina de Gobierno y estarían encargados de garantizar que las políticas y estándares de gestión de datos sean implementados y cumplidos en toda la organización.
+
+## 7. Self Assestment
+
+[Nivel Junior](./Self+Assessment+I.pdf)
+[Nivel Senior](./Self+Assessment+II.pdf)
