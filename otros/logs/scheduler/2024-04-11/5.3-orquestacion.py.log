@@ -1,0 +1,7 @@
+[2024-04-11T03:30:36.609+0000] {processor.py:161} INFO - Started process (PID=44) to work on /opt/airflow/dags/5.3-orquestacion.py
+[2024-04-11T03:30:36.611+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/5.3-orquestacion.py for tasks to queue
+[2024-04-11T03:30:36.614+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:36.613+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/5.3-orquestacion.py
+[2024-04-11T03:30:36.636+0000] {processor.py:840} INFO - DAG(s) 'orquestation3' retrieved from /opt/airflow/dags/5.3-orquestacion.py
+[2024-04-11T03:30:36.668+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:36.668+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-04-11T03:30:36.710+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:36.710+0000] {dag.py:3834} INFO - Setting next_dagrun for orquestation3 to 2024-03-01 00:00:00+00:00, run_after=2024-04-01 00:00:00+00:00
+[2024-04-11T03:30:36.748+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/5.3-orquestacion.py took 0.144 seconds

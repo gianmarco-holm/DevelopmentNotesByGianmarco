@@ -1,0 +1,11 @@
+[2024-04-11T03:30:35.612+0000] {processor.py:161} INFO - Started process (PID=39) to work on /opt/airflow/dags/9.xcom.py
+[2024-04-11T03:30:35.614+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/9.xcom.py for tasks to queue
+[2024-04-11T03:30:35.617+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:35.617+0000] {dagbag.py:540} INFO - Filling up the DagBag from /opt/airflow/dags/9.xcom.py
+[2024-04-11T03:30:35.647+0000] {processor.py:840} INFO - DAG(s) '9-XCom' retrieved from /opt/airflow/dags/9.xcom.py
+[2024-04-11T03:30:35.828+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:35.827+0000] {override.py:1769} INFO - Created Permission View: can delete on DAG:9-XCom
+[2024-04-11T03:30:35.843+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:35.843+0000] {override.py:1769} INFO - Created Permission View: can edit on DAG:9-XCom
+[2024-04-11T03:30:35.854+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:35.854+0000] {override.py:1769} INFO - Created Permission View: can read on DAG:9-XCom
+[2024-04-11T03:30:35.855+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:35.855+0000] {dag.py:3047} INFO - Sync 1 DAGs
+[2024-04-11T03:30:35.869+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:35.869+0000] {dag.py:3069} INFO - Creating ORM DAG for 9-XCom
+[2024-04-11T03:30:35.879+0000] {logging_mixin.py:188} INFO - [2024-04-11T03:30:35.879+0000] {dag.py:3834} INFO - Setting next_dagrun for 9-XCom to 2022-01-01 00:00:00+00:00, run_after=2022-01-02 00:00:00+00:00
+[2024-04-11T03:30:35.898+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/9.xcom.py took 0.290 seconds
